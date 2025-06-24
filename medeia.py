@@ -92,48 +92,6 @@ def extract_film_data(data: dict) -> dict | None:
         "url": data["url"],
     }
 
-# def upsert_movies(df_db: pd.DataFrame, df_new: pd.DataFrame) -> pd.DataFrame:
-#     logging.info(f"🟡 Upsert started: {len(df_new)} new records, {len(df_db)} in DB")
-
-#     # Split by ID presence
-#     in_db_mask = df_new.index.isin(df_db.index)
-#     new_rows = df_new[~in_db_mask]
-#     update_rows = df_new[in_db_mask]
-
-#     logging.info(f"➕ New: {len(new_rows)} | 🔄 Update: {len(update_rows)}")
-
-#     if not update_rows.empty:
-#         check_cols = df_db.columns.difference(['sessions']).tolist()
-#         cmp = (
-#             update_rows[check_cols]
-#             .compare(df_db.loc[update_rows.index, check_cols], keep_shape=False, keep_equal=False)
-#         )
-#         if not cmp.empty:
-#             mismatch_summary = (
-#                 cmp.stack(future_stack=True).reset_index()
-#                 .rename(columns={'level_2': 'column', 0: 'new', 1: 'db'})
-#             )
-#             logging.error("❌ Conflicting metadata for existing IDs:\n%s", mismatch_summary.to_string(index=True))
-#             raise ValueError("Conflicting metadata found in update_rows")
-
-#         df_db.loc[update_rows.index, 'sessions'] = update_rows['sessions']
-#         logging.info(f"✅ Updated sessions for {len(update_rows)} movies")
-
-#     # Clear sessions for IDs no longer in new data
-#     gone_mask = ~df_db.index.isin(df_new.index)
-#     if gone_mask.any():
-#         df_db.loc[gone_mask, 'sessions'] = pd.NA
-#     logging.info(f"🗑️  Cleared sessions for {gone_mask.sum()} movies no longer listed")
-
-#     # Append brand new rows
-#     df_medeia = pd.concat([df_db, new_rows])
-
-#     logging.info(f"✅ Upsert complete: {len(df_medeia)} total records")
-
-#     df_medeia.sort_index(inplace=True)
-
-#     return df_medeia
-
 def match_series_imdb(movie_row: pd.Series, df_imdb: pd.DataFrame):
     original_movie_row = movie_row.copy()
     original_df_imdb = df_imdb.copy()
