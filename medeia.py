@@ -5,7 +5,7 @@ import json
 import logging
 import os
 import re
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 from typing import TypeVar, cast
 
@@ -30,7 +30,6 @@ DATASET_FILMS = DATASET_ROOT + "/films"
 MEDEIA_URL = "https://medeiafilmes.com/filmes-em-exibicao"
 DATA_PATTERN = re.compile(r"global\.data\s*=\s*(\{.*?\});")
 TARGET_THEATERS = ["cinema-medeia-nimas"]
-RUNTIME_PATTERN = re.compile(r'(?:(\d+)\s*(?:h|:|\s))?\s*(\d+)\s*(?:m|min)?|(\d+)\s*\+\s*(\d+)')
 
 async def handle(ctx: BeautifulSoupCrawlingContext) -> None:
     html = imdb.get_response(ctx.http_response)
@@ -50,15 +49,6 @@ async def handle(ctx: BeautifulSoupCrawlingContext) -> None:
         await ctx.enqueue_links(requests=[
             movie_info['url'] for movie_id, movie_info in movies.items() if movie_id.startswith('film-')
         ])
-
-def convert_runtime(runtime: str) -> str:
-    runtime = runtime.replace(" ", "")
-    match = RUNTIME_PATTERN.match(runtime)
-    if match.group(3):
-        return match.group(3) + match.group(4)
-    hours = int(match.group(1)) if match.group(1) else 0
-    minutes = int(match.group(2)) if match.group(2) else 0
-    return hours * 60 + minutes
 
 def extract_film_data(data: dict) -> dict | None:
     film_data = data["data"]["film"]
@@ -82,7 +72,7 @@ def extract_film_data(data: dict) -> dict | None:
         "director": film_data["director_name"].strip(),
         "cast": [cast.strip() for cast in film_data["cast"].split(",")],
         "releaseYear": int(film_data["production_year"]),
-        "runtime": convert_runtime(film_data["length"]) if film_data.get("length") else pd.NA,
+        "runtime": datetime_utils.string_to_runtime(film_data["length"]) if film_data.get("length") else pd.NA,
         "sessions": extract_sessions(),
         "url": data["url"],
     }
@@ -213,7 +203,7 @@ async def main(user_id: str, reload: bool = True):
         index_col='id',
         converters={
             "cast": ast.literal_eval,
-            "runtime": lambda x: convert_runtime(x) if pd.notna(x) else pd.NA,
+            "runtime": lambda x: datetime_utils.string_to_runtime(x) if pd.notna(x) else pd.NA,
             "sessions": lambda x: [datetime_utils.to_datetime(s) for s in y]
                 if (y := ast.literal_eval(x)) else pd.NA,
             "imdb_lists": ast.literal_eval,
@@ -239,7 +229,9 @@ async def main(user_id: str, reload: bool = True):
         match_series_imdb, axis=1, args=(df_imdb,), result_type='expand'
     )
     df_movies.sort_index(inplace=True)
-    df_movies['runtime'] = df_movies['runtime'].apply(lambda x: timedelta(minutes=x) if pd.notna(x) else pd.NA)
+    df_movies['runtime'] = df_movies['runtime'].apply(
+        lambda x: datetime_utils.runtime_to_string(x) if pd.notna(x) else pd.NA
+    )
 
     df_sessions = get_sessions(df_movies)
 
