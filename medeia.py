@@ -5,7 +5,7 @@ import json
 import logging
 import os
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import TypeVar, cast
 
@@ -30,7 +30,7 @@ DATASET_FILMS = DATASET_ROOT + "/films"
 MEDEIA_URL = "https://medeiafilmes.com/filmes-em-exibicao"
 DATA_PATTERN = re.compile(r"global\.data\s*=\s*(\{.*?\});")
 TARGET_THEATERS = ["cinema-medeia-nimas"]
-RUNTIME_PATTERN = re.compile(r'(?:(\d+)\s*(?:h|:|\s))?\s*(\d+)\s*(m|min)?|(\d+)\s*\+\s*(\d+)')
+RUNTIME_PATTERN = re.compile(r'(?:(\d+)\s*(?:h|:|\s))?\s*(\d+)\s*(?:m|min)?|(\d+)\s*\+\s*(\d+)')
 
 async def handle(ctx: BeautifulSoupCrawlingContext) -> None:
     html = imdb.get_response(ctx.http_response)
@@ -239,15 +239,11 @@ async def main(user_id: str, reload: bool = True):
         match_series_imdb, axis=1, args=(df_imdb,), result_type='expand'
     )
     df_movies.sort_index(inplace=True)
-    df_movies['runtime'] = df_movies['runtime'].apply(
-        lambda x: f"{x // 60}:{x % 60:02d}" if pd.notna(x) else pd.NA
-    )
+    df_movies['runtime'] = df_movies['runtime'].apply(lambda x: timedelta(minutes=x) if pd.notna(x) else pd.NA)
 
     df_sessions = get_sessions(df_movies)
 
-    df_movies['sessions'] = df_movies['sessions'].apply(
-        lambda x: [datetime_utils.to_string(s) for s in x]
-    )
+    df_movies['sessions'] = df_movies['sessions'].apply(lambda x: [datetime_utils.to_string(s) for s in x])
     df_movies.to_csv(DATA_DIR / "movies.csv", index=True, encoding='utf-8-sig')
 
     df_sessions['session'] = df_sessions['session'].apply(datetime_utils.to_string)
