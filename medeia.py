@@ -13,6 +13,7 @@ import pandas as pd
 from crawlee.crawlers import BeautifulSoupCrawler, BeautifulSoupCrawlingContext
 from crawlee.storages import Dataset
 
+import datetime_utils
 import imdb
 
 
@@ -23,16 +24,15 @@ DATA_DIR = BASE_DIR / 'data'
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 DATASET_ROOT = "medeia"
-DATASET_BASE = DATASET_ROOT + "/base"
+DATASET_BASE = DATASET_ROOT
 DATASET_FILMS = DATASET_ROOT + "/films"
 
 MEDEIA_URL = "https://medeiafilmes.com/filmes-em-exibicao"
 DATA_PATTERN = re.compile(r"global\.data\s*=\s*(\{.*?\});")
 TARGET_THEATERS = ["cinema-medeia-nimas"]
-TIMEZEONE = "Europe/Lisbon"
 
 async def handle(ctx: BeautifulSoupCrawlingContext) -> None:
-    html = html = imdb.get_response(ctx.http_response)
+    html = imdb.get_response(ctx.http_response)
     hit = DATA_PATTERN.search(html)
     if not hit:
         ctx.log.error("No global.data on %s", ctx.request.url)
@@ -76,8 +76,7 @@ def extract_film_data(data: dict) -> dict | None:
                     hours = session["hours"]
                     assert len(hours) == 1
                     hours = str(hours[0]).replace("*", "").strip()
-                    if date and hours:
-                        sessions.append(datetime.strptime(f"{date} {hours}", "%Y-%m-%d %H:%M"))
+                    sessions.append(datetime_utils.to_datetime(f"{date} {hours}", "%Y-%m-%d %H:%M"))
         return sorted(sessions)
 
     return {
@@ -146,7 +145,7 @@ def match_series_imdb(movie_row: pd.Series, df_imdb: pd.DataFrame):
 async def get_medeia_movies() -> pd.DataFrame:
     df = await Dataset.open(name=DATASET_ROOT)
     await df.drop()
-    crawler = BeautifulSoupCrawler(max_crawl_depth=1)
+    crawler = BeautifulSoupCrawler(http_client=imdb.HTTP_CLIENT, max_crawl_depth=1)
     crawler.router.default_handler(handle)
     await crawler.run([MEDEIA_URL])
 
@@ -185,8 +184,7 @@ def get_sessions(df_movies: pd.DataFrame) -> pd.DataFrame:
     df_sessions.rename(columns={'sessions': 'session'}, inplace=True)
     df_sessions.dropna(subset=['session'], inplace=True)
 
-    df_sessions['session'] = pd.to_datetime(df_sessions['session']).dt.tz_localize(TIMEZEONE)
-    df_sessions = df_sessions[df_sessions['session'] >= pd.Timestamp.now(tz=TIMEZEONE).normalize()]
+    df_sessions = df_sessions[df_sessions['session'] >= datetime_utils.midnight()]
 
     session_position: int = cast(int, df_sessions.columns.get_loc('session'))
 
@@ -213,13 +211,15 @@ def get_sessions(df_movies: pd.DataFrame) -> pd.DataFrame:
     return df_sessions
 
 async def main(user_id: str, reload: bool = True):
-    file_path = DATA_DIR / f"movies.csv"
+    file_path = DATA_DIR / "movies.csv"
 
     df_movies = pd.read_csv(
         file_path,
         index_col='id',
         converters={
             "cast": ast.literal_eval,
+            "sessions": lambda x: [datetime_utils.to_datetime(s) for s in y]
+                if (y := ast.literal_eval(x)) else pd.NA,
             "imdb_lists": ast.literal_eval,
         },
         encoding='utf-8-sig'
@@ -234,6 +234,7 @@ async def main(user_id: str, reload: bool = True):
             logging.info(f"📂 Loaded {len(df_medeia)} movies from Medeia website")
         else:
             columns = df_medeia.columns
+            df_movies["sessions"] = pd.NA
             df_medeia = df_medeia.combine_first(df_movies)[columns]
 
     df_imdb = await get_imdb_movies(user_id)
@@ -241,9 +242,16 @@ async def main(user_id: str, reload: bool = True):
     df_movies = df_medeia.apply(
         match_series_imdb, axis=1, args=(df_imdb,), result_type='expand'
     )
-    df_movies.to_csv(DATA_DIR / "movies.csv", index=True, encoding='utf-8-sig')
 
     df_sessions = get_sessions(df_movies)
+
+    
+    df_movies['sessions'] = df_movies['sessions'].apply(
+        lambda x: [datetime_utils.to_string(s) for s in x]
+    )
+    df_movies.to_csv(DATA_DIR / "movies.csv", index=True, encoding='utf-8-sig')
+
+    df_sessions['session'] = df_sessions['session'].apply(datetime_utils.to_string)
     df_sessions.to_csv(DATA_DIR / "sessions.csv", index=False, encoding='utf-8-sig')
 
 if __name__ == "__main__":

@@ -1,3 +1,4 @@
 crawlee
 crawlee[beautifulsoup]
+crawlee[curl-impersonate]
 pandas

@@ -6,8 +6,9 @@ import unicodedata
 from typing import cast
 from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
 
+from crawlee import HttpHeaders
 from crawlee.crawlers import BeautifulSoupCrawler, BeautifulSoupCrawlingContext
-from crawlee.http_clients import HttpResponse
+from crawlee.http_clients import CurlImpersonateHttpClient, HttpResponse
 from crawlee.storages import Dataset
 
 logger = logging.getLogger(__name__)
@@ -23,6 +24,13 @@ DATASET_ROOT = "imdb"
 DATABASE_WATCHLIST = DATASET_ROOT + "/watchlist"
 DATABASE_LISTS = DATASET_ROOT + "/lists"
 DATASET_LIST = DATABASE_LISTS + f"/{{name}}"
+
+HTTP_CLIENT = CurlImpersonateHttpClient(
+    impersonate="chrome124",
+    headers=HttpHeaders({
+        "accept-encoding": "gzip, deflate, br",
+    }),
+)
 
 def to_ascii(text: str) -> str:
     ascii_text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('ascii')
@@ -108,7 +116,8 @@ def extract_movie_data(data: dict) -> dict:
 async def main(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
     df = await Dataset.open(name=DATASET_ROOT)
     await df.drop()
-    crawler = BeautifulSoupCrawler()
+
+    crawler = BeautifulSoupCrawler(http_client=HTTP_CLIENT)
     crawler.router.default_handler(handle_movies)
     await crawler.run([WATCHLIST_URL.format(user_id=user_id, page=1), LISTS_URL.format(user_id=user_id)])
 
