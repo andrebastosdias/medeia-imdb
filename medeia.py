@@ -30,6 +30,7 @@ DATASET_FILMS = DATASET_ROOT + "/films"
 MEDEIA_URL = "https://medeiafilmes.com/filmes-em-exibicao"
 DATA_PATTERN = re.compile(r"global\.data\s*=\s*(\{.*?\});")
 TARGET_THEATERS = ["cinema-medeia-nimas"]
+RUNTIME_PATTERN = re.compile(r'(?:(\d+)\s*(?:h|:))?\s*(\d+)\s*(min)?')
 
 async def handle(ctx: BeautifulSoupCrawlingContext) -> None:
     html = imdb.get_response(ctx.http_response)
@@ -50,22 +51,14 @@ async def handle(ctx: BeautifulSoupCrawlingContext) -> None:
             movie_info['url'] for movie_id, movie_info in movies.items() if movie_id.startswith('film-')
         ])
 
+def convert_runtime(runtime: str) -> str:
+    match = RUNTIME_PATTERN.match(runtime)
+    hours = int(match.group(1)) if match.group(1) else 0
+    minutes = int(match.group(2)) if match.group(2) else 0
+    return hours * 60 + minutes
+
 def extract_film_data(data: dict) -> dict | None:
     film_data = data["data"]["film"]
-
-    def extract_runtime() -> int:
-        length = film_data["length"]
-        numbers = list(map(int, re.findall(r'\d+', length)))
-        if len(numbers) == 2:
-            if '+' in length:
-                hours, minutes = 0, numbers[0] + numbers[1]
-            else:
-                hours, minutes = numbers[0], numbers[1]
-        elif len(numbers) == 1:
-            hours, minutes = 0, numbers[0]
-        else:
-            raise ValueError(f"Unexpected duration format: {length}")
-        return hours * 60 + minutes
 
     def extract_sessions() -> list[datetime]:
         sessions: list[datetime] = []
@@ -86,7 +79,7 @@ def extract_film_data(data: dict) -> dict | None:
         "director": film_data["director_name"].strip(),
         "cast": [cast.strip() for cast in film_data["cast"].split(",")],
         "releaseYear": int(film_data["production_year"]),
-        "runtime": extract_runtime(),
+        "runtime": convert_runtime(film_data["length"]) if film_data.get("length") else pd.NA,
         "sessions": extract_sessions(),
         "url": data["url"],
     }
@@ -176,7 +169,6 @@ async def get_imdb_movies(user_id: str) -> pd.DataFrame:
     df_imdb_watchlist = df_imdb_watchlist.convert_dtypes()
     df_imdb_watchlist['watched'] = df_imdb_watchlist['watched'].fillna(False)
     df_imdb_watchlist = df_imdb_watchlist.reindex(columns, axis=1)
-    df_imdb_watchlist.sort_index(inplace=True)
     return df_imdb_watchlist
 
 def get_sessions(df_movies: pd.DataFrame) -> pd.DataFrame:
@@ -218,6 +210,7 @@ async def main(user_id: str, reload: bool = True):
         index_col='id',
         converters={
             "cast": ast.literal_eval,
+            "runtime": lambda x: convert_runtime(x) if pd.notna(x) else pd.NA,
             "sessions": lambda x: [datetime_utils.to_datetime(s) for s in y]
                 if (y := ast.literal_eval(x)) else pd.NA,
             "imdb_lists": ast.literal_eval,
@@ -242,10 +235,13 @@ async def main(user_id: str, reload: bool = True):
     df_movies = df_medeia.apply(
         match_series_imdb, axis=1, args=(df_imdb,), result_type='expand'
     )
+    df_movies.sort_index(inplace=True)
+    df_movies['runtime'] = df_movies['runtime'].apply(
+        lambda x: f"{x // 60}:{x % 60:02d}" if pd.notna(x) else pd.NA
+    )
 
     df_sessions = get_sessions(df_movies)
 
-    
     df_movies['sessions'] = df_movies['sessions'].apply(
         lambda x: [datetime_utils.to_string(s) for s in x]
     )
