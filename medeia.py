@@ -206,7 +206,7 @@ def get_sessions(df_movies: pd.DataFrame) -> pd.DataFrame:
         (~df_sessions['at_work']).groupby(df_sessions.index).transform(lambda x: x[::-1].cumsum()[::-1])
     )
 
-    df_sessions.sort_values(by='session', inplace=True)
+    df_sessions.sort_values(by=['session', 'id'], inplace=True)
     df_sessions.reset_index(inplace=True)
     return df_sessions
 
