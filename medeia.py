@@ -30,7 +30,7 @@ DATASET_FILMS = DATASET_ROOT + "/films"
 MEDEIA_URL = "https://medeiafilmes.com/filmes-em-exibicao"
 DATA_PATTERN = re.compile(r"global\.data\s*=\s*(\{.*?\});")
 TARGET_THEATERS = ["cinema-medeia-nimas"]
-RUNTIME_PATTERN = re.compile(r'(?:(\d+)\s*(?:h|:))?\s*(\d+)\s*(min)?')
+RUNTIME_PATTERN = re.compile(r'(?:(\d+)\s*(?:h|:|\s))?\s*(\d+)\s*(m|min)?|(\d+)\s*\+\s*(\d+)')
 
 async def handle(ctx: BeautifulSoupCrawlingContext) -> None:
     html = imdb.get_response(ctx.http_response)
@@ -52,7 +52,10 @@ async def handle(ctx: BeautifulSoupCrawlingContext) -> None:
         ])
 
 def convert_runtime(runtime: str) -> str:
+    runtime = runtime.replace(" ", "")
     match = RUNTIME_PATTERN.match(runtime)
+    if match.group(3):
+        return match.group(3) + match.group(4)
     hours = int(match.group(1)) if match.group(1) else 0
     minutes = int(match.group(2)) if match.group(2) else 0
     return hours * 60 + minutes
