@@ -20,7 +20,7 @@ import imdb
 PandasLike = TypeVar('PandasLike', pd.DataFrame, pd.Series)
 
 BASE_DIR = Path(__file__).resolve().parent
-DATA_DIR = BASE_DIR / 'data'
+DATA_DIR = BASE_DIR.parent / 'data'
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 DATASET_ROOT = "medeia"
