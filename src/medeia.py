@@ -13,7 +13,7 @@ import pandas as pd
 from crawlee.crawlers import BeautifulSoupCrawler, BeautifulSoupCrawlingContext
 from crawlee.storages import Dataset
 
-import datetime_utils
+import utils
 import imdb
 
 
@@ -62,7 +62,7 @@ def extract_film_data(data: dict) -> dict | None:
                     hours = session["hours"]
                     assert len(hours) == 1
                     hours = str(hours[0]).replace("*", "").strip()
-                    sessions.append(datetime_utils.to_datetime(f"{date} {hours}", "%Y-%m-%d %H:%M"))
+                    sessions.append(utils.to_datetime(f"{date} {hours}", "%Y-%m-%d %H:%M"))
         return sorted(sessions)
 
     return {
@@ -72,7 +72,7 @@ def extract_film_data(data: dict) -> dict | None:
         "director": film_data["director_name"].strip(),
         "cast": [cast.strip() for cast in film_data["cast"].split(",")],
         "releaseYear": int(film_data["production_year"]),
-        "runtime": datetime_utils.string_to_runtime(film_data["length"]) if film_data.get("length") else pd.NA,
+        "runtime": utils.string_to_runtime(film_data["length"]) if film_data.get("length") else pd.NA,
         "sessions": extract_sessions(),
         "url": data["url"],
     }
@@ -155,7 +155,8 @@ async def get_imdb_movies(user_id: str) -> pd.DataFrame:
         df_imdb_list['imdb_lists_dup'] = [[name] for _ in range(len(df_imdb_list))]
         df_imdb_watchlist = df_imdb_watchlist.combine_first(df_imdb_list)
         df_imdb_watchlist['imdb_lists'] = df_imdb_watchlist['imdb_lists'].combine(
-            df_imdb_watchlist['imdb_lists_dup'], lambda x, y: (x if isinstance(x, list) else []) + (y if isinstance(y, list) else [])
+            df_imdb_watchlist['imdb_lists_dup'],
+            lambda x, y: (x if isinstance(x, list) else []) + (y if isinstance(y, list) else [])
         )
         df_imdb_watchlist.drop('imdb_lists_dup', axis=1, inplace=True)
 
@@ -169,7 +170,7 @@ def get_sessions(df_movies: pd.DataFrame) -> pd.DataFrame:
     df_sessions.rename(columns={'sessions': 'session'}, inplace=True)
     df_sessions.dropna(subset=['session'], inplace=True)
 
-    df_sessions = df_sessions[df_sessions['session'] >= datetime_utils.midnight()]
+    df_sessions = df_sessions[df_sessions['session'] >= utils.midnight(utils.now())]
 
     session_position: int = cast(int, df_sessions.columns.get_loc('session'))
 
@@ -203,9 +204,9 @@ async def main(user_id: str, reload: bool = True):
         index_col='id',
         converters={
             "cast": ast.literal_eval,
-            "runtime": lambda x: datetime_utils.string_to_runtime(x) if pd.notna(x) else pd.NA,
-            "sessions": lambda x: [datetime_utils.to_datetime(s) for s in y]
-                if (y := ast.literal_eval(x)) else pd.NA,
+            "runtime": lambda x: utils.string_to_runtime(x) if pd.notna(x) else pd.NA,
+            "sessions": lambda x: [utils.to_datetime(s) for s in ast.literal_eval(x)]
+                if pd.notna(x) else pd.NA,
             "imdb_lists": ast.literal_eval,
         },
         encoding='utf-8-sig'
@@ -230,15 +231,17 @@ async def main(user_id: str, reload: bool = True):
     )
     df_movies.sort_index(inplace=True)
     df_movies['runtime'] = df_movies['runtime'].apply(
-        lambda x: datetime_utils.runtime_to_string(x) if pd.notna(x) else pd.NA
+        lambda x: utils.runtime_to_string(x) if pd.notna(x) else pd.NA
     )
 
     df_sessions = get_sessions(df_movies)
 
-    df_movies['sessions'] = df_movies['sessions'].apply(lambda x: [datetime_utils.to_string(s) for s in x])
+    df_movies['sessions'] = df_movies['sessions'].apply(
+        lambda x: [utils.to_string(s) for s in x] if isinstance(x, list) else pd.NA
+    )
     df_movies.to_csv(DATA_DIR / "movies.csv", index=True, encoding='utf-8-sig')
 
-    df_sessions['session'] = df_sessions['session'].apply(datetime_utils.to_string)
+    df_sessions['session'] = df_sessions['session'].apply(utils.to_string)
     df_sessions.to_csv(DATA_DIR / "sessions.csv", index=False, encoding='utf-8-sig')
 
 if __name__ == "__main__":
@@ -250,8 +253,5 @@ if __name__ == "__main__":
     parser.set_defaults(reload=True)
     args = parser.parse_args()
 
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s - %(levelname)s - %(message)s"
-    )
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
     asyncio.run(main(user_id=args.user_id, reload=args.reload))

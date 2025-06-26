@@ -1,28 +1,30 @@
 import re
 from datetime import datetime
+from typing import Callable, TypeVar, Union
 from zoneinfo import ZoneInfo
+
+import pandas as pd
 
 
 TIME_ZONE = "Europe/Lisbon"
 HOUR_MINUTE_PATTERN = re.compile(r'^(?P<h1>\d+):(?P<m1>\d+):00$|^(?:(?P<h2>\d+)\s*(?:h|\s))?\s*(?:(?P<m2>\d+)\s*(?:m|min)?)?$')
 SUM_RUNTIME_PATTERN = re.compile(r'^(\d+)\s*\+\s*(\d+)$')
 
-def _safe_dt(dt: datetime | None) -> datetime:
-    return dt or now()
 
 def now():
     return datetime.now(tz=ZoneInfo(TIME_ZONE))
 
-def midnight(dt: datetime | None = None) -> datetime:
-    return _safe_dt(dt).replace(hour=0, minute=0, second=0, microsecond=0)
+def midnight(dt: datetime) -> datetime:
+    return dt.replace(hour=0, minute=0, second=0, microsecond=0)
 
-def to_string(dt: datetime | None = None) -> str:
-    return _safe_dt(dt).isoformat(sep=" ")
+def to_string(dt: datetime) -> str:
+    return dt.isoformat(sep=" ")
 
 def to_datetime(dt: str, format: str | None = None) -> datetime:
     if format:
         return datetime.strptime(dt, format).replace(tzinfo=ZoneInfo(TIME_ZONE))
     return datetime.fromisoformat(dt).astimezone(ZoneInfo(TIME_ZONE))
+
 
 def string_to_runtime(runtime: str) -> int:
     match = SUM_RUNTIME_PATTERN.match(runtime)

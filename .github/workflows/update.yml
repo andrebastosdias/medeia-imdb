@@ -35,7 +35,7 @@ jobs:
 
       - name: Run update script
         run: |
-          python medeia.py -u $IMDB_USER_ID --reload
+          python src/medeia.py -u $IMDB_USER_ID --reload
 
       - name: Commit changes to /data
         run: |
