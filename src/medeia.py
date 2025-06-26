@@ -205,8 +205,8 @@ async def main(user_id: str, reload: bool = True):
         converters={
             "cast": ast.literal_eval,
             "runtime": lambda x: utils.string_to_runtime(x) if pd.notna(x) else pd.NA,
-            "sessions": lambda x: [utils.to_datetime(s) for s in y]
-                if isinstance(y := ast.literal_eval(x), list) else pd.NA,
+            "sessions": lambda x: [utils.to_datetime(s) for s in ast.literal_eval(x)]
+                if pd.notna(x) else pd.NA,
             "imdb_lists": ast.literal_eval,
         },
         encoding='utf-8-sig'
