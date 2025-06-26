@@ -108,7 +108,7 @@ def match_series_imdb(movie_row: pd.Series, df_imdb: pd.DataFrame):
     df_matches['cast'] = df_imdb['cast'].apply(lambda cast: bool(set(movie_row['cast']).intersection(cast)))
     df_matches['releaseYear'] = df_imdb['releaseYear'] == movie_row['releaseYear']
     df_matches['runtime'] = (
-        df_imdb['runtime'].notna() & (df_imdb['runtime'] == (movie_row['runtime'] * 60))
+        df_imdb['runtime'].notna() & (df_imdb['runtime'] == movie_row['runtime'] * 60)
     )
 
     df_matches = df_matches[df_matches.sum(axis=1) >= 3]
@@ -204,7 +204,7 @@ async def main(user_id: str, reload: bool = True):
         index_col='id',
         converters={
             "cast": ast.literal_eval,
-            "runtime": lambda x: utils.string_to_runtime,
+            "runtime": utils.string_to_runtime,
             "sessions": lambda x: [utils.to_datetime(s) for s in ast.literal_eval(x)] if x else pd.NA,
             "imdb_lists": ast.literal_eval,
         },
