@@ -133,6 +133,7 @@ async def get_medeia_movies() -> pd.DataFrame:
     await df.drop()
     crawler = BeautifulSoupCrawler(http_client=imdb.HTTP_CLIENT, max_crawl_depth=1)
     crawler.router.default_handler(handle)
+    crawler.failed_request_handler(imdb.on_failed_handler)
     await crawler.run([MEDEIA_URL])
 
     ds = await Dataset.open(name=DATASET_FILMS)

@@ -7,7 +7,7 @@ from typing import cast
 from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
 
 from crawlee import HttpHeaders
-from crawlee.crawlers import BeautifulSoupCrawler, BeautifulSoupCrawlingContext
+from crawlee.crawlers import BeautifulSoupCrawler, BeautifulSoupCrawlingContext, BasicCrawlingContext
 from crawlee.http_clients import CurlImpersonateHttpClient, HttpResponse
 from crawlee.storages import Dataset
 
@@ -92,6 +92,10 @@ async def handle_movies(ctx: BeautifulSoupCrawlingContext) -> None:
             current_page = int(query["page"][0])
             await ctx.enqueue_links(requests=[build_next_url(url, current_page + 1)])
 
+def on_failed_handler(ctx: BasicCrawlingContext, err: Exception):
+    logger.error(f"Request {ctx.request.url} failed after retries: {err}")
+    raise RuntimeError(f"Request {ctx.request.url} failed after retries: {err}")
+
 def extract_movie_data(data: dict) -> dict:
     movie_data = data["listItem"]
 
@@ -119,6 +123,7 @@ async def main(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
 
     crawler = BeautifulSoupCrawler(http_client=HTTP_CLIENT)
     crawler.router.default_handler(handle_movies)
+    crawler.failed_request_handler(on_failed_handler)
     await crawler.run([WATCHLIST_URL.format(user_id=user_id, page=1), LISTS_URL.format(user_id=user_id)])
 
     ds = await Dataset.open(name=DATABASE_WATCHLIST)
@@ -147,5 +152,9 @@ async def get_lists(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
     return await main(user_id)
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--user-id", "-u", type=str, required=True, help="The user_id to process")
+    args = parser.parse_args()
+
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-    asyncio.run(get_lists("ur162389474"))
+    asyncio.run(get_lists(user_id=args.user_id))
