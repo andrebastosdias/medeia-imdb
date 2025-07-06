@@ -113,7 +113,7 @@ def extract_movie_data(data: dict) -> dict:
         "title": movie_data["titleText"]["text"].strip(),
         "directors": directors,
         "cast": cast,
-        "releaseYear": movie_data["releaseYear"]["year"],
+        "release_year": movie_data["releaseYear"]["year"],
         "runtime": movie_data["runtime"]["seconds"] if movie_data.get("runtime") else None,
     }
 

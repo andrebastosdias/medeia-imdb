@@ -71,7 +71,7 @@ def extract_film_data(data: dict) -> dict | None:
         "title": film_data["title"].strip(),
         "director": film_data["director_name"].strip(),
         "cast": [cast.strip() for cast in film_data["cast"].split(",")],
-        "releaseYear": int(film_data["production_year"]),
+        "release_year": int(film_data["production_year"]),
         "runtime": utils.string_to_runtime(film_data["length"]) if film_data.get("length") else pd.NA,
         "sessions": extract_sessions(),
         "url": data["url"],
@@ -106,7 +106,7 @@ def match_series_imdb(movie_row: pd.Series, df_imdb: pd.DataFrame):
     )
     df_matches['directors'] = df_imdb['directors'].apply(lambda directors: movie_row['director'] in directors)
     df_matches['cast'] = df_imdb['cast'].apply(lambda cast: bool(set(movie_row['cast']).intersection(cast)))
-    df_matches['releaseYear'] = df_imdb['releaseYear'] == movie_row['releaseYear']
+    df_matches['release_year'] = df_imdb['release_year'] == movie_row['release_year']
     df_matches['runtime'] = (
         df_imdb['runtime'].notna() & (df_imdb['runtime'] == movie_row['runtime'] * 60)
     )
