@@ -112,7 +112,11 @@ def match_series_imdb(movie_row: pd.Series, df_imdb: pd.DataFrame):
     )
 
     df_matches = df_matches[df_matches.sum(axis=1) >= 3]
-    assert df_matches.shape[0] <= 1, f"Multiple matches found for movie: {movie_row['title']}"
+    if df_matches.shape[0] > 1:
+        df_title_matches = df_matches[df_matches['title']]
+        if df_title_matches.shape[0] == 1:
+            df_matches = df_title_matches
+    assert df_matches.shape[0] <= 1, f"Multiple matches found for movie: {movie_row['title']}:\n{df_matches}"
 
     if df_matches.shape[0] == 1:
         match = cast(pd.Series, original_df_imdb.loc[df_matches.index[0]])
