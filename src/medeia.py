@@ -60,9 +60,11 @@ def extract_film_data(data: dict) -> dict | None:
                 for session in theater["sessions"].values():
                     date = session["date"]
                     hours = session["hours"]
-                    assert len(hours) == 1
-                    hours = str(hours[0]).replace("*", "").strip()
-                    sessions.append(utils.to_datetime(f"{date} {hours}", "%Y-%m-%d %H:%M"))
+                    hours = [str(hour).replace("*", "").strip() for hour in hours]
+                    sessions.extend(
+                        utils.to_datetime(f"{date} {hour}", "%Y-%m-%d %H:%M")
+                        for hour in hours if hour
+                    )
         return sorted(sessions)
 
     return {
