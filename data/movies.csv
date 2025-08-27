@@ -28,11 +28,11 @@
 550,La Prima Notte di Quiete,Outono Escaldante,Valerio Zurlini,"['Alain Delon', 'Giancarlo Giannini', 'Sonia Petrovna', 'Renato Salvatori']",1972,02:12:00,[],False,,[],https://medeiafilmes.com/filmes/outono-escaldante-1972
 562,Umberto D.,Umberto D.,Vittorio De Sica,"['Carlo Battisti', 'Maria Pia Casilio', 'Lina Gennari']",1952,01:29:00,['2025-08-29 14:30:00+01:00'],False,,[],https://medeiafilmes.com/filmes/umberto-d-1952
 646,Il deserto rosso,O Deserto Vermelho,Michelangelo Antonioni,"['Monica Vitti', 'Richard Harris', 'Carlo Chionetti']",1964,01:57:00,[],False,,[],https://medeiafilmes.com/filmes/o-deserto-vermelho-1964
-648,Identificazione di una donna,Identificação de Uma Mulher,Michelangelo Antonioni,"['Tomas Milian', 'Daniela Silverio', 'Christine Boisson']",1982,02:10:00,['2025-08-27 19:30:00+01:00'],False,,[],https://medeiafilmes.com/filmes/identificacao-de-uma-mulher-1982
+648,Identificazione di una donna,Identificação de Uma Mulher,Michelangelo Antonioni,"['Tomas Milian', 'Daniela Silverio', 'Christine Boisson']",1982,02:10:00,,False,,[],https://medeiafilmes.com/filmes/identificacao-de-uma-mulher-1982
 652,L’eclisse,O Eclipse,Michelangelo Antonioni,"['Monica Vitti', 'Alain Delon', 'Francisco Rabal']",1962,02:06:00,[],False,,[],https://medeiafilmes.com/filmes/o-eclipse-1962
 654,L’avventura,A Aventura,Michelangelo Antonioni,"['Monica Vitti', 'Gabriele Ferzetti', 'Lea Massari']",1960,02:24:00,[],False,,[],https://medeiafilmes.com/filmes/a-aventura-1960
 656,La notte,A Noite,Michelangelo Antonioni,"['Marcello Mastroianni', 'Jeanne Moreau', 'Monica Vitti']",1961,02:02:00,[],False,,[],https://medeiafilmes.com/filmes/a-noite-1961
-658,Il grido,O Grito,Michelangelo Antonioni,"['Steve Cochran', 'Alida Valli', 'Dorian Gray']",1957,01:56:00,['2025-08-27 13:00:00+01:00'],False,,[],https://medeiafilmes.com/filmes/o-grito-1957
+658,Il grido,O Grito,Michelangelo Antonioni,"['Steve Cochran', 'Alida Valli', 'Dorian Gray']",1957,01:56:00,,False,,[],https://medeiafilmes.com/filmes/o-grito-1957
 699,Professione: repórter,Profissão: Repórter,Michelangelo Antonioni,['Jack Nicholson; Maria Schneider; Jenny Runacre'],1975,02:06:00,,False,,[],https://medeiafilmes.com/filmes/profissao-reporter-1975
 870,Netemo sametemo,Asako I & II,Ryûsuke Hamaguchi,"['Masahiro Higashide', 'Erika Karata', 'Sairi Itô']",2018,02:00:00,[],False,,[],https://medeiafilmes.com/filmes/asako-i-e-ii-2018
 1023,"Paris, Texas","Paris, Texas",Wim Wenders,"['Harry Dean Stanton', 'Nastassja Kinski', 'Dean Stockwell', 'Hunter Carson']",1984,02:24:00,,False,,[],https://medeiafilmes.com/filmes/paris-texas-1984
@@ -51,7 +51,7 @@
 1677,"Stromboli, Terra di Dio",Stromboli,Roberto Rossellini,"['Ingrid Bergman', 'Mario Vitale', 'Renzo Cesana']",1950,01:47:00,[],False,tt0041931,"[""Martin Scorsese's List of 85 Films You Must See""]",https://medeiafilmes.com/filmes/stromboli-1950
 1689,Morte a Venezia,Morte em Veneza,Luchino Visconti,"['Dirk Bogarde', 'Silvana Mangano', 'Björn Andresen']",1971,02:10:00,,False,,[],https://medeiafilmes.com/filmes/morte-em-veneza-1971
 1693,Mamma Roma,Mamma Roma,Pier Paolo Pasolini,"['Anna Magnani', 'Ettore Garofolo', 'Franco Citti']",1962,01:46:00,,False,,[],https://medeiafilmes.com/filmes/mamma-roma-1962
-1695,Malizia,Malícia,Salvatore Samperi,"['Laura Antonelli', 'Turi Ferro', 'Alessandro Momo', 'Angela Luce']",1973,01:37:00,['2025-08-27 15:15:00+01:00'],False,,[],https://medeiafilmes.com/filmes/malicia-1973
+1695,Malizia,Malícia,Salvatore Samperi,"['Laura Antonelli', 'Turi Ferro', 'Alessandro Momo', 'Angela Luce']",1973,01:37:00,,False,,[],https://medeiafilmes.com/filmes/malicia-1973
 1697,Il conformista,O Conformista,Bernardo Bertolucci,"['Jean-Louis Trintignant', 'Stefania Sandrelli', 'Gastone Moschin', 'Enzo Tarascio']",1970,01:53:00,['2025-08-31 17:30:00+01:00'],False,,[],https://medeiafilmes.com/filmes/o-conformista-1970
 1737,Dov'è la libertà...?,Onde Está a Liberdade?,Roberto Rossellini,"['Totò', 'Vera Molnar', 'Nita Dover', 'Franca Faldini']",1954,01:31:00,['2025-08-31 15:30:00+01:00'],False,,[],https://medeiafilmes.com/filmes/onde-esta-a-liberdade-1954
 1739,Prima della rivoluzione,Antes da Revolução,Bernardo Bertolucci,"['Francesco Barili', 'Adriana Asti', 'Allen Midgette']",1964,01:52:00,['2025-08-30 22:00:00+01:00'],False,,[],https://medeiafilmes.com/filmes/antes-da-revolucao-1964
@@ -119,11 +119,11 @@
 2741,Life Is Sweet,A Vida é Doce,Mike Leigh,"['Alison Steadman', 'Claire Skinner', 'Stephen Rea', 'Jim Broadbent']",1990,01:44:00,,False,,[],https://medeiafilmes.com/filmes/a-vida-e-doce-1990
 2743,Career Girls,Raparigas de Sucesso,Mike Leigh,"['Katrin Cartlidge', 'Lynda Steadman', 'Kate Byers', 'Mark Benton']",1997,01:27:00,,False,,[],https://medeiafilmes.com/filmes/raparigas-de-sucesso-1997
 2745,La Terra Trema,A Terra Treme,Luchino Visconti,"['Antonio Arcidiacono', 'Giuseppe Arcidiacono', 'Venera Bonaccorso']",1948,02:40:00,['2025-09-02 21:30:00+01:00'],False,tt0040866,"[""Martin Scorsese's List of 85 Films You Must See""]",https://medeiafilmes.com/filmes/a-terra-treme-1948
-2747,Allonsanfàn,Que Viva a Revolução!,Paolo e Vittorio Taviani,"['Marcello Mastroianni', 'Lea Massari', 'Mimsy Farmer', 'Laura Betti']",1974,01:55:00,['2025-08-27 22:00:00+01:00'],False,,[],https://medeiafilmes.com/filmes/que-viva-a-revolucao-1974
+2747,Allonsanfàn,Que Viva a Revolução!,Paolo e Vittorio Taviani,"['Marcello Mastroianni', 'Lea Massari', 'Mimsy Farmer', 'Laura Betti']",1974,01:55:00,,False,,[],https://medeiafilmes.com/filmes/que-viva-a-revolucao-1974
 2749,Oedipus Rex,Rei Édipo,Pier Paolo Pasolini,"['Silvana Mangano', 'Franco Citti', 'Alida Valli']",1967,01:44:00,,False,,[],https://medeiafilmes.com/filmes/rei-edipo-1967
 2751,Il vangelo secondo Matteo,O Evangelho Segundo São Mateus,Pier Paolo Pasolini,"['Enrique Irazoqui', 'Susanna Pasolini', 'Marcello Morante']",1964,02:17:00,,False,,[],https://medeiafilmes.com/filmes/o-evangelho-segundo-sao-mateus-1964
 2752,Accattone,Accattone,Pier Paolo Pasolini,"['Franco Citti', 'Franca Pasut', 'Silvana Corsini']",1961,02:00:00,,False,,[],https://medeiafilmes.com/filmes/accattone-1961
-2754,La tragedia di un uomo ridicolo,A Tragédia de um Homem Ridículo,Bernardo Bertolucci,"['Ugo Tognazzi', 'Anouk Aimée', 'Laura Morante']",1981,01:56:00,['2025-08-27 17:15:00+01:00'],False,,[],https://medeiafilmes.com/filmes/a-tragedia-de-um-homem-ridiculo-1981
+2754,La tragedia di un uomo ridicolo,A Tragédia de um Homem Ridículo,Bernardo Bertolucci,"['Ugo Tognazzi', 'Anouk Aimée', 'Laura Morante']",1981,01:56:00,,False,,[],https://medeiafilmes.com/filmes/a-tragedia-de-um-homem-ridiculo-1981
 2756,La caduta degli dei (Götterdärmerung),Os Malditos,Luchino Visconti,"['Dirk Bogarde', 'Ingrid Thulin', 'Helmut Berger', 'Charlotte Rampling']",1969,02:37:00,,False,,[],https://medeiafilmes.com/filmes/os-malditos-1969
 2759,Until the End of the World,Até ao Fim do Mundo,Wim Wenders,"['William Hurt', 'Solveig Dommartin', 'Max Von Sydow', 'Jeanne Moreau']",1991,04:47:00,['2025-09-01 19:00:00+01:00'],False,,[],https://medeiafilmes.com/filmes/ate-ao-fim-do-mundo-1991
 2761,Vos & Haas redden het bos,​A Raposa e a Lebre Salvam a Floresta,Mascha Halberstad,"['Rob Rackstraw', 'Dan Renton Skinner', 'Jamie Quinn', 'Teresa Gallagher']",2025,01:11:00,,False,,[],https://medeiafilmes.com/filmes/a-raposa-e-a-lebre-salvam-a-floresta-2025
@@ -131,4 +131,4 @@
 2766,Lilo e Stitch,Lilo e Stitch,Dean Fleischer Camp,"['Maia Kealoha', 'Sydney Elizebeth Agudong', 'Tia Carrere', 'Courtney B. Vance']",2025,01:48:00,,False,,[],https://medeiafilmes.com/filmes/lilo-e-stitch-2025
 2775,One Battle After Another,Batalha Atrás de Batalha,Paul Thomas Anderson,"['Leonardo DiCaprio', 'Sean Penn', 'Benicio Del Toro', 'Regina Hall']",2025,02:44:00,[],False,,[],https://medeiafilmes.com/filmes/batalha-atras-de-batalha-2025
 2776,O Último Azul,O Último Azul,Gabriel Mascaro,"['Denise Weinberg', 'Rodrigo Santoro', 'Miriam Socarras']",2025,01:26:00,[],False,,[],https://medeiafilmes.com/filmes/o-ultimo-azul-2025
-2778,Smurfs – O Grande Filme,Smurfs – O Grande Filme,Chris Miller,['Versão falada em português'],2025,01:32:00,[],False,,[],https://medeiafilmes.com/filmes/smurfs-o-grande-filme-2025
+2778,Smurfs – O Grande Filme,Smurfs – O Grande Filme,Chris Miller,['Versão falada em português'],2025,01:32:00,,False,,[],https://medeiafilmes.com/filmes/smurfs-o-grande-filme-2025
