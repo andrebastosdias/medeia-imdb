@@ -33,7 +33,7 @@
 646,Il deserto rosso,O Deserto Vermelho,Michelangelo Antonioni,"['Monica Vitti', 'Richard Harris', 'Carlo Chionetti']",1964,01:57:00,[],False,,[],https://medeiafilmes.com/filmes/o-deserto-vermelho-1964
 648,Identificazione di una donna,Identificação de Uma Mulher,Michelangelo Antonioni,"['Tomas Milian', 'Daniela Silverio', 'Christine Boisson']",1982,02:10:00,,False,,[],https://medeiafilmes.com/filmes/identificacao-de-uma-mulher-1982
 650,Cronaca di un amore,Escândalo de Amor,Michelangelo Antonioni,"['Lucia Bosé', 'Massimo Girotti', 'Ferdinando Sarmi']",1950,01:38:00,,False,,[],https://medeiafilmes.com/filmes/escandalo-de-amor-1950
-652,L’eclisse,O Eclipse,Michelangelo Antonioni,"['Monica Vitti', 'Alain Delon', 'Francisco Rabal']",1962,02:06:00,,False,,[],https://medeiafilmes.com/filmes/o-eclipse-1962
+652,L’eclisse,O Eclipse,Michelangelo Antonioni,"['Monica Vitti', 'Alain Delon', 'Francisco Rabal']",1962,02:06:00,[],False,,[],https://medeiafilmes.com/filmes/o-eclipse-1962
 654,L’avventura,A Aventura,Michelangelo Antonioni,"['Monica Vitti', 'Gabriele Ferzetti', 'Lea Massari']",1960,02:24:00,,False,,[],https://medeiafilmes.com/filmes/a-aventura-1960
 656,La notte,A Noite,Michelangelo Antonioni,"['Marcello Mastroianni', 'Jeanne Moreau', 'Monica Vitti']",1961,02:02:00,[],False,,[],https://medeiafilmes.com/filmes/a-noite-1961
 658,Il grido,O Grito,Michelangelo Antonioni,"['Steve Cochran', 'Alida Valli', 'Dorian Gray']",1957,01:56:00,['2025-09-25 12:00:00+01:00'],False,,[],https://medeiafilmes.com/filmes/o-grito-1957
@@ -78,9 +78,11 @@
 2062,Sanshô Dayú,O Intendente Sansho,Kenji Mizoguchi,"['Kinuyo Tanaka', 'Yoshiaki Hanayagi', 'Kyoko Kagawa']",1954,02:04:00,,False,,[],https://medeiafilmes.com/filmes/o-intendente-sansho-1954
 2163,A Clockwork Orange,Laranja Mecânica,Stanley Kubrick,"['Malcolm McDowell', 'Patrick Magee', 'Michael Bates', 'Adrienne Corri']",1971,02:16:00,,True,tt0066921,"['To Watch', ""AFI's 100 Years...100 Movies: 10th Anniversary Edition""]",https://medeiafilmes.com/filmes/laranja-mecanica-1971
 2268,"Bruno Reidal, confession d’un meurtrier",Bruno Reidal – Confissões de um Assassino,Vincent Le Port,"['Dimitri Doré', 'Jean-Luc Vincent', 'Roman Villedieu', 'Alex Fanguin', 'Tino Vigier']",2021,01:41:00,,False,,[],https://medeiafilmes.com/filmes/bruno-reidal-confissoes-de-um-assassino-2021
+2269,Le Carrosse d'or,A Comédia e a Vida,Jean Renoir,"['Anna Magnani', 'Odoardo Spadaro', 'Nada Fiorelli', 'Duncan Lamont']",1953,01:45:00,[],False,,[],https://medeiafilmes.com/filmes/a-comedia-e-a-vida-1953
 2365,Paths of Glory,Horizontes de Glória,Stanley Kubrick,"['Kirk Douglas', 'Ralph Meeker', 'Adolphe Menjou', 'George Macready', 'Wayne Morris', 'Richard Anderson']",1957,01:28:00,,True,tt0050825,[],https://medeiafilmes.com/filmes/horizontes-de-gloria-1957
 2426,L’histoire de Souleymane,A História de Souleymane,Boris Lojkine,"['Abou Sangare', 'Nina Meurisse', 'Emmanuel Yovanie', 'Younoussa Diallo']",2024,01:33:00,['2025-09-24 19:30:00+01:00'],False,,[],https://medeiafilmes.com/filmes/a-historia-de-souleymane-2024
 2435,Ainda Estou Aqui,Ainda Estou Aqui,Walter Salles,"['Fernanda Torres', 'Fernanda Montenegro', 'Selton Mello']",2024,02:16:00,[],True,tt14961016,[],https://medeiafilmes.com/filmes/ainda-estou-aqui-2024
+2442,Banzo,Banzo,Margarida Cardoso,"['Carloto Cotta', 'Hoji Fortuna', 'Rúben Simões', 'Gonçalo Waddington']",2024,02:07:00,[],False,,[],https://medeiafilmes.com/filmes/banzo-2024
 2512,Black Dog,Cão Preto,Guan Hu,"['Eddie Peng', 'Chu Bu Hua Jie', 'Youwei Da', 'Jia Zhang-ke']",2024,01:56:00,,True,tt28131427,[],https://medeiafilmes.com/filmes/cao-preto-2024
 2514,Anul nou care n-a fost,O Ano Novo Que Não Aconteceu,Bogdan Mureşanu,"['Adrian Vancica', 'Iulian Postelnicu', 'Emilia Dobrin', 'Nicoleta Hancu']",2024,02:18:00,,False,,[],https://medeiafilmes.com/filmes/o-ano-novo-que-nao-aconteceu-2024
 2518,Terra Estrangeira,Terra Estrangeira,"Walter Salles, Daniela Thomas","['Fernanda Torres', 'Fernando Alves Pinto', 'Alexandre Borges', 'João Lagarto']",1995,01:50:00,,True,tt0114651,[],https://medeiafilmes.com/filmes/terra-estrangeira-1995
@@ -111,7 +113,7 @@
 2697,Hard Truths,Verdades Difíceis,Mike Leigh,"['Marianne Jean-Baptiste', 'Michele Austin', 'David Webber', 'Tuwaine Barrett']",2024,01:37:00,,False,tt11891850,['To Watch'],https://medeiafilmes.com/filmes/verdades-dificeis-2024
 2701,F1 – The Movie,F1 – O Filme,Joseph Kosinski,"['Brad Pitt', 'Kerry Condon', 'Javier Bardem']",2025,02:30:00,,True,tt16311594,['To Watch'],https://medeiafilmes.com/filmes/f1-o-filme-2025
 2704,To a Land Unknown,A Uma Terra Desconhecida,Mahdi Fleifel,"['Mahmood Bakri', 'Aram Sabbah', 'Angeliki Papoulia', 'Mohammad Alsurafa']",2024,01:46:00,,False,,[],https://medeiafilmes.com/filmes/a-uma-terra-desconhecida-2024
-2705,Sirât,Sirât,Oliver Laxe,"['Sergi López', 'Bruno Arjona', 'Stefania Gadda', 'Joshua Henderson']",2025,01:55:00,,False,,[],https://medeiafilmes.com/filmes/sirat-2025
+2705,Sirât,Sirât,Oliver Laxe,"['Sergi López', 'Bruno Arjona', 'Stefania Gadda', 'Joshua Henderson']",2025,01:55:00,[],False,,[],https://medeiafilmes.com/filmes/sirat-2025
 2707,Lavagante,Lavagante,Mário Barroso,"['Francisco Froes', 'Nuno Lopes', 'Júlia Palha', 'Leonor Alecrim']",2025,01:32:00,[],False,,[],https://medeiafilmes.com/filmes/lavagante-2025
 2709,Yeohaengjaui pilyo,As Aventuras de uma Viajante na Coreia do Sul,Hong Sang-soo,"['Isabelle Huppert', 'Lee Hyeyoung', 'Kwon Haehyo', 'Cho Yunhee']",2024,01:30:00,,False,,[],https://medeiafilmes.com/filmes/as-aventuras-de-uma-viajante-na-coreia-do-sul-2024
 2711,Un altro ferragosto,Férias de Agosto,Paolo Virzì,"['Silvio Orlando', 'Sabrina Ferilli', 'Christian De Sica']",2024,01:55:00,,False,,[],https://medeiafilmes.com/filmes/ferias-de-agosto-2024
@@ -147,7 +149,7 @@
 2764,Elio,Elio,"A. Molina, M. Sharafia","['Diogo Amaral', 'Vera Kolodzig', 'João Jesus']",2025,01:38:00,,False,,[],https://medeiafilmes.com/filmes/elio-2025
 2766,Lilo e Stitch,Lilo e Stitch,Dean Fleischer Camp,"['Maia Kealoha', 'Sydney Elizebeth Agudong', 'Tia Carrere', 'Courtney B. Vance']",2025,01:48:00,,False,,[],https://medeiafilmes.com/filmes/lilo-e-stitch-2025
 2768,Love Life,Love Life,Koji Fukada,"['Fumino Kimura', 'Kento Nagayama', 'Atom Sunada', 'Hirona Yamazaki']",2022,02:03:00,['2025-09-24 14:30:00+01:00'],False,,[],https://medeiafilmes.com/filmes/love-life-2022
-2770,Les Amandiers,Les Amandiers – Jovens para Sempre,Valeria Bruni Tedeschi,"['Nadia Tereszkiewicz', 'Sofiane Bennacer', 'Louis Garrel', 'Micha Lescot']",2022,02:06:00,,False,,[],https://medeiafilmes.com/filmes/les-amandiers-jovens-para-sempre-2022
+2770,Les Amandiers,Les Amandiers – Jovens para Sempre,Valeria Bruni Tedeschi,"['Nadia Tereszkiewicz', 'Sofiane Bennacer', 'Louis Garrel', 'Micha Lescot']",2022,02:06:00,[],False,,[],https://medeiafilmes.com/filmes/les-amandiers-jovens-para-sempre-2022
 2775,One Battle After Another,Batalha Atrás de Batalha,Paul Thomas Anderson,"['Leonardo DiCaprio', 'Sean Penn', 'Benicio Del Toro', 'Regina Hall']",2025,02:44:00,"['2025-09-25 21:15:00+01:00', '2025-09-26 21:00:00+01:00', '2025-09-27 21:15:00+01:00', '2025-09-28 20:45:00+01:00', '2025-09-29 21:00:00+01:00', '2025-09-30 18:30:00+01:00', '2025-10-01 12:00:00+01:00']",False,tt30144839,['To Watch'],https://medeiafilmes.com/filmes/batalha-atras-de-batalha-2025
 2776,O Último Azul,O Último Azul,Gabriel Mascaro,"['Denise Weinberg', 'Rodrigo Santoro', 'Miriam Socarras']",2025,01:26:00,[],False,,[],https://medeiafilmes.com/filmes/o-ultimo-azul-2025
 2778,Smurfs – O Grande Filme,Smurfs – O Grande Filme,Chris Miller,['Versão falada em português'],2025,01:32:00,,False,,[],https://medeiafilmes.com/filmes/smurfs-o-grande-filme-2025
@@ -161,3 +163,4 @@
 2793,Speriamo che sia femmina,Oxalá Seja Menina!,Mario Monicelli,"['Liv Ullmann', 'Catherine Deneuve', 'Philippe Noiret', 'Stefania Sandrelli']",1986,02:00:00,"['2025-09-27 16:00:00+01:00', '2025-10-01 17:00:00+01:00']",False,,[],https://medeiafilmes.com/filmes/oxala-seja-menina-1986
 2794,Venga a prendere il caffè... da noi,Venha Tomar Café Connosco,Alberto Lattuada,"['Ugo Tognazzi', 'Francesca Romana Coluzzi', 'Angela Goodwin', 'Milena Vukotic']",1970,01:36:00,"['2025-09-25 19:00:00+01:00', '2025-09-28 16:15:00+01:00']",False,,[],https://medeiafilmes.com/filmes/venha-tomar-cafe-connosco-1970
 2796,Caccia alla volpe,A Raposa Dourada,Vittorio De Sica,"['Peter Sellers', 'Britt Ekland', 'Victor Mature', 'Martin Balsam']",1966,01:43:00,,False,,[],https://medeiafilmes.com/filmes/a-raposa-dourada-1966
+2807,After The Hunt,Depois da Caçada,Luca Guadagnino,"['Julia Roberts', 'Ayo Edebiri', 'Andrew Garfield', 'Michael Stuhlbarg']",2025,02:19:00,[],False,,[],https://medeiafilmes.com/filmes/depois-da-cacada-2025
