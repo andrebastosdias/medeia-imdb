@@ -1,9 +1,7 @@
 import re
 from datetime import datetime
-from typing import Callable, TypeVar, Union
 from zoneinfo import ZoneInfo
 
-import pandas as pd
 
 
 TIME_ZONE = "Europe/Lisbon"

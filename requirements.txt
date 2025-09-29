@@ -1,4 +1,2 @@
-crawlee
-crawlee[beautifulsoup]
-crawlee[curl-impersonate]
-pandas
+crawlee[beautifulsoup,curl-impersonate]==1.0.0
+pandas==2.3.2

@@ -1,3 +1,4 @@
+import argparse
 import asyncio
 import json
 import logging
@@ -40,13 +41,14 @@ def to_ascii(text: str) -> str:
     ascii_text = ascii_text.strip('_').lower()
     return ascii_text
 
-def get_response(http_response: HttpResponse) -> str:
+async def get_response(http_response: HttpResponse) -> str:
     content_type = http_response.headers.get("content-type", "")
     encoding = (
         content_type.split("charset=")[1]
         if "charset=" in content_type else "utf-8"
     )
-    return http_response.read().decode(encoding, errors="replace")
+    content = await http_response.read()
+    return content.decode(encoding, errors="replace")
 
 def build_next_url(current_url: str, next_page: int) -> str:
     parts = urlparse(current_url)
@@ -58,7 +60,7 @@ def build_next_url(current_url: str, next_page: int) -> str:
 async def handle_movies(ctx: BeautifulSoupCrawlingContext) -> None:
     url = ctx.request.url
 
-    html = get_response(ctx.http_response)
+    html = await get_response(ctx.http_response)
     hit = DATA_PATTERN.search(html)
     if not hit:
         ctx.log.error("No __NEXT_DATA__ on %s", url)

@@ -32,7 +32,7 @@ DATA_PATTERN = re.compile(r"global\.data\s*=\s*(\{.*?\});")
 TARGET_THEATERS = ["cinema-medeia-nimas"]
 
 async def handle(ctx: BeautifulSoupCrawlingContext) -> None:
-    html = imdb.get_response(ctx.http_response)
+    html = await imdb.get_response(ctx.http_response)
     hit = DATA_PATTERN.search(html)
     if not hit:
         ctx.log.error("No global.data on %s", ctx.request.url)
@@ -50,7 +50,7 @@ async def handle(ctx: BeautifulSoupCrawlingContext) -> None:
             movie_info['url'] for movie_id, movie_info in movies.items() if movie_id.startswith('film-')
         ])
 
-def extract_film_data(data: dict) -> dict | None:
+def extract_film_data(data: dict):
     film_data = data["data"]["film"]
 
     def extract_sessions() -> list[datetime]:
@@ -137,6 +137,7 @@ def match_series_imdb(movie_row: pd.Series, df_imdb: pd.DataFrame):
 async def get_medeia_movies() -> pd.DataFrame:
     df = await Dataset.open(name=DATASET_ROOT)
     await df.drop()
+
     crawler = BeautifulSoupCrawler(http_client=imdb.HTTP_CLIENT, max_crawl_depth=1)
     crawler.router.default_handler(handle)
     crawler.failed_request_handler(imdb.on_failed_handler)
