@@ -251,6 +251,8 @@ async def main(user_id: str, reload: bool = True):
     df_sessions['session'] = df_sessions['session'].apply(utils.to_string)
     df_sessions.to_csv(DATA_DIR / "sessions.csv", index=False, encoding='utf-8-sig')
 
+    return df_movies, df_sessions
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run the main async process.")
     parser.add_argument("--user-id", "-u", type=str, required=True, help="The user_id to process")
