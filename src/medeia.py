@@ -242,6 +242,7 @@ async def main(user_id: str):
     df_movies.to_csv(DATA_DIR / "movies.csv", index=True, encoding='utf-8-sig')
 
     df_sessions['session'] = df_sessions['session'].apply(utils.to_string)
+    df_sessions = df_sessions[['id', 'session']]
     df_sessions.to_csv(DATA_DIR / "sessions.csv", index=False, encoding='utf-8-sig')
 
     return df_movies, df_sessions
