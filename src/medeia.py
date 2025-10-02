@@ -204,7 +204,7 @@ def get_sessions(df_movies: pd.DataFrame) -> pd.DataFrame:
     df_sessions.reset_index(inplace=True)
     return df_sessions
 
-async def main(user_id: str, reload: bool = True):
+async def main(user_id: str):
     file_path = DATA_DIR / "movies.csv"
 
     df_movies = pd.read_csv(
@@ -219,7 +219,7 @@ async def main(user_id: str, reload: bool = True):
         encoding='utf-8-sig'
     ) if os.path.exists(file_path) else None
 
-    if not reload and df_movies is not None:
+    if df_movies is not None:
         df_medeia = df_movies
         logging.info(f"📂 Loaded {len(df_medeia)} movies from database")
     else:
@@ -256,11 +256,7 @@ async def main(user_id: str, reload: bool = True):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run the main async process.")
     parser.add_argument("--user-id", "-u", type=str, required=True, help="The user_id to process")
-    group = parser.add_mutually_exclusive_group()
-    group.add_argument("--reload", dest="reload", action="store_true", help="Flag to force reloading data")
-    group.add_argument("--no-reload", dest="reload", action="store_false", help="Flag to skip reloading data")
-    parser.set_defaults(reload=True)
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-    asyncio.run(main(user_id=args.user_id, reload=args.reload))
+    asyncio.run(main(user_id=args.user_id))
