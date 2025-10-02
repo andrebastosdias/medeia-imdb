@@ -79,6 +79,22 @@ def extract_film_data(data: dict):
         "url": data["url"],
     }
 
+async def get_medeia_movies() -> pd.DataFrame:
+    df = await Dataset.open(name=DATASET_ROOT)
+    await df.drop()
+
+    crawler = BeautifulSoupCrawler(http_client=imdb.HTTP_CLIENT, max_crawl_depth=1)
+    crawler.router.default_handler(handle)
+    crawler.failed_request_handler(imdb.on_failed_handler)
+    await crawler.run([MEDEIA_URL])
+
+    ds = await Dataset.open(name=DATASET_FILMS)
+    content = await ds.get_data()
+    rows = [extract_film_data(item) for item in content.items]
+    df_medeia = pd.DataFrame.from_records(rows, index='id')
+
+    return df_medeia
+
 def match_series_imdb(movie_row: pd.Series, df_imdb: pd.DataFrame):
     original_movie_row = movie_row.copy()
     original_df_imdb = df_imdb.copy()
@@ -133,22 +149,6 @@ def match_series_imdb(movie_row: pd.Series, df_imdb: pd.DataFrame):
     original_movie_row['url'] = original_movie_row.pop('url')
 
     return original_movie_row
-
-async def get_medeia_movies() -> pd.DataFrame:
-    df = await Dataset.open(name=DATASET_ROOT)
-    await df.drop()
-
-    crawler = BeautifulSoupCrawler(http_client=imdb.HTTP_CLIENT, max_crawl_depth=1)
-    crawler.router.default_handler(handle)
-    crawler.failed_request_handler(imdb.on_failed_handler)
-    await crawler.run([MEDEIA_URL])
-
-    ds = await Dataset.open(name=DATASET_FILMS)
-    content = await ds.get_data()
-    rows = [extract_film_data(item) for item in content.items]
-    df_medeia = pd.DataFrame.from_records(rows, index='id')
-
-    return df_medeia
 
 async def get_imdb_movies(user_id: str) -> pd.DataFrame:
     imdb_tuple = await imdb.get_lists(user_id)
