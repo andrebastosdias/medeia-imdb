@@ -213,23 +213,15 @@ async def main(user_id: str):
         converters={
             "cast": ast.literal_eval,
             "runtime": utils.string_to_runtime,
-            "sessions": lambda x: [utils.to_datetime(s) for s in ast.literal_eval(x)] if x else pd.NA,
             "imdb_lists": ast.literal_eval,
         },
         encoding='utf-8-sig'
     ) if os.path.exists(file_path) else None
 
+    df_medeia = await get_medeia_movies()
     if df_movies is not None:
-        df_medeia = df_movies
-        logging.info(f"📂 Loaded {len(df_medeia)} movies from database")
-    else:
-        df_medeia = await get_medeia_movies()
-        if df_movies is None:
-            logging.info(f"📂 Loaded {len(df_medeia)} movies from Medeia website")
-        else:
-            columns = df_medeia.columns
-            df_movies["sessions"] = pd.NA
-            df_medeia = df_medeia.combine_first(df_movies)[columns]
+        columns = df_medeia.columns
+        df_medeia = df_medeia.combine_first(df_movies)[columns]
 
     df_imdb = await get_imdb_movies(user_id)
 
@@ -246,6 +238,7 @@ async def main(user_id: str):
     df_movies['sessions'] = df_movies['sessions'].apply(
         lambda x: [utils.to_string(s) for s in x] if isinstance(x, list) else pd.NA
     )
+    df_movies.drop(columns=['sessions'], inplace=True)
     df_movies.to_csv(DATA_DIR / "movies.csv", index=True, encoding='utf-8-sig')
 
     df_sessions['session'] = df_sessions['session'].apply(utils.to_string)
