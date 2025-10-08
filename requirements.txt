@@ -1,3 +1,2 @@
-crawlee[beautifulsoup,curl-impersonate]==1.0.1
+crawlee[beautifulsoup,curl-impersonate]==1.0.2
 pandas==2.3.3
-pydantic~=2.11.0 # https://github.com/apify/crawlee-python/issues/1464
