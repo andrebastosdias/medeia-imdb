@@ -3,7 +3,6 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 
-
 TIME_ZONE = "Europe/Lisbon"
 HOUR_MINUTE_PATTERN = re.compile(r'^(?P<h1>\d+):(?P<m1>\d+):00$|^(?:(?P<h2>\d+)\s*(?:h|\s))?\s*(?:(?P<m2>\d+)\s*(?:m|min)?)?$')
 SUM_RUNTIME_PATTERN = re.compile(r'^(\d+)\s*\+\s*(\d+)$')

@@ -12,6 +12,7 @@ from crawlee.crawlers import BeautifulSoupCrawler, BeautifulSoupCrawlingContext,
 from crawlee.http_clients import CurlImpersonateHttpClient, HttpResponse
 from crawlee.storages import Dataset
 
+
 logger = logging.getLogger(__name__)
 
 WATCHLIST_URL = f"https://www.imdb.com/user/{{user_id}}/watchlist/?page={{page}}"
@@ -22,9 +23,9 @@ USER_ID_PATTERN = re.compile(r"^https://www.imdb.com/user/([^/]+)/")
 LIST_ID_PATTERN = re.compile(r"^https://www.imdb.com/list/([^/]+)/")
 
 DATASET_ROOT = "imdb"
-DATABASE_WATCHLIST = DATASET_ROOT + "/watchlist"
-DATABASE_LISTS = DATASET_ROOT + "/lists"
-DATASET_LIST = DATABASE_LISTS + f"/{{name}}"
+DATABASE_WATCHLIST = DATASET_ROOT + "-watchlist"
+DATABASE_LISTS = DATASET_ROOT + "-lists"
+DATASET_LIST = DATABASE_LISTS + f"-{{name}}"
 
 HTTP_CLIENT = CurlImpersonateHttpClient(
     impersonate="chrome124",
@@ -33,12 +34,12 @@ HTTP_CLIENT = CurlImpersonateHttpClient(
     }),
 )
 
-def to_ascii(text: str) -> str:
+def to_ascii(text: str, sep: str = "") -> str:
     ascii_text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('ascii')
-    ascii_text = re.sub(r'[ -]', '_', ascii_text)
-    ascii_text = re.sub(r'[^a-zA-Z0-9_]', '_', ascii_text)
-    ascii_text = re.sub(r'_+', '_', ascii_text)
-    ascii_text = ascii_text.strip('_').lower()
+    ascii_text = re.sub(r'[^a-zA-Z0-9{}]'.format(re.escape(sep)), sep, ascii_text)
+    if sep:
+        ascii_text = re.sub(r'{}+'.format(re.escape(sep)), sep, ascii_text)
+    ascii_text = ascii_text.strip(sep or None).lower()
     return ascii_text
 
 async def get_response(http_response: HttpResponse) -> str:
@@ -50,9 +51,10 @@ async def get_response(http_response: HttpResponse) -> str:
     content = await http_response.read()
     return content.decode(encoding, errors="replace")
 
-def build_next_url(current_url: str, next_page: int) -> str:
+def build_next_url(current_url: str) -> str:
     parts = urlparse(current_url)
     query = parse_qs(parts.query)
+    next_page = int(query["page"][0]) + 1
     query["page"] = [str(next_page)]
     new_query = urlencode(query, doseq=True)
     return urlunparse(parts._replace(query=new_query))
@@ -90,9 +92,7 @@ async def handle_movies(ctx: BeautifulSoupCrawlingContext) -> None:
     else:
         title_list_item_search = main_column_data["predefinedList" if request_type == "watchlist" else "list"]["titleListItemSearch"]
         if title_list_item_search["pageInfo"]["hasNextPage"]:
-            query = parse_qs(urlparse(url).query)
-            current_page = int(query["page"][0])
-            await ctx.enqueue_links(requests=[build_next_url(url, current_page + 1)])
+            await ctx.enqueue_links(requests=[build_next_url(url)])
 
 def on_failed_handler(ctx: BasicCrawlingContext, err: Exception):
     logger.error(f"Request {ctx.request.url} failed after retries: {err}")
@@ -128,7 +128,7 @@ def extract_movie_data(data: dict) -> dict:
         "runtime": movie_data["runtime"]["seconds"] if movie_data.get("runtime") else None,
     }
 
-async def main(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
+async def get_lists(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
     df = await Dataset.open(name=DATASET_ROOT)
     await df.drop()
 
@@ -159,8 +159,8 @@ async def main(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
         ]
     return watchlist, lists
 
-async def get_lists(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
-    return await main(user_id)
+async def main(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
+    return await get_lists(user_id=user_id)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -168,4 +168,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-    asyncio.run(get_lists(user_id=args.user_id))
+    asyncio.run(main(user_id=args.user_id))

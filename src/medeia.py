@@ -25,7 +25,7 @@ DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 DATASET_ROOT = "medeia"
 DATASET_BASE = DATASET_ROOT
-DATASET_FILMS = DATASET_ROOT + "/films"
+DATASET_FILMS = DATASET_ROOT + "-films"
 
 MEDEIA_URL = "https://medeiafilmes.com/filmes-em-exibicao"
 DATA_PATTERN = re.compile(r"global\.data\s*=\s*(\{.*?\});")
