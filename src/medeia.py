@@ -96,7 +96,7 @@ async def get_medeia_movies() -> pd.DataFrame:
     return df_medeia
 
 def match_series_imdb(movie_row: pd.Series, df_imdb: pd.DataFrame):
-    original_movie_row = movie_row.copy()
+    movie_id = movie_row.name
     original_df_imdb = df_imdb.copy()
 
     def convert_to_ascii(df: PandasLike) -> PandasLike:
@@ -138,17 +138,19 @@ def match_series_imdb(movie_row: pd.Series, df_imdb: pd.DataFrame):
 
     if df_matches.shape[0] == 1:
         match = cast(pd.Series, original_df_imdb.loc[df_matches.index[0]])
-        original_movie_row['watched'] = match['watched']
-        original_movie_row['imdb_id'] = match.name
-        original_movie_row['imdb_lists'] = match['imdb_lists']
+        imdb_id = match.name
+        watched = match['watched']
+        imdb_lists = match['imdb_lists']
     else:
-        original_movie_row['watched'] = False
-        original_movie_row['imdb_id'] = pd.NA
-        original_movie_row['imdb_lists'] = []
+        imdb_id = pd.NA
+        watched = False
+        imdb_lists = []
 
-    original_movie_row['url'] = original_movie_row.pop('url')
-
-    return original_movie_row
+    return pd.Series({
+        'imdb_id': imdb_id,
+        'watched': watched,
+        'imdb_lists': imdb_lists,
+    }, name=movie_id)
 
 async def get_imdb_movies(user_id: str) -> pd.DataFrame:
     imdb_tuple = await imdb.get_lists(user_id)
@@ -207,34 +209,32 @@ def get_sessions(df_movies: pd.DataFrame) -> pd.DataFrame:
 async def main(user_id: str):
     file_path = DATA_DIR / "movies.csv"
 
-    df_movies = pd.read_csv(
-        file_path,
-        index_col='id',
-        converters={
-            "cast": ast.literal_eval,
-            "runtime": utils.string_to_runtime,
-            "imdb_lists": ast.literal_eval,
-        },
-        encoding='utf-8-sig'
-    ) if os.path.exists(file_path) else None
-
-    df_medeia = await get_medeia_movies()
-    if df_movies is not None:
-        columns = df_medeia.columns
-        df_medeia = df_medeia.combine_first(df_movies)[columns]
-
-    df_imdb = await get_imdb_movies(user_id)
-
-    df_movies = df_medeia.apply(
-        match_series_imdb, axis=1, args=(df_imdb,), result_type='expand'
-    )
+    df_movies = await get_medeia_movies()
+    if os.path.exists(file_path):
+        df_movies_prev = pd.read_csv(
+            file_path,
+            index_col='id',
+            converters={
+                "cast": ast.literal_eval,
+                "runtime": utils.string_to_runtime,
+                "imdb_lists": ast.literal_eval,
+            },
+            encoding='utf-8-sig'
+        )
+        df_movies = df_movies.combine_first(df_movies_prev)[df_movies.columns]
     df_movies.sort_index(inplace=True)
-    df_movies['runtime'] = df_movies['runtime'].apply(
-        lambda x: utils.runtime_to_string(x) if pd.notna(x) else pd.NA
-    )
 
     df_sessions = get_sessions(df_movies)
 
+    df_imdb = await get_imdb_movies(user_id)
+    df_imdb = df_movies.apply(
+        match_series_imdb, axis=1, args=(df_imdb,), result_type='expand'
+    )
+    df_imdb = df_imdb.dropna(subset=['imdb_id'])
+
+    df_movies['runtime'] = df_movies['runtime'].apply(
+        lambda x: utils.runtime_to_string(x) if pd.notna(x) else pd.NA
+    )
     df_movies['sessions'] = df_movies['sessions'].apply(
         lambda x: [utils.to_string(s) for s in x] if isinstance(x, list) else pd.NA
     )
@@ -244,6 +244,8 @@ async def main(user_id: str):
     df_sessions['session'] = df_sessions['session'].apply(utils.to_string)
     df_sessions = df_sessions[['id', 'session']]
     df_sessions.to_csv(DATA_DIR / "sessions.csv", index=False, encoding='utf-8-sig')
+
+    df_imdb.to_csv(DATA_DIR / "imdb.csv", index=True, encoding='utf-8-sig')
 
     return df_movies, df_sessions
 
