@@ -122,14 +122,14 @@ def match_series_imdb(movie_row: pd.Series, df_imdb: pd.DataFrame):
         (df_imdb['original_title'] == movie_row['title']) |
         (df_imdb['original_title'] == movie_row['original_title'])
     )
-    df_matches['directors'] = df_imdb['directors'].apply(lambda directors: movie_row['director'] in directors)
+    df_matches['directors'] = df_imdb['directors'].apply(lambda directors: any(director in movie_row['director'] for director in directors))
     df_matches['cast'] = df_imdb['cast'].apply(lambda cast: bool(set(movie_row['cast']).intersection(cast)))
-    df_matches['release_year'] = df_imdb['release_year'] == movie_row['release_year']
+    df_matches['release_year'] = (df_imdb['release_year'] - movie_row['release_year']).abs() <= 1
     df_matches['runtime'] = (
         df_imdb['runtime'].notna() & (df_imdb['runtime'] == movie_row['runtime'] * 60)
     )
 
-    df_matches = df_matches[df_matches.sum(axis=1) >= 3]
+    df_matches = df_matches[df_matches['title'] & df_matches['directors'] & df_matches['release_year']]
     if df_matches.shape[0] > 1:
         df_title_matches = df_matches[df_matches['title']]
         if df_title_matches.shape[0] == 1:

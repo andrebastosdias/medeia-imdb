@@ -111,9 +111,9 @@ def extract_movie_data(data: dict) -> dict:
                 cast += [actor["name"]["nameText"]["text"].strip() for actor in principal["credits"]]
     elif "principalCreditsV2" in movie_data:
         for principal in movie_data["principalCreditsV2"]:
-            if principal["grouping"]["text"] == "Director":
+            if principal["grouping"]["text"] == "Director" or principal["grouping"]["text"] == "Directors":
                 directors += [director["name"]["nameText"]["text"].strip() for director in principal["credits"]]
-            elif principal["grouping"]["text"] == "Stars":
+            elif principal["grouping"]["text"] == "Star" or principal["grouping"]["text"] == "Stars":
                 cast += [actor["name"]["nameText"]["text"].strip() for actor in principal["credits"]]
     else:
         raise ValueError("No principalCredits or principalCreditsV2 in movie data")
