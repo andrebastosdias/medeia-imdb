@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: update_imdb-${{ github.ref }}
+  group: ${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      ORIGIN_EVENT: ${{ github.event.workflow_run.event || github.event_name }}
       IMDB_USER_ID: ur162389474
 
     steps:
@@ -49,7 +50,7 @@ jobs:
           fi
 
           COMMIT_MESSAGE="Update IMDb database"
-          [[ "${GITHUB_EVENT_NAME:-}" == "schedule" ]] && COMMIT_MESSAGE+=" ($(date +'%Y-%m-%d %H:00'))"
+          [[ "${ORIGIN_EVENT:-}" == "schedule" ]] && COMMIT_MESSAGE+=" ($(date +'%Y-%m-%d %H:00'))"
 
           git commit -m "$COMMIT_MESSAGE"
           git push

@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: update_medeia-${{ github.ref }}
+  group: ${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
