@@ -129,9 +129,6 @@ def extract_movie_data(data: dict) -> dict:
     }
 
 async def get_lists(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
-    df = await Dataset.open(name=DATASET_ROOT)
-    await df.drop()
-
     crawler = BeautifulSoupCrawler(http_client=HTTP_CLIENT)
     crawler.router.default_handler(handle_movies)
     crawler.failed_request_handler(on_failed_handler)

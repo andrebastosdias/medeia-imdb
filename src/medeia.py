@@ -80,9 +80,6 @@ def extract_film_data(data: dict):
     }
 
 async def get_medeia_movies() -> pd.DataFrame:
-    df = await Dataset.open(name=DATASET_ROOT)
-    await df.drop()
-
     crawler = BeautifulSoupCrawler(http_client=imdb.HTTP_CLIENT, max_crawl_depth=1)
     crawler.router.default_handler(handle)
     crawler.failed_request_handler(imdb.on_failed_handler)
@@ -206,7 +203,7 @@ def get_sessions(df_movies: pd.DataFrame) -> pd.DataFrame:
     df_sessions.reset_index(inplace=True)
     return df_sessions
 
-async def main(user_id: str):
+async def main_medeia():
     file_path = DATA_DIR / "movies.csv"
 
     df_movies = await get_medeia_movies()
@@ -226,12 +223,6 @@ async def main(user_id: str):
 
     df_sessions = get_sessions(df_movies)
 
-    df_imdb = await get_imdb_movies(user_id)
-    df_imdb = df_movies.apply(
-        match_series_imdb, axis=1, args=(df_imdb,), result_type='expand'
-    )
-    df_imdb = df_imdb.dropna(subset=['imdb_id'])
-
     df_movies['runtime'] = df_movies['runtime'].apply(
         lambda x: utils.runtime_to_string(x) if pd.notna(x) else pd.NA
     )
@@ -245,14 +236,55 @@ async def main(user_id: str):
     df_sessions = df_sessions[['id', 'session']]
     df_sessions.to_csv(DATA_DIR / "sessions.csv", index=False, encoding='utf-8-sig')
 
+    return df_movies, df_sessions
+
+async def main_imdb(user_id: str, df_movies: pd.DataFrame):
+    df_imdb = await get_imdb_movies(user_id)
+    df_imdb = df_movies.apply(
+        match_series_imdb, axis=1, args=(df_imdb,), result_type='expand'
+    )
+    df_imdb = df_imdb.dropna(subset=['imdb_id'])
     df_imdb.to_csv(DATA_DIR / "imdb.csv", index=True, encoding='utf-8-sig')
 
-    return df_movies, df_sessions
+    return df_imdb
+
+async def main(user_id: str | None, reload_medeia: bool, reload_imdb: bool):
+    df_movies = None
+    df_sessions = None
+    df_imdb = None
+    if reload_medeia:
+        df_movies, df_sessions = await main_medeia()
+    if reload_imdb:
+        assert user_id is not None
+        if df_movies is None:
+            file_path = DATA_DIR / "movies.csv"
+            assert os.path.exists(file_path)
+            df_movies = pd.read_csv(
+                file_path,
+                index_col='id',
+                converters={
+                    "cast": ast.literal_eval,
+                    "runtime": utils.string_to_runtime,
+                    "imdb_lists": ast.literal_eval,
+                },
+                encoding='utf-8-sig'
+            )
+        df_imdb = await main_imdb(user_id, df_movies)
+    return df_movies, df_sessions, df_imdb
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run the main async process.")
-    parser.add_argument("--user-id", "-u", type=str, required=True, help="The user_id to process")
+    parser.add_argument("--user-id", "-u", type=str, help="The user_id to process")
+    parser.add_argument("--no-medeia", dest='reload_medeia', action='store_false', help="Disable Medeia data fetching")
+    parser.add_argument("--no-imdb", dest='reload_imdb', action='store_false', help="Disable IMDB data fetching")
+    parser.set_defaults(reload_medeia=True, reload_imdb=True)
     args = parser.parse_args()
 
+    if args.reload_imdb and not args.user_id:
+        parser.error("--user-id is required unless --no-imdb is specified")
+
+    if not args.reload_medeia and not args.reload_imdb:
+        parser.error("At least one of --medeia or --imdb must be enabled")
+
     logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-    asyncio.run(main(user_id=args.user_id))
+    asyncio.run(main(user_id=args.user_id, reload_medeia=args.reload_medeia, reload_imdb=args.reload_imdb))

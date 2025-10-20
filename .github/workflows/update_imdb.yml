@@ -1,15 +1,13 @@
-name: Update Movie and Session Databases
+name: Update IMDb Database
 
 on:
-  push:
-    branches:
-      - main
-  schedule:
-    - cron: '0 * * * *' # Runs every hour
+  workflow_run:
+    workflows: ["update_medeia"]
+    types: [completed]
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.ref }}
+  group: update_imdb-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -35,7 +33,7 @@ jobs:
 
       - name: Run update script
         run: |
-          python src/medeia.py -u $IMDB_USER_ID
+          python src/medeia.py --no-medeia -u $IMDB_USER_ID
 
       - name: Commit changes to /data
         run: |
@@ -48,7 +46,7 @@ jobs:
             exit 0
           fi
 
-          COMMIT_MESSAGE="Update databases"
+          COMMIT_MESSAGE="Update IMDb database"
           [[ "${GITHUB_EVENT_NAME:-}" == "schedule" ]] && COMMIT_MESSAGE+=" ($(date +'%Y-%m-%d %H:00'))"
 
           git commit -m "$COMMIT_MESSAGE"
