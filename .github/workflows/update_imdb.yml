@@ -3,7 +3,7 @@ name: Update IMDb Database
 on:
   workflow_run:
     workflows:
-      - update_medeia
+      - Update Medeia Databases
     types:
       - completed
   workflow_dispatch:
