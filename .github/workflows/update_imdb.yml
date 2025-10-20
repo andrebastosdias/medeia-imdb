@@ -2,8 +2,10 @@ name: Update IMDb Database
 
 on:
   workflow_run:
-    workflows: ["update_medeia"]
-    types: [completed]
+    workflows:
+      - update_medeia
+    types:
+      - completed
   workflow_dispatch:
 
 concurrency:
