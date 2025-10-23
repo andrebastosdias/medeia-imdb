@@ -1,6 +1,7 @@
 ﻿id,original_title,title,director,cast,release_year,runtime,url
 37,Jour de Fête,Há Festa na Aldeia,Jacques Tati,"['Jacques Tati', 'Guy Descombe', 'Paul Frankeur', 'Santa Relli', 'Maine Vallée']",1949,01:19:00,https://medeiafilmes.com/filmes/ha-festa-na-aldeia-1949
 74,2001 – A Space Odyssey,2001 – Odisseia no Espaço,Stanley Kubrick,"['Keir Dullea', 'Gary Lockwood', 'William Sylvester']",1968,02:29:00,https://medeiafilmes.com/filmes/2001-odisseia-no-espaco-1968
+97,Tôkio monogatari,Viagem a Tóquio,Yasujiro Ozu,"['Chishu Ryu', 'Chieko Higashiyama', 'Setsuko Hara', 'Haruko Sugimura', 'So Yamamura']",1953,02:16:00,https://medeiafilmes.com/filmes/viagem-a-toquio-1953
 111,Mon oncle,O Meu Tio,Jacques Tati,"['Jacques Tati', 'Dominique Marie', 'Jean Pierre Zola', 'Adrienne Servantie']",1958,01:41:00,https://medeiafilmes.com/filmes/o-meu-tio-1958
 120,Otto e Mezzo,Fellini 8½,Federico Fellini,"['Marcello Mastroianni', 'Anita Ekberg', 'Claudia Cardinale']",1963,02:18:00,https://medeiafilmes.com/filmes/fellini-8-1963
 170,Persona,A Máscara,Ingmar Bergman,"['Bibi Andersson', 'Liv Ullmann', 'Margaretha Krook']",1966,01:24:00,https://medeiafilmes.com/filmes/a-mascara-1966
@@ -10,7 +11,9 @@
 179,Il gattopardo,O Leopardo,Luchino Visconti,"['Claudia Cardinale', 'Alain Delon', 'Burt Lancaster']",1963,03:05:00,https://medeiafilmes.com/filmes/o-leopardo-1963
 181,Amarcord,Amarcord,Federico Fellini,"['Bruno Zanin', 'Pupella Maggio', 'Armando Brancia', 'Magali Noël']",1969,02:03:00,https://medeiafilmes.com/filmes/amarcord-1969
 186,C'era una volta il West,Aconteceu no Oeste,Sergio Leone,"['Claudia Cardinale', 'Charles Bronson', 'Henry Fonda', 'Jason Robards']",1968,02:45:00,https://medeiafilmes.com/filmes/aconteceu-no-oeste-1968
+196,Ikiru,Viver - Ikiru,Akira Kurosawa,"['Takashi Shimura', 'Nobuo Kaneko', 'Kioko Seki', 'Makoto Kobori']",1952,02:23:00,https://medeiafilmes.com/filmes/viver-ikiru-1952
 204,Kumonosu-jô,O Trono de Sangue,Akira Kurosawa,"['Toshiro Mifune', 'Isuzu Yamada', 'Minoru Chiski', 'Takamaru Sasaki']",1957,01:50:00,https://medeiafilmes.com/filmes/o-trono-de-sangue-1957
+212,Såsom i en spegel,Em Busca da Verdade,Ingmar Bergman,"['Harriet Andersson', 'Gunnar Björnstrand', 'Max von Sydow']",1961,01:36:00,https://medeiafilmes.com/filmes/em-busca-da-verdade-1961
 229,Uccellacci e uccellini,Passarinhos e Passarões,Pier Paolo Pasolini,"['Totò', 'Ninetto Davoli', 'Femi Benussi', 'Francesco Leonetti']",1966,01:29:00,https://medeiafilmes.com/filmes/passarinhos-e-passaroes-1966
 232,La Leggenda del Santo Bevitore,A Lenda do Santo Bebedor,Ermanno Olmi,"['Rutger Hauer', 'Anthony Quayle', 'Sandrine Dumas', 'Dominique Pinon']",1988,02:08:00,https://medeiafilmes.com/filmes/a-lenda-do-santo-bebedor-1988
 280,Few of Us,Few of Us,Sharunas Bartas,"['Yekaterina Golubeva', 'Piotr Kishteev', 'Sergei Tulayev']",1996,01:45:00,https://medeiafilmes.com/filmes/few-of-us-1996
@@ -24,6 +27,7 @@
 382,Vanina Vanini,Vanina Vanini,Roberto Rossellini,"['Sandra Milo', 'Laurent Terzieff', 'Martine Carol', 'Paolo Stoppa']",1961,02:07:00,https://medeiafilmes.com/filmes/vanina-vanini-1961
 387,Zabriskie Point,Deserto de Almas,Michelangelo Antonioni,"['Mark Frechette', 'Daria Halprin', 'Rod Taylor']",1970,01:53:00,https://medeiafilmes.com/filmes/deserto-de-almas-1970
 389,Nostra Signora dei Turchi,Nossa Senhora dos Turcos,Carmelo Bene,"['Carmelo Bene', 'Lydia Mancinelli', 'Salvatore Siniscalchi']",1968,02:03:00,https://medeiafilmes.com/filmes/nossa-senhora-dos-turcos-1968
+409,Pasolini,Pasolini,Abel Ferrara,"['Willem Dafoe', 'Riccardo Scamarcio', 'Ninetto Davoli', 'Maria de Medeiros']",2014,01:24:00,https://medeiafilmes.com/filmes/pasolini-2014
 421,As Tears Go By,As Tears Go By - Ao Sabor da Ambição,Wong Kar Wai,"['Andy Lau', 'Maggie Cheung', 'Jacky Cheung']",1988,01:42:00,https://medeiafilmes.com/filmes/as-tears-go-by-ao-sabor-da-ambicao-1988
 441,Maine-Océan,Maine-Océan,Jacques Rozier,"['Bernard Menez', 'Luis Rego', 'Yves Afonso', 'Rosa-Maria Gomes']",1986,02:10:00,https://medeiafilmes.com/filmes/maine-ocean-1986
 445,Ah Fei jing juen,Days of Being Wild – Dias Selvagens,Wong Kar Wai,"['Leslie Cheung', 'Maggie Cheung', 'Andy Lau', 'Rebecca Pan']",1990,01:34:00,https://medeiafilmes.com/filmes/days-of-being-wild-dias-selvagens-1990
@@ -48,6 +52,8 @@
 1073,Banshun,Primavera Tardia,Yasujiro Ozu,"['Chishû Ryû', 'Setsuko Hara', 'Yumeji Tsukioka', 'Haruko Sugimura']",1949,01:48:00,https://medeiafilmes.com/filmes/primavera-tardia-1949
 1076,Lisbon Story,Lisbon Story - Viagem a Lisboa,Wim Wenders,"['Patrick Bauchau', 'Rüdiger Vogler', 'Teresa Salgueiro e os Madredeus', 'Manoel de Oliveira']",1995,01:40:00,https://medeiafilmes.com/filmes/lisbon-story-viagem-a-lisboa-1995
 1089,Zerkalo,O Espelho,Andrei Tarkovsky,"['Margarita Terekhova', 'Oleg Yankovskiy', 'Filipp Yankovskiy', 'Ignat Daniltsev']",1974,01:48:00,https://medeiafilmes.com/filmes/o-espelho-1974
+1127,Pickpocket,O Carteirista,Robert Bresson,"['Martin Lasalle', 'Morika Green', 'Pierre Leymarie', 'Jean Pelegri']",1959,01:13:00,https://medeiafilmes.com/filmes/o-carteirista-1959
+1164,Jalsaghar,O Salão de Música,Satyajit Ray,"['Chhabi Biswas', 'Padma Devi', 'Pinaki Sengupta']",1958,01:40:00,https://medeiafilmes.com/filmes/o-salao-de-musica-1958
 1190,Händler der Vier Jahreszeiten,O Mercador das Quatro Estações,Rainer Werner Fassbinder,"['Hans Hirschmüller', 'Irm Hermann', 'Hanna Schygulla', 'Kurt Raab']",1971,01:29:00,https://medeiafilmes.com/filmes/o-mercador-das-quatro-estacoes-1971
 1191,Warnung vor einer heiligen Nutte,Cuidado com essa Puta Sagrada,Rainer Werner Fassbinder,"['Hanna Schygulla', 'Lou Castel', 'Eddie Constantine']",1971,01:43:00,https://medeiafilmes.com/filmes/cuidado-com-essa-puta-sagrada-1971
 1192,Chinesisches Roulette,Roleta Chinesa,Rainer Werner Fassbinder,"['Margit Carstensen', 'Anna Karina', 'Ulli Lomel', 'Macha Méril']",1976,01:25:00,https://medeiafilmes.com/filmes/roleta-chinesa-1976
@@ -56,12 +62,15 @@
 1196,Angst essen Seele Auf,O Medo Come a Alma,Rainer Werner Fassbinder,"['Brigitte Mira', 'El Hedi ben Salem', 'Barbara Valentin', 'Irm Hermann']",1973,01:33:00,https://medeiafilmes.com/filmes/o-medo-come-a-alma-1973
 1197,Die bitteren Tranen der Petra von Kant,As Lágrimas Amargas de Petra von Kant,Rainer Werner Fassbinder,"['Margit Carstensen', 'Hanna Schygulla', 'Irm Hermann', 'Eva Mattes']",1972,02:04:00,https://medeiafilmes.com/filmes/as-lagrimas-amargas-de-petra-von-kant-1972
 1220,Barry Lyndon,Barry Lyndon,Stanley Kubrick,"['Ryan O`Neal', 'Marisa Berenson', 'Patrick Magee']",1975,03:04:00,https://medeiafilmes.com/filmes/barry-lyndon-1975
+1221,Mr. Arkadin,Mr. Arkadin - Relatório Confidencial,Orson Welles,"['Orson Welles', 'Paola Mori', 'Robert Arden', 'Patricia Medina']",1955,01:33:00,https://medeiafilmes.com/filmes/mr-arkadin-relatorio-confidencial-1955
 1241,La double vie de Véronique,A Dupla Vida de Veronique,Krzysztof Kieslowski,"['Irène Jacob', 'Wladyslaw Kowalski', 'Halina Gryglaszewska', 'Aleksander Bardini']",1991,01:38:00,https://medeiafilmes.com/filmes/a-dupla-vida-de-veronique-1991
 1268,Annie Hall,Annie Hall,Woody Allen,"['com Woody Allen', 'Diane Keaton', 'Shelley Duvall', 'Tony Roberts']",1977,01:33:00,https://medeiafilmes.com/filmes/annie-hall-1977
 1285,"Roma, Città Aperta","Roma, Cidade Aberta",Roberto Rossellini,"['Anna Magnani', 'Aldo Fabrizi', 'Marcello Pagliero']",1945,01:38:00,https://medeiafilmes.com/filmes/roma-cidade-aberta-1945
 1286,Play Time,Playtime - Vida Moderna,Jacques Tati,"['Jacques Tati', 'Barbara Dennek', 'Rita Maïden', 'France Rumilly', 'France Delahalle']",1967,02:04:00,https://medeiafilmes.com/filmes/playtime-vida-moderna-1967
+1314,Gertrud,Gertrudes,Carl Theodor Dreyer,"['Nina Pens Rode', 'Bendt Rothe', 'Ebbe Rode', 'Baard Owe']",1964,01:56:00,https://medeiafilmes.com/filmes/gertrudes-1964
 1316,Salò o le 120 giornate di Sodoma,Salò ou Os 120 Dias de Sodoma,Pier Paolo Pasolini,"['Paolo Bonacelli', 'Giorgio Cataldi', 'Uberto Paolo Quintavalle']",1975,01:57:00,https://medeiafilmes.com/filmes/salo-ou-os-120-dias-de-sodoma-1975
 1322,"Germania, Anno Zero","Alemanha, Ano Zero",Roberto Rossellini,"['Edmund Moeschke', 'Ernst Pittschau', 'Ingetraud Hinze']",1948,01:15:00,https://medeiafilmes.com/filmes/alemanha-ano-zero-1948
+1350,Ugetsu Monogatari,Contos da Lua Vaga,Kenji Mizoguchi,"['Masayuky Mori', 'Sakae Ozawa', 'Machiko Kyo', 'Kinuyo Tanaka']",1953,01:35:00,https://medeiafilmes.com/filmes/contos-da-lua-vaga-1953
 1366,Sicilia!,Sicilia!,Danièle Huillet e Jean-Marie Straub,"['Gianni Buscarino', 'Vittorio Vigneri', 'Angela Nugara']",1998,01:06:00,https://medeiafilmes.com/filmes/sicilia-1998
 1424,Ludwig,Ludwig – Luís da Baviera,Luchino Visconti,"['Helmut Berger', 'Silvana Mangano', 'Romy Schneider', 'Trevor Howard']",1973,03:59:00,https://medeiafilmes.com/filmes/ludwig-luis-da-baviera-1973
 1435,Eyes Wide Shut,De Olhos Bem Fechados,Stanley Kubrick,"['Nicole Kidman', 'Tom Cruise', 'Sidney Pollack', 'Todd Field']",1999,02:39:00,https://medeiafilmes.com/filmes/de-olhos-bem-fechados-1999
@@ -71,6 +80,7 @@
 1519,Ivan Groznyy I,"Ivan, o Terrível – Parte 1",Sergei Eisenstein,"['Nikolai Cherkasov', 'Serafima Birman', 'Ludmila Tselikovskaya', 'Mikhail Nazvanov']",1944,01:43:00,https://medeiafilmes.com/filmes/ivan-o-terrivel-parte-1-1944
 1521,Ivan Groznyy II: Boyarsky zagovor,"Ivan, o Terrível – Parte 2",Sergei Eisenstein,"['Nikolai Cherkasov', 'Serafima Birman', 'Ludmila Tselikovskaya']",1958,01:28:00,https://medeiafilmes.com/filmes/ivan-o-terrivel-parte-2-1958
 1527,Caligula – The Ultimate Cut,Caligula – The Ultimate Cut,Tinto Brass,"['Malcolm McDowell', 'Peter O’Toole', 'Helen Mirren', 'Adriana Asti']",2023,02:53:00,https://medeiafilmes.com/filmes/caligula-the-ultimate-cut-2023
+1529,The Miracle Worker,O Milagre de Anne Sullivan,Arthur Penn,"['Andrew Prine', 'Anne Bancroft', 'Patty Duke', 'Kathleen Comegys']",1962,01:46:00,https://medeiafilmes.com/filmes/o-milagre-de-anne-sullivan-1962
 1563,Naked,Nu,Mike Leigh,"['David Thewlis', 'Lesley Sharp', 'Katrin Cartlidge']",1993,02:11:00,https://medeiafilmes.com/filmes/nu-1993
 1658,Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb,Dr. Estranhoamor,Stanley Kubrick,"['Peter Sellers', 'George C. Scott', 'Sterling Hayden']",1964,01:33:00,https://medeiafilmes.com/filmes/dr-estranhoamor-1964
 1672,Viaggio in Italia,Viagem em Itália,Roberto Rossellini,"['Ingrid Bergman', 'George Sanders', 'Maria Mauban']",1954,01:25:00,https://medeiafilmes.com/filmes/viagem-em-italia-1954
@@ -83,10 +93,13 @@
 1695,Malizia,Malícia,Salvatore Samperi,"['Laura Antonelli', 'Turi Ferro', 'Alessandro Momo', 'Angela Luce']",1973,01:37:00,https://medeiafilmes.com/filmes/malicia-1973
 1697,Il conformista,O Conformista,Bernardo Bertolucci,"['Jean-Louis Trintignant', 'Stefania Sandrelli', 'Gastone Moschin', 'Enzo Tarascio']",1970,01:53:00,https://medeiafilmes.com/filmes/o-conformista-1970
 1707,Roma de Fellini,Roma de Fellini,Federico Fellini,"['Federico Fellini', 'Peter Gonzalez', 'Elisa Mainardi']",1972,02:00:00,https://medeiafilmes.com/filmes/roma-de-fellini-1972
+1730,The Grapes of Wrath,As Vinhas da Ira,John Ford,"['Henry Fonda', 'Jane Darwell', 'John Carradine', 'Charley Grapewin']",1940,02:09:00,https://medeiafilmes.com/filmes/as-vinhas-da-ira-1940
 1737,Dov'è la libertà...?,Onde Está a Liberdade?,Roberto Rossellini,"['Totò', 'Vera Molnar', 'Nita Dover', 'Franca Faldini']",1954,01:31:00,https://medeiafilmes.com/filmes/onde-esta-a-liberdade-1954
 1739,Prima della rivoluzione,Antes da Revolução,Bernardo Bertolucci,"['Francesco Barili', 'Adriana Asti', 'Allen Midgette']",1964,01:52:00,https://medeiafilmes.com/filmes/antes-da-revolucao-1964
 1740,Novecento,1900,Bernardo Bertolucci,"['Robert De Niro', 'Gérard Depardieu', 'Dominique Sanda', 'Burt Lancaster']",1976,05:17:00,https://medeiafilmes.com/filmes/1900-1976
 1742,Gruppo di famiglia in un Interno,Violência e Paixão,Luchino Visconti,"['Silvana Mangano', 'Burt Lancaster', 'Helmut Berger']",1974,02:02:00,https://medeiafilmes.com/filmes/violencia-e-paixao-1974
+1768,Viridiana,Viridiana,Luis Buñuel,"['Silvia Pinal', 'Francisco Rabal', 'Fernando Rey', 'Margarita Losano']",1961,01:30:00,https://medeiafilmes.com/filmes/viridiana-1961
+1791,The Trial / Le Procès,O Processo,Orson Welles,"['Anthony Perkins', 'Jeanne Moreau', 'Romy Schneider']",1962,01:59:00,https://medeiafilmes.com/filmes/o-processo-1962
 1797,Salvatore Giuliano,Salvatore Giuliano,Francesco Rosi,"['Salvo Randone', 'Frank Wolff', 'Pietro Cammarata', 'Sennuccio Benelli']",1962,02:03:00,https://medeiafilmes.com/filmes/salvatore-giuliano-1962
 1798,Le mani sulla città,As Mãos Sobre a Cidade,Francesco Rosi,"['Rod Steiger', 'Salvo Randone', 'Guido Alberti', ""Angelo D'Alessandro""]",1963,01:41:00,https://medeiafilmes.com/filmes/as-maos-sobre-a-cidade-1963
 1831,Perfect Days,Dias Perfeitos,Wim Wenders,"['Kōji Yakusho', 'Min Tanaka', 'Arisa Nakano', 'Tokio Emoto']",2023,02:03:00,https://medeiafilmes.com/filmes/dias-perfeitos-2023
@@ -96,10 +109,14 @@
 1846,Im Lauf der Zeit,Ao Correr do Tempo,Wim Wenders,"['Rüdiger Vogler', 'Hanns Zischler', 'Lisa Kreuzer', 'Rudolf Schündler']",1975,02:55:00,https://medeiafilmes.com/filmes/ao-correr-do-tempo-1975
 1866,Der Stand der Dinge,O Estado das Coisas,Wim Wenders,"['Patrick Bauchau', 'Viva Auder', 'Isabelle Weingarten', 'Samuel Fuller']",1982,01:57:00,https://medeiafilmes.com/filmes/o-estado-das-coisas-1982
 1870,Anselm - Das Rauschen der Zeit,Anselm – O Som do Tempo,Wim Wenders,[''],2023,01:32:00,https://medeiafilmes.com/filmes/anselm-o-som-do-tempo-2023
+1900,This Property Is Condemned,A Flor à Beira do Pântano,Sydney Pollack,"['Natalie Wood', 'Robert Redford', 'Charles Bronson']",1966,01:50:00,https://medeiafilmes.com/filmes/a-flor-a-beira-do-pantano-1966
 1938,Le Mépris,O Desprezo,Jean-Luc Godard,"['Brigitte Bardot', 'Michel Piccoli', 'Jack Palance', 'Fritz Lang']",1963,01:43:00,https://medeiafilmes.com/filmes/o-desprezo-1963
+1942,Pierrot le fou,"Pedro, o Louco",Jean-Luc Godard,"['Jean-Paul Belmondo', 'Anna Karina', 'Dirk Sanders', 'Raymond Devos']",1965,01:52:00,https://medeiafilmes.com/filmes/pedro-o-louco-1965
 1981,The Lady from Shanghai,A Dama de Xangai,Orson Welles,"['Rita Hayworth', 'Orson Welles', 'Everett Sloane']",1947,01:27:00,https://medeiafilmes.com/filmes/a-dama-de-xangai-1947
+2009,Le Plaisir,O Prazer,Max Ophüls,"['Jean Gabin', 'Madeleine Renaud']",1952,01:37:00,https://medeiafilmes.com/filmes/o-prazer-1952
 2062,Sanshô Dayú,O Intendente Sansho,Kenji Mizoguchi,"['Kinuyo Tanaka', 'Yoshiaki Hanayagi', 'Kyoko Kagawa']",1954,02:04:00,https://medeiafilmes.com/filmes/o-intendente-sansho-1954
 2163,A Clockwork Orange,Laranja Mecânica,Stanley Kubrick,"['Malcolm McDowell', 'Patrick Magee', 'Michael Bates', 'Adrienne Corri']",1971,02:16:00,https://medeiafilmes.com/filmes/laranja-mecanica-1971
+2165,Bronenosets Potiomkine,O Couraçado Potemkine,Serguei M. Eisenstein,"['Aleksandr Antonov', 'Vladimir Barsky', 'Grigori Aleksandrov', 'Mikhail Gomorov', 'Ivan Bobrov']",1925,01:15:00,https://medeiafilmes.com/filmes/o-couracado-potemkine-1925
 2172,Touch of Evil,A Sede do Mal,Orson Welles,"['Orson Welles', 'Charlton Heston', 'Janet Leigh', 'Marlene Dietrich']",1958,01:51:00,https://medeiafilmes.com/filmes/a-sede-do-mal-1958
 2173,Campanadas a Media Noche,As Badaladas da Meia-noite,Orson Welles,"['Orson Welles', 'Jeanne Moreau', 'Margaret Rutherford', 'John Gielgud']",1966,01:59:00,https://medeiafilmes.com/filmes/as-badaladas-da-meia-noite-1966
 2268,"Bruno Reidal, confession d’un meurtrier",Bruno Reidal – Confissões de um Assassino,Vincent Le Port,"['Dimitri Doré', 'Jean-Luc Vincent', 'Roman Villedieu', 'Alex Fanguin', 'Tino Vigier']",2021,01:41:00,https://medeiafilmes.com/filmes/bruno-reidal-confissoes-de-um-assassino-2021
@@ -203,9 +220,21 @@
 2821,Filming Othelo,Filming Othelo,Orson Welles,"['Orson Welles', 'Micheál MacLiammóir', 'Hilton Edwards']",1978,01:24:00,https://medeiafilmes.com/filmes/filming-othelo-1978
 2823,Ordinary People,Gente Vulgar,Robert Redford,"['Donald Sutherland', 'Mary Tyler Moore', 'Judd Hirsch']",1981,02:04:00,https://medeiafilmes.com/filmes/gente-vulgar-1981
 2824,The Horse Whisperer,O Encantador de Cavalos,Robert Redford,"['Robert Redford', 'Kristin Scott Thomas', 'Sam Neill', 'Scarlett Johansson']",1998,02:49:00,https://medeiafilmes.com/filmes/o-encantador-de-cavalos-1998
+2826,Los destellos,Los destellos,Pilar Palomero,"['Patricia López Arnaiz', 'Antonio de la Torre', 'Marina Guerola', 'Julián López']",2024,01:41:00,https://medeiafilmes.com/filmes/los-destellos-2024
 2829,Mask,A Máscara,Peter Bogdanovich,"['Eric Stoltz', 'Cher', 'Sam Elliott', 'Estelle Getty']",1985,02:00:00,https://medeiafilmes.com/filmes/a-mascara-1985
+2831,Back to The Future,Regresso ao Futuro – 40º Aniversário,Robert Zemeckis,"['Michael J. Fox', 'Christopher Lloyd', 'Lorraine Baines', 'Crispin Glover']",1985,01:56:00,https://medeiafilmes.com/filmes/regresso-ao-futuro-40o-aniversario-1985
+2832,Bugonia,Bugonia,Yorgos Lanthimos,"['Emma Stone', 'Jesse Plemons', 'Aidan Delbis', 'Stavros Halkias']",2025,02:00:00,https://medeiafilmes.com/filmes/bugonia-2025
 2833,O Riso e a Faca,O Riso e a Faca,Pedro Pinho,"['Sérgio Coragem', 'Cléo Diára', 'Jonathan Guilherme', 'Jorge Biague']",2025,03:31:00,https://medeiafilmes.com/filmes/o-riso-e-a-faca-2025
 2835,O Agente Secreto,O Agente Secreto,Kleber Mendonça Filho,"['Wagner Moura', 'Maria Fernanda Cândido', 'Gabriel Leone', 'Isabél Zuaa']",2025,02:40:00,https://medeiafilmes.com/filmes/o-agente-secreto-2025
 2836,Yek tasadef sadeh,Foi Só Um Acidente,Jafar Panahi,"['Vahid Mobasseri', 'Mariam Afshari', 'Ebrahim Azizi', 'Hadis Pakbaten']",2025,01:45:00,https://medeiafilmes.com/filmes/foi-so-um-acidente-2025
+2837,Sex,Sex,Dag Johan Haugerud,"['Jan Gunnar Røise', 'Thorbjørn Harr']",2024,01:58:00,https://medeiafilmes.com/filmes/sex-2024
 2839,Cabra marcado para morrer,Cabra marcado para morrer,Eduardo Coutinho,"['Ferreira Gullar', 'Tite de Lemos', 'Eduardo Coutinho']",1984,01:59:00,https://medeiafilmes.com/filmes/cabra-marcado-para-morrer-1984
 2842,Complô,Complô,João Miller Guerra,['Ghoya'],2025,01:25:00,https://medeiafilmes.com/filmes/complo-2025
+2850,Manhattan,Manhattan,Woody Allen,"['Woody Allen', 'Diane Keaton', 'Mariel Hemingway', 'Meryl Streep']",1979,01:37:00,https://medeiafilmes.com/filmes/manhattan-1979
+2851,Interiors,Intimidade,Woody Allen,"['Kristin Griffith', 'Mary Beth Hurt', 'Richard Jordan', 'Diane Keaton']",1978,01:32:00,https://medeiafilmes.com/filmes/intimidade-1978
+2852,Manhattan Murder Mystery,O Misterioso Assassínio em Manhattan,Woody Allen,"['Woody Allen', 'Diane Keaton', 'Jerry Adler']",1993,01:47:00,https://medeiafilmes.com/filmes/o-misterioso-assassinio-em-manhattan-1993
+2854,The Magnificent Ambersons,o Quarto Mandamento,Orson Welles,"['Joseph Cotten', 'Dolores Costello', 'Anne Baxter', 'Tim Holt']",1942,01:28:00,https://medeiafilmes.com/filmes/o-quarto-mandamento-1942
+2855,Inside Daisy Clover,O Estranho Mundo de Daisy Clover,Robert Mulligan,"['Natalie Wood', 'Christopher Plummer', 'Robert Redford', 'Ruth Gordon']",1960,02:08:00,https://medeiafilmes.com/filmes/o-estranho-mundo-de-daisy-clover-1960
+2856,Jeremiah Johnson,As Brancas Montanhas da Morte,Sydney Pollack,"['Robert Redford', 'Will Geer', 'Allyn Ann McLerie', 'Stefan Gierasch']",1972,01:56:00,https://medeiafilmes.com/filmes/as-brancas-montanhas-da-morte-1972
+2858,Out of Africa,África Minha,Sydney Pollack,"['Meryl Streep', 'Robert Redford', 'Klaus Maria Brandauer']",1985,02:41:00,https://medeiafilmes.com/filmes/africa-minha-1985
+2860,Dance with a Stranger,Dança Fatal,Mike Newell,"['Miranda Richardson', 'Rupert Everett', 'Ian Holm']",1985,01:36:00,https://medeiafilmes.com/filmes/danca-fatal-1985
