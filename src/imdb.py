@@ -77,7 +77,7 @@ async def handle_movies(ctx: BeautifulSoupCrawlingContext) -> None:
     await ctx.push_data({
         "url": url,
         "data": main_column_data,
-    }, dataset_name=(
+    }, dataset_alias=(
         DATABASE_LISTS if request_type == "lists" else
         DATABASE_WATCHLIST if request_type == "watchlist" else
         DATASET_LIST.format(name=to_ascii(cast(str, list_name)))
@@ -134,7 +134,7 @@ async def get_lists(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
     crawler.failed_request_handler(on_failed_handler)
     await crawler.run([WATCHLIST_URL.format(user_id=user_id, page=1), LISTS_URL.format(user_id=user_id)])
 
-    ds = await Dataset.open(name=DATABASE_WATCHLIST)
+    ds = await Dataset.open(alias=DATABASE_WATCHLIST)
     content = await ds.get_data()
     watchlist = [
         extract_movie_data(edge)
@@ -142,12 +142,12 @@ async def get_lists(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
         for edge in item["data"]["predefinedList"]["titleListItemSearch"]["edges"]
     ]
 
-    ds = await Dataset.open(name=DATABASE_LISTS)
+    ds = await Dataset.open(alias=DATABASE_LISTS)
     content = await ds.get_data()
     lists: dict[str, list[dict]] = {}
     for edge in content.items[0]["data"]["userListSearch"]["edges"]:
         list_name = edge["node"]["name"]["originalText"]
-        list_ds = await Dataset.open(name=DATASET_LIST.format(name=to_ascii(list_name)))
+        list_ds = await Dataset.open(alias=DATASET_LIST.format(name=to_ascii(list_name)))
         list_content = await list_ds.get_data()
         lists[list_name] = [
             extract_movie_data(edge)

@@ -42,7 +42,7 @@ async def handle(ctx: BeautifulSoupCrawlingContext) -> None:
     await ctx.push_data({
         "url": ctx.request.url,
         "data": data,
-    }, dataset_name=DATASET_BASE if ctx.request.crawl_depth == 0 else DATASET_FILMS)
+    }, dataset_alias=DATASET_BASE if ctx.request.crawl_depth == 0 else DATASET_FILMS)
 
     if ctx.request.crawl_depth == 0:
         movies = data["schedule"]["events"]
@@ -85,7 +85,7 @@ async def get_medeia_movies() -> pd.DataFrame:
     crawler.failed_request_handler(imdb.on_failed_handler)
     await crawler.run([MEDEIA_URL])
 
-    ds = await Dataset.open(name=DATASET_FILMS)
+    ds = await Dataset.open(alias=DATASET_FILMS)
     content = await ds.get_data()
     rows = [extract_film_data(item) for item in content.items]
     df_medeia = pd.DataFrame.from_records(rows, index='id')
