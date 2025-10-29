@@ -217,8 +217,7 @@ async def main_medeia():
             index_col='id',
             converters={
                 "cast": ast.literal_eval,
-                "runtime": utils.string_to_runtime,
-                "imdb_lists": ast.literal_eval,
+                "runtime": lambda x: utils.string_to_runtime(x) if x else pd.NA,
             },
             encoding='utf-8-sig'
         )
