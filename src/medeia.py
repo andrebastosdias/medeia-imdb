@@ -55,7 +55,11 @@ def extract_film_data(data: dict):
 
     def extract_sessions() -> list[datetime]:
         sessions: list[datetime] = []
-        for theater in film_data["programme"].values():
+        programme = film_data["programme"]
+        # check the size because when there are no sessions, "programme" might be a list instead of a dict
+        if len(programme) == 0:
+            return sessions
+        for theater in programme.values():
             if theater.get("slug") in TARGET_THEATERS:
                 for session in theater["sessions"].values():
                     date = session["date"]
@@ -90,6 +94,7 @@ async def get_medeia_movies() -> pd.DataFrame:
     rows = [extract_film_data(item) for item in content.items]
     df_medeia = pd.DataFrame.from_records(rows, index='id')
 
+    df_medeia = df_medeia.convert_dtypes()
     return df_medeia
 
 def match_series_imdb(movie_row: pd.Series, df_imdb: pd.DataFrame):
@@ -173,34 +178,33 @@ async def get_imdb_movies(user_id: str) -> pd.DataFrame:
     return df_imdb_watchlist
 
 def get_sessions(df_movies: pd.DataFrame) -> pd.DataFrame:
-    df_sessions = df_movies.dropna(subset=['sessions']).explode('sessions')
+    df_sessions = df_movies['sessions'].dropna().explode().reset_index()
     df_sessions.rename(columns={'sessions': 'session'}, inplace=True)
     df_sessions.dropna(subset=['session'], inplace=True)
-
     df_sessions = df_sessions[df_sessions['session'] >= utils.midnight(utils.now())]
-
-    session_position: int = cast(int, df_sessions.columns.get_loc('session'))
-
-    df_sessions.insert(
-        session_position + 1,
-        'weekday',
-        df_sessions['session'].dt.day_name()
-    )
-
-    df_sessions.insert(
-        session_position + 2,
-        'at_work',
-        (df_sessions['session'].dt.weekday < 5) & (df_sessions['session'].dt.hour < 17)
-    )
-
-    df_sessions.insert(
-        session_position + 3,
-        'sessions_left',
-        (~df_sessions['at_work']).groupby(df_sessions.index).transform(lambda x: x[::-1].cumsum()[::-1])
-    )
-
     df_sessions.sort_values(by=['session', 'id'], inplace=True)
-    df_sessions.reset_index(inplace=True)
+    df_sessions.reset_index(drop=True, inplace=True)
+
+    # session_position: int = cast(int, df_sessions.columns.get_loc('session'))
+
+    # df_sessions.insert(
+    #     session_position + 1,
+    #     'weekday',
+    #     df_sessions['session'].dt.day_name()
+    # )
+
+    # df_sessions.insert(
+    #     session_position + 2,
+    #     'at_work',
+    #     (df_sessions['session'].dt.weekday < 5) & (df_sessions['session'].dt.hour < 17)
+    # )
+
+    # df_sessions.insert(
+    #     session_position + 3,
+    #     'sessions_left',
+    #     (~df_sessions['at_work']).groupby(df_sessions.index).transform(lambda x: x[::-1].cumsum()[::-1])
+    # )
+
     return df_sessions
 
 async def main_medeia():
@@ -224,16 +228,13 @@ async def main_medeia():
     df_sessions = get_sessions(df_movies)
 
     df_movies['runtime'] = df_movies['runtime'].apply(
-        lambda x: utils.runtime_to_string(x) if pd.notna(x) else pd.NA
-    )
-    df_movies['sessions'] = df_movies['sessions'].apply(
-        lambda x: [utils.to_string(s) for s in x] if isinstance(x, list) else pd.NA
+        # some values come as float
+        lambda x: utils.runtime_to_string(int(x)) if pd.notna(x) else pd.NA
     )
     df_movies.drop(columns=['sessions'], inplace=True)
     df_movies.to_csv(DATA_DIR / "movies.csv", index=True, encoding='utf-8-sig')
 
     df_sessions['session'] = df_sessions['session'].apply(utils.to_string)
-    df_sessions = df_sessions[['id', 'session']]
     df_sessions.to_csv(DATA_DIR / "sessions.csv", index=False, encoding='utf-8-sig')
 
     return df_movies, df_sessions
