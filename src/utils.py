@@ -4,6 +4,7 @@ from zoneinfo import ZoneInfo
 
 
 TIME_ZONE = "Europe/Lisbon"
+PRIME_PATTERN = re.compile(r'^(\d+)\'$')
 HOUR_MINUTE_PATTERN = re.compile(r'^(?P<h1>\d+):(?P<m1>\d+):00$|^(?:(?P<h2>\d+)\s*(?:h|\s))?\s*(?:(?P<m2>\d+)\s*(?:m|min)?)?$')
 SUM_RUNTIME_PATTERN = re.compile(r'^(\d+)\s*\+\s*(\d+)$')
 
@@ -24,6 +25,10 @@ def to_datetime(dt: str, format: str | None = None) -> datetime:
 
 
 def string_to_runtime(runtime: str) -> int:
+    match = PRIME_PATTERN.match(runtime)
+    if match:
+        return int(match.group(1))
+
     match = SUM_RUNTIME_PATTERN.match(runtime)
     if match:
         return int(match.group(1)) + int(match.group(2))
