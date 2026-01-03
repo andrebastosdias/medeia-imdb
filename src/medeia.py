@@ -35,8 +35,7 @@ async def handle(ctx: BeautifulSoupCrawlingContext) -> None:
     html = await imdb.get_response(ctx.http_response)
     hit = DATA_PATTERN.search(html)
     if not hit:
-        ctx.log.error("No global.data on %s", ctx.request.url)
-        return
+        raise RuntimeError(f"No global.data on {ctx.request.url}")
 
     data = json.loads(hit.group(1))
     await ctx.push_data({

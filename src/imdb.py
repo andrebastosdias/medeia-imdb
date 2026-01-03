@@ -65,8 +65,7 @@ async def handle_movies(ctx: BeautifulSoupCrawlingContext) -> None:
     html = await get_response(ctx.http_response)
     hit = DATA_PATTERN.search(html)
     if not hit:
-        ctx.log.error("No __NEXT_DATA__ on %s", url)
-        return
+        raise RuntimeError(f"No __NEXT_DATA__ on {url}")
 
     data = json.loads(hit.group(1))
     main_column_data = data["props"]["pageProps"]["mainColumnData"]
