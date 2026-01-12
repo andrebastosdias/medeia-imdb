@@ -1,7 +1,7 @@
-import argparse
 import asyncio
 import json
 import logging
+import os
 import re
 import unicodedata
 from typing import cast
@@ -70,7 +70,12 @@ async def handle_movies(ctx: BeautifulSoupCrawlingContext) -> None:
     data = json.loads(hit.group(1))
     main_column_data = data["props"]["pageProps"]["mainColumnData"]
 
-    request_type = "watchlist" if "watchlist" in url else "lists" if "lists" in url else "list"
+    if USER_ID_PATTERN.match(url) and "/watchlist" in url:
+        request_type = "watchlist"
+    elif USER_ID_PATTERN.match(url) and url.rstrip("/").endswith("/lists"):
+        request_type = "lists"
+    else:
+        request_type = "list"
     list_name = main_column_data["list"]["name"]["originalText"] if request_type == "list" else None
 
     await ctx.push_data({
@@ -110,9 +115,9 @@ def extract_movie_data(data: dict) -> dict:
                 cast += [actor["name"]["nameText"]["text"].strip() for actor in principal["credits"]]
     elif "principalCreditsV2" in movie_data:
         for principal in movie_data["principalCreditsV2"]:
-            if principal["grouping"]["text"] == "Director" or principal["grouping"]["text"] == "Directors":
+            if principal["grouping"]["text"] in ("Director", "Directors"):
                 directors += [director["name"]["nameText"]["text"].strip() for director in principal["credits"]]
-            elif principal["grouping"]["text"] == "Star" or principal["grouping"]["text"] == "Stars":
+            elif principal["grouping"]["text"] in ("Star", "Stars"):
                 cast += [actor["name"]["nameText"]["text"].strip() for actor in principal["credits"]]
     else:
         raise ValueError("No principalCredits or principalCreditsV2 in movie data")
@@ -143,25 +148,26 @@ async def get_lists(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
 
     ds = await Dataset.open(alias=DATABASE_LISTS)
     content = await ds.get_data()
+    if not content.items:
+        raise RuntimeError("No list data found")
     lists: dict[str, list[dict]] = {}
     for edge in content.items[0]["data"]["userListSearch"]["edges"]:
         list_name = edge["node"]["name"]["originalText"]
         list_ds = await Dataset.open(alias=DATASET_LIST.format(name=to_ascii(list_name)))
         list_content = await list_ds.get_data()
         lists[list_name] = [
-            extract_movie_data(edge)
+            extract_movie_data(item_edge)
             for item in list_content.items
-            for edge in item["data"]["list"]["titleListItemSearch"]["edges"]
+            for item_edge in item["data"]["list"]["titleListItemSearch"]["edges"]
         ]
     return watchlist, lists
 
-async def main(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
+async def main() -> tuple[list[dict], dict[str, list[dict]]]:
+    user_id = os.environ.get("IMDB_USER_ID")
+    if not user_id:
+        raise ValueError("IMDB_USER_ID environment variable is required")
     return await get_lists(user_id=user_id)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--user-id", "-u", type=str, required=True, help="The user_id to process")
-    args = parser.parse_args()
-
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-    asyncio.run(main(user_id=args.user_id))
+    asyncio.run(main())

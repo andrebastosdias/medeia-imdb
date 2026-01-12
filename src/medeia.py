@@ -132,10 +132,7 @@ def match_series_imdb(movie_row: pd.Series, df_imdb: pd.DataFrame):
 
     df_matches = df_matches[df_matches['title'] & df_matches['directors'] & df_matches['release_year']]
     if df_matches.shape[0] > 1:
-        df_title_matches = df_matches[df_matches['title']]
-        if df_title_matches.shape[0] == 1:
-            df_matches = df_title_matches
-    assert df_matches.shape[0] <= 1, f"Multiple matches found for movie: {movie_row['title']}:\n{df_matches}"
+        raise ValueError(f"Multiple matches found for movie: {movie_row['title']}:\n{df_matches}")
 
     if df_matches.shape[0] == 1:
         match = cast(pd.Series, original_df_imdb.loc[df_matches.index[0]])
@@ -254,10 +251,12 @@ async def main(user_id: str | None, reload_medeia: bool, reload_imdb: bool):
     if reload_medeia:
         df_movies, df_sessions = await main_medeia()
     if reload_imdb:
-        assert user_id is not None
+        if user_id is None:
+            raise ValueError("user_id is required when reload_imdb is True")
         if df_movies is None:
             file_path = DATA_DIR / "movies.csv"
-            assert os.path.exists(file_path)
+            if not os.path.exists(file_path):
+                raise FileNotFoundError(f"Movies file not found: {file_path}")
             df_movies = pd.read_csv(
                 file_path,
                 index_col='id',
@@ -273,17 +272,19 @@ async def main(user_id: str | None, reload_medeia: bool, reload_imdb: bool):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run the main async process.")
-    parser.add_argument("--user-id", "-u", type=str, help="The user_id to process")
     parser.add_argument("--no-medeia", dest='reload_medeia', action='store_false', help="Disable Medeia data fetching")
     parser.add_argument("--no-imdb", dest='reload_imdb', action='store_false', help="Disable IMDB data fetching")
     parser.set_defaults(reload_medeia=True, reload_imdb=True)
     args = parser.parse_args()
 
-    if args.reload_imdb and not args.user_id:
-        parser.error("--user-id is required unless --no-imdb is specified")
+    user_id: str | None = None
+    if args.reload_imdb:
+        user_id = os.environ.get("IMDB_USER_ID")
+        if not user_id:
+            parser.error("IMDB_USER_ID environment variable is required when --no-imdb is not used")
 
     if not args.reload_medeia and not args.reload_imdb:
-        parser.error("At least one of --medeia or --imdb must be enabled")
+        parser.error("At least one of medeia or imdb must be enabled (don't use both --no-medeia and --no-imdb)")
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-    asyncio.run(main(user_id=args.user_id, reload_medeia=args.reload_medeia, reload_imdb=args.reload_imdb))
+    asyncio.run(main(user_id=user_id, reload_medeia=args.reload_medeia, reload_imdb=args.reload_imdb))

@@ -18,9 +18,9 @@ def midnight(dt: datetime) -> datetime:
 def to_string(dt: datetime) -> str:
     return dt.isoformat(sep=" ")
 
-def to_datetime(dt: str, format: str | None = None) -> datetime:
-    if format:
-        return datetime.strptime(dt, format).replace(tzinfo=ZoneInfo(TIME_ZONE))
+def to_datetime(dt: str, fmt: str | None = None) -> datetime:
+    if fmt:
+        return datetime.strptime(dt, fmt).replace(tzinfo=ZoneInfo(TIME_ZONE))
     return datetime.fromisoformat(dt).astimezone(ZoneInfo(TIME_ZONE))
 
 
@@ -34,7 +34,8 @@ def string_to_runtime(runtime: str) -> int:
         return int(match.group(1)) + int(match.group(2))
 
     match = HOUR_MINUTE_PATTERN.match(runtime)
-    assert match, f"Invalid runtime format: {runtime}"
+    if not match:
+        raise ValueError(f"Invalid runtime format: {runtime}")
     hour = int(match.group('h1') or match.group('h2') or 0)
     minutes = int(match.group('m1') or match.group('m2') or 0)
     return hour * 60 + minutes

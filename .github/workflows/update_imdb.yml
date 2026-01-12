@@ -32,7 +32,7 @@ jobs:
 
       - name: Run update script
         run: |
-          python src/medeia.py --no-medeia -u $IMDB_USER_ID
+          python src/medeia.py --no-medeia
 
       - name: Commit changes to /data
         run: |
