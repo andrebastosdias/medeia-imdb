@@ -244,7 +244,11 @@ async def main_imdb(user_id: str, df_movies: pd.DataFrame):
 
     return df_imdb
 
-async def main(user_id: str | None, reload_medeia: bool, reload_imdb: bool):
+async def main(reload_medeia: bool, reload_imdb: bool):
+    user_id = os.getenv("IMDB_USER_ID")
+    if user_id is None and reload_imdb:
+        raise ValueError("IMDB_USER_ID environment variable is required when reload_imdb is True")
+
     df_movies = None
     df_sessions = None
     df_imdb = None
@@ -277,14 +281,8 @@ if __name__ == "__main__":
     parser.set_defaults(reload_medeia=True, reload_imdb=True)
     args = parser.parse_args()
 
-    user_id: str | None = None
-    if args.reload_imdb:
-        user_id = os.environ.get("IMDB_USER_ID")
-        if not user_id:
-            parser.error("IMDB_USER_ID environment variable is required when --no-imdb is not used")
-
     if not args.reload_medeia and not args.reload_imdb:
         parser.error("At least one of medeia or imdb must be enabled (don't use both --no-medeia and --no-imdb)")
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-    asyncio.run(main(user_id=user_id, reload_medeia=args.reload_medeia, reload_imdb=args.reload_imdb))
+    asyncio.run(main(reload_medeia=args.reload_medeia, reload_imdb=args.reload_imdb))
