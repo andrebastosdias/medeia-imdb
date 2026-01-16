@@ -24,7 +24,7 @@ def to_datetime(dt: str, fmt: str | None = None) -> datetime:
     return datetime.fromisoformat(dt).astimezone(ZoneInfo(TIME_ZONE))
 
 
-def string_to_runtime(runtime: str) -> int:
+def string_to_runtime(runtime: str) -> int | None:
     match = PRIME_PATTERN.match(runtime)
     if match:
         return int(match.group(1))
@@ -35,7 +35,7 @@ def string_to_runtime(runtime: str) -> int:
 
     match = HOUR_MINUTE_PATTERN.match(runtime)
     if not match:
-        raise ValueError(f"Invalid runtime format: {runtime}")
+        return None
     hour = int(match.group('h1') or match.group('h2') or 0)
     minutes = int(match.group('m1') or match.group('m2') or 0)
     return hour * 60 + minutes
