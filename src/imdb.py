@@ -44,12 +44,11 @@ def build_next_url(current_url: str) -> str:
 async def handle_movies(ctx: PlaywrightCrawlingContext) -> None:
     url = ctx.request.url
 
-    html = await ctx.page.content()
-    hit = DATA_PATTERN.search(html)
-    if not hit:
+    json_text = await ctx.page.locator("script#__NEXT_DATA__").text_content()
+    if not json_text:
         raise RuntimeError(f"No __NEXT_DATA__ on {url}")
 
-    data = json.loads(hit.group(1))
+    data = json.loads(json_text)
     main_column_data = data["props"]["pageProps"]["mainColumnData"]
 
     if USER_ID_PATTERN.match(url) and "/watchlist" in url:
