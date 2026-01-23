@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  update-imdb:
     runs-on: ubuntu-latest
 
     env:
