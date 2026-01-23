@@ -7,6 +7,7 @@ import unicodedata
 from typing import cast
 from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
 
+from crawlee import ConcurrencySettings
 from crawlee.crawlers import PlaywrightCrawler, PlaywrightCrawlingContext, BasicCrawlingContext
 from crawlee.storages import Dataset
 
@@ -118,6 +119,7 @@ async def get_lists(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
         headless=True,
         browser_type='chromium',
         browser_launch_options={"chromium_sandbox": False},
+        concurrency_settings=ConcurrencySettings(max_concurrency=1, desired_concurrency=1),
     )
     crawler.router.default_handler(handle_movies)
     crawler.failed_request_handler(on_failed_handler)
