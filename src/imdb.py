@@ -46,8 +46,6 @@ async def handle_movies(ctx: PlaywrightCrawlingContext) -> None:
 
     html = await ctx.page.content()
     hit = DATA_PATTERN.search(html)
-    with open(f"logs/{urlparse(url).path.replace('/', '_')}.txt", "w", encoding="utf-8") as f:
-        f.write(html)
     if not hit:
         raise RuntimeError(f"No __NEXT_DATA__ on {url}")
 
