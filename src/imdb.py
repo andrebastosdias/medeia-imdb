@@ -7,9 +7,7 @@ import unicodedata
 from typing import cast
 from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
 
-from crawlee import HttpHeaders
-from crawlee.crawlers import BeautifulSoupCrawler, BeautifulSoupCrawlingContext, BasicCrawlingContext
-from crawlee.http_clients import CurlImpersonateHttpClient, HttpResponse
+from crawlee.crawlers import PlaywrightCrawler, PlaywrightCrawlingContext, BasicCrawlingContext
 from crawlee.storages import Dataset
 
 
@@ -27,13 +25,6 @@ DATABASE_WATCHLIST = DATASET_ROOT + "-watchlist"
 DATABASE_LISTS = DATASET_ROOT + "-lists"
 DATASET_LIST = DATABASE_LISTS + f"-{{name}}"
 
-HTTP_CLIENT = CurlImpersonateHttpClient(
-    impersonate="chrome124",
-    headers=HttpHeaders({
-        "accept-encoding": "gzip, deflate, br",
-    }),
-)
-
 def to_ascii(text: str, sep: str = "") -> str:
     ascii_text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('ascii')
     ascii_text = re.sub(r'[^a-zA-Z0-9{}]'.format(re.escape(sep)), sep, ascii_text)
@@ -41,15 +32,6 @@ def to_ascii(text: str, sep: str = "") -> str:
         ascii_text = re.sub(r'{}+'.format(re.escape(sep)), sep, ascii_text)
     ascii_text = ascii_text.strip(sep or None).lower()
     return ascii_text
-
-async def get_response(http_response: HttpResponse) -> str:
-    content_type = http_response.headers.get("content-type", "")
-    encoding = (
-        content_type.split("charset=")[1]
-        if "charset=" in content_type else "utf-8"
-    )
-    content = await http_response.read()
-    return content.decode(encoding, errors="replace")
 
 def build_next_url(current_url: str) -> str:
     parts = urlparse(current_url)
@@ -59,11 +41,13 @@ def build_next_url(current_url: str) -> str:
     new_query = urlencode(query, doseq=True)
     return urlunparse(parts._replace(query=new_query))
 
-async def handle_movies(ctx: BeautifulSoupCrawlingContext) -> None:
+async def handle_movies(ctx: PlaywrightCrawlingContext) -> None:
     url = ctx.request.url
 
-    html = await get_response(ctx.http_response)
+    html = await ctx.page.content()
     hit = DATA_PATTERN.search(html)
+    with open(f"logs/{urlparse(url).path.replace('/', '_')}.txt", "w", encoding="utf-8") as f:
+        f.write(html)
     if not hit:
         raise RuntimeError(f"No __NEXT_DATA__ on {url}")
 
@@ -133,7 +117,7 @@ def extract_movie_data(data: dict) -> dict:
     }
 
 async def get_lists(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
-    crawler = BeautifulSoupCrawler(http_client=HTTP_CLIENT)
+    crawler = PlaywrightCrawler(headless=True, browser_type='chromium')
     crawler.router.default_handler(handle_movies)
     crawler.failed_request_handler(on_failed_handler)
     await crawler.run([WATCHLIST_URL.format(user_id=user_id, page=1), LISTS_URL.format(user_id=user_id)])

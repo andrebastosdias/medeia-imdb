@@ -10,7 +10,9 @@ from pathlib import Path
 from typing import TypeVar, cast
 
 import pandas as pd
+from crawlee import HttpHeaders
 from crawlee.crawlers import BeautifulSoupCrawler, BeautifulSoupCrawlingContext
+from crawlee.http_clients import CurlImpersonateHttpClient, HttpResponse
 from crawlee.storages import Dataset
 
 import utils
@@ -31,8 +33,24 @@ MEDEIA_URL = "https://medeiafilmes.com/filmes-em-exibicao"
 DATA_PATTERN = re.compile(r"global\.data\s*=\s*(\{.*?\});")
 TARGET_THEATERS = ["cinema-medeia-nimas"]
 
+HTTP_CLIENT = CurlImpersonateHttpClient(
+    impersonate="chrome124",
+    headers=HttpHeaders({
+        "accept-encoding": "gzip, deflate, br",
+    }),
+)
+
+async def get_response(http_response: HttpResponse) -> str:
+    content_type = http_response.headers.get("content-type", "")
+    encoding = (
+        content_type.split("charset=")[1]
+        if "charset=" in content_type else "utf-8"
+    )
+    content = await http_response.read()
+    return content.decode(encoding, errors="replace")
+
 async def handle(ctx: BeautifulSoupCrawlingContext) -> None:
-    html = await imdb.get_response(ctx.http_response)
+    html = await get_response(ctx.http_response)
     hit = DATA_PATTERN.search(html)
     if not hit:
         raise RuntimeError(f"No global.data on {ctx.request.url}")
@@ -93,7 +111,7 @@ def extract_film_data(data: dict):
     }
 
 async def get_medeia_movies() -> pd.DataFrame:
-    crawler = BeautifulSoupCrawler(http_client=imdb.HTTP_CLIENT, max_crawl_depth=1)
+    crawler = BeautifulSoupCrawler(http_client=HTTP_CLIENT, max_crawl_depth=1)
     crawler.router.default_handler(handle)
     crawler.failed_request_handler(imdb.on_failed_handler)
     await crawler.run([MEDEIA_URL])
