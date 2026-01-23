@@ -117,7 +117,11 @@ def extract_movie_data(data: dict) -> dict:
     }
 
 async def get_lists(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
-    crawler = PlaywrightCrawler(headless=True, browser_type='chromium')
+    crawler = PlaywrightCrawler(
+        headless=True,
+        browser_type='chromium',
+        browser_launch_options={"chromium_sandbox": False},
+    )
     crawler.router.default_handler(handle_movies)
     crawler.failed_request_handler(on_failed_handler)
     await crawler.run([WATCHLIST_URL.format(user_id=user_id, page=1), LISTS_URL.format(user_id=user_id)])
