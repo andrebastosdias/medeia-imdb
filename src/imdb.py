@@ -9,7 +9,7 @@ from typing import cast
 from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
 
 from crawlee import ConcurrencySettings
-from crawlee.crawlers import PlaywrightCrawler, PlaywrightCrawlingContext, BasicCrawlingContext
+from crawlee.crawlers import PlaywrightCrawler, PlaywrightCrawlingContext, BasicCrawlingContext, PlaywrightPreNavCrawlingContext
 from crawlee.storages import Dataset
 
 
@@ -127,9 +127,9 @@ async def get_lists(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
     crawler.failed_request_handler(on_failed_handler)
 
     @crawler.pre_navigation_hook
-    async def set_timeouts(ctx):
-        await ctx.page.set_default_navigation_timeout(60_000)
-        await ctx.page.set_default_timeout(60_000)
+    async def set_timeouts(ctx: PlaywrightPreNavCrawlingContext):
+        ctx.page.set_default_navigation_timeout(60_000)
+        ctx.page.set_default_timeout(60_000)
 
     await crawler.run([WATCHLIST_URL.format(user_id=user_id, page=1), LISTS_URL.format(user_id=user_id)])
 
