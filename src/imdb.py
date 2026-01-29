@@ -1,4 +1,5 @@
 import asyncio
+from datetime import timedelta
 import json
 import logging
 import os
@@ -120,9 +121,16 @@ async def get_lists(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
         browser_type='chromium',
         browser_launch_options={"chromium_sandbox": False},
         concurrency_settings=ConcurrencySettings(max_concurrency=1, desired_concurrency=1),
+        request_handler_timeout=timedelta(minutes=3),
     )
     crawler.router.default_handler(handle_movies)
     crawler.failed_request_handler(on_failed_handler)
+
+    @crawler.pre_navigation_hook
+    async def set_timeouts(ctx):
+        await ctx.page.set_default_navigation_timeout(60_000)
+        await ctx.page.set_default_timeout(60_000)
+
     await crawler.run([WATCHLIST_URL.format(user_id=user_id, page=1), LISTS_URL.format(user_id=user_id)])
 
     ds = await Dataset.open(alias=DATABASE_WATCHLIST)
