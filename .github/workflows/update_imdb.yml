@@ -27,20 +27,19 @@ jobs:
       
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          python -m playwright install-deps chromium
-          python -m playwright install chromium
+          python -m pip install --upgrade pip uv
+          uv sync
+          make playwright
 
       - name: Run update script
         run: |
-          python src/medeia.py --no-medeia
+          uv run python src/medeia.py --no-medeia
 
       - name: Commit changes to /data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/
+          git add -f data/
 
           if git diff --cached --quiet; then
             echo "No changes to commit"
