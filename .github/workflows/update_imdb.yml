@@ -1,11 +1,11 @@
 name: Update IMDb Database
 
 on:
-  workflow_run:
-    workflows:
-      - Update Medeia Databases
-    types:
-      - completed
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '15 */4 * * *' # Runs at 15 minutes past the hour, every 4 hours
   workflow_dispatch:
 
 jobs:
@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      ORIGIN_EVENT: ${{ github.event.workflow_run.event || github.event_name }}
       IMDB_USER_ID: ur162389474
 
     steps:
@@ -39,7 +38,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f data/
+          git add -f data/imdb.csv
 
           if git diff --cached --quiet; then
             echo "No changes to commit"
@@ -47,7 +46,7 @@ jobs:
           fi
 
           COMMIT_MESSAGE="Update IMDb database"
-          [[ "${ORIGIN_EVENT:-}" == "schedule" ]] && COMMIT_MESSAGE+=" ($(date +'%Y-%m-%d %H:00'))"
+          [[ "${GITHUB_EVENT_NAME:-}" == "schedule" ]] && COMMIT_MESSAGE+=" ($(date +'%Y-%m-%d %H:00'))"
 
           git commit -m "$COMMIT_MESSAGE"
           git push
