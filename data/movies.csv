@@ -1,4 +1,5 @@
 ﻿id,original_title,title,director,cast,release_year,runtime,url
+35,Det sjunde inseglet,O Sétimo Selo,Ingmar Bergman,"['Max von Sydow', 'Gunnar Björnstrand', 'Bengt Ekerot']",1957,01:36:00,https://medeiafilmes.com/filmes/o-setimo-selo-1957
 37,Jour de Fête,Há Festa na Aldeia,Jacques Tati,"['Jacques Tati', 'Guy Descombe', 'Paul Frankeur', 'Santa Relli', 'Maine Vallée']",1949,01:19:00,https://medeiafilmes.com/filmes/ha-festa-na-aldeia-1949
 50,Ohayô,Bom Dia,Yasujiro Ozu,"['Keiji Sada', 'Yoshiko Kuga', 'Chishu Ryu', 'Kuniko Miyake']",1959,01:33:00,https://medeiafilmes.com/filmes/bom-dia-1959
 68,El Ángel Exterminador,O Anjo Exterminador,Luis Buñuel,"['Silvia Pinal', 'Jacqueline Andere', 'Enrique Rambal']",1962,01:33:00,https://medeiafilmes.com/filmes/o-anjo-exterminador-1962
@@ -22,11 +23,15 @@
 204,Kumonosu-jô,O Trono de Sangue,Akira Kurosawa,"['Toshiro Mifune', 'Isuzu Yamada', 'Minoru Chiski', 'Takamaru Sasaki']",1957,01:50:00,https://medeiafilmes.com/filmes/o-trono-de-sangue-1957
 212,Såsom i en spegel,Em Busca da Verdade,Ingmar Bergman,"['Harriet Andersson', 'Gunnar Björnstrand', 'Max von Sydow']",1961,01:36:00,https://medeiafilmes.com/filmes/em-busca-da-verdade-1961
 214,Smultronstället,Morangos Silvestres,Ingmar Bergman,"['Victor Sjöström', 'Bibi Andersson', 'Ingrid Thulin']",1957,01:31:00,https://medeiafilmes.com/filmes/morangos-silvestres-1957
+215,Sommaren med Monika,Mónica e o Desejo,Ingmar Bergman,"['Harriet Andersson', 'Lars Ekborg', 'Dagmar Ebbesen']",1956,01:36:00,https://medeiafilmes.com/filmes/monica-e-o-desejo-1956
 216,Sommarlek,Um Verão de Amor,Ingmar Bergman,"['Maj-Britt Nilsson', 'Birger Malmsten', 'Georg Funkquist']",1951,01:36:00,https://medeiafilmes.com/filmes/um-verao-de-amor-1951
+217,Jungfrukällan,A Fonte da Virgem,Ingmar Bergman,"['Max Von Sydow', 'Birgitta Valberg', 'Gunnel Lindblom']",1960,01:29:00,https://medeiafilmes.com/filmes/a-fonte-da-virgem-1960
+220,Sommarnattens leende,Sorrisos duma Noite de Verão,Ingmar Bergman,"['Ulla Jacobsson', 'Eva Dahlbeck', 'Harriet Andersson', 'Gunnar Björnstrand']",1955,01:48:00,https://medeiafilmes.com/filmes/sorrisos-duma-noite-de-verao-1955
 221,Höstsonaten,Sonata de Outono,Ingmar Bergman,"['Ingrid Bergman', 'Liv Ullmann', 'Lena Nyman']",1978,01:36:00,https://medeiafilmes.com/filmes/sonata-de-outono-1978
 223,Fanny och Alexander,Fanny e Alexandre,Ingmar Bergman,"['Bertil Guve', 'Ewa Fröling', 'Erland Josephson']",1982,03:08:00,https://medeiafilmes.com/filmes/fanny-e-alexandre-1982
 229,Uccellacci e uccellini,Passarinhos e Passarões,Pier Paolo Pasolini,"['Totò', 'Ninetto Davoli', 'Femi Benussi', 'Francesco Leonetti']",1966,01:29:00,https://medeiafilmes.com/filmes/passarinhos-e-passaroes-1966
 232,La Leggenda del Santo Bevitore,A Lenda do Santo Bebedor,Ermanno Olmi,"['Rutger Hauer', 'Anthony Quayle', 'Sandrine Dumas', 'Dominique Pinon']",1988,02:08:00,https://medeiafilmes.com/filmes/a-lenda-do-santo-bebedor-1988
+239,Nattvardsgästerna,Luz de Inverno,Ingmar Bergman,"['Ingrid Thulin', 'Gunnar Björnstrand', 'Gunnel Lindblom']",1963,01:21:00,https://medeiafilmes.com/filmes/luz-de-inverno-1963
 248,Heart of a Dog,Coração de Cão,Laurie Anderson,[''],2015,01:15:00,https://medeiafilmes.com/filmes/coracao-de-cao-2015
 253,Till Glädje,Rumo à Felicidade,Ingmar Bergman,"['Maj-Britt Nilsson', 'Stig Olin', 'Birger Malmsten']",1950,01:38:00,https://medeiafilmes.com/filmes/rumo-a-felicidade-1950
 280,Few of Us,Few of Us,Sharunas Bartas,"['Yekaterina Golubeva', 'Piotr Kishteev', 'Sergei Tulayev']",1996,01:45:00,https://medeiafilmes.com/filmes/few-of-us-1996
@@ -50,6 +55,7 @@
 438,La Chinoise,O Maoísta,Jean-Luc Godard,"['Anne Wiazemsky', 'Jean-Pierre Léaud', 'Juliet Berto']",1967,01:35:00,https://medeiafilmes.com/filmes/o-maoista-1967
 441,Maine-Océan,Maine-Océan,Jacques Rozier,"['Bernard Menez', 'Luis Rego', 'Yves Afonso', 'Rosa-Maria Gomes']",1986,02:10:00,https://medeiafilmes.com/filmes/maine-ocean-1986
 445,Ah Fei jing juen,Days of Being Wild – Dias Selvagens,Wong Kar Wai,"['Leslie Cheung', 'Maggie Cheung', 'Andy Lau', 'Rebecca Pan']",1990,01:34:00,https://medeiafilmes.com/filmes/days-of-being-wild-dias-selvagens-1990
+499,Elena et les Hommes,Helena e os Homens,Jean Renoir,"['Ingrid Bergman', 'Jean Marais', 'Mel Ferrer', 'Jean Richard']",1956,01:39:00,https://medeiafilmes.com/filmes/helena-e-os-homens-1956
 518,Marighella,Marighella,Wagner Moura,"['Seu Jorge', 'Adriana Esteves e Bruno Gagliasso']",2019,02:35:00,https://medeiafilmes.com/filmes/marighella-2019
 535,Ladri di biciclette,Ladrões de Bicicletas,Vittorio De Sica,"['Lamberto Maggiorani', 'Enzo Staiola', 'Lianella Carell', 'Elena Altieri']",1948,01:29:00,https://medeiafilmes.com/filmes/ladroes-de-bicicletas-1948
 544,Miracolo a Milano,O Milagre de Milão,Vittorio De Sica,"['Emma Gramatica', 'Francesco Golisano', 'Paolo Stoppa']",1951,01:37:00,https://medeiafilmes.com/filmes/o-milagre-de-milao-1951
@@ -78,6 +84,7 @@
 1023,"Paris, Texas","Paris, Texas",Wim Wenders,"['Harry Dean Stanton', 'Nastassja Kinski', 'Dean Stockwell', 'Hunter Carson']",1984,02:24:00,https://medeiafilmes.com/filmes/paris-texas-1984
 1073,Banshun,Primavera Tardia,Yasujiro Ozu,"['Chishû Ryû', 'Setsuko Hara', 'Yumeji Tsukioka', 'Haruko Sugimura']",1949,01:48:00,https://medeiafilmes.com/filmes/primavera-tardia-1949
 1076,Lisbon Story,Lisbon Story - Viagem a Lisboa,Wim Wenders,"['Patrick Bauchau', 'Rüdiger Vogler', 'Teresa Salgueiro e os Madredeus', 'Manoel de Oliveira']",1995,01:40:00,https://medeiafilmes.com/filmes/lisbon-story-viagem-a-lisboa-1995
+1083,La maman et la putain,A Mãe e a Puta,Jean Eustache,"['Jean-Pierre Léaud', 'Bernadette Lafont', 'Françoise Lebrun']",1973,03:40:00,https://medeiafilmes.com/filmes/a-mae-e-a-puta-1973
 1089,Zerkalo,O Espelho,Andrei Tarkovsky,"['Margarita Terekhova', 'Oleg Yankovskiy', 'Filipp Yankovskiy', 'Ignat Daniltsev']",1974,01:48:00,https://medeiafilmes.com/filmes/o-espelho-1974
 1127,Pickpocket,O Carteirista,Robert Bresson,"['Martin Lasalle', 'Morika Green', 'Pierre Leymarie', 'Jean Pelegri']",1959,01:13:00,https://medeiafilmes.com/filmes/o-carteirista-1959
 1164,Jalsaghar,O Salão de Música,Satyajit Ray,"['Chhabi Biswas', 'Padma Devi', 'Pinaki Sengupta']",1958,01:40:00,https://medeiafilmes.com/filmes/o-salao-de-musica-1958
@@ -161,8 +168,10 @@
 2009,Le Plaisir,O Prazer,Max Ophüls,"['Jean Gabin', 'Madeleine Renaud']",1952,01:37:00,https://medeiafilmes.com/filmes/o-prazer-1952
 2043,Branca de Neve,Branca de Neve,João de César Monteiro,"['Maria do Carmo Rôlo', 'Ana Brandão', 'Reginaldo da Cruz', 'Luis Miguel Cintra']",2000,01:15:00,https://medeiafilmes.com/filmes/branca-de-neve-2000
 2062,Sanshô Dayú,O Intendente Sansho,Kenji Mizoguchi,"['Kinuyo Tanaka', 'Yoshiaki Hanayagi', 'Kyoko Kagawa']",1954,02:04:00,https://medeiafilmes.com/filmes/o-intendente-sansho-1954
+2135,Musik i mörker,Uma Luz nas Trevas,Ingmar Bergman,"['Mai Zetterling', 'Birger Malmsten', 'Bengt Eklund', 'Olof Winnerstrand']",1948,01:25:00,https://medeiafilmes.com/filmes/uma-luz-nas-trevas-1948
 2138,Kvinnors väntan,Mulheres Que Esperam,Ingmar Bergman,"['Anita Bjork', 'Maj-Britt Nilsson', 'Eva Dahlbeck', 'Gunnar Bjornstrand']",1952,01:47:00,https://medeiafilmes.com/filmes/mulheres-que-esperam-1952
 2140,Skammen,A Vergonha,Ingmar Bergman,"['Liv Ullmann', 'Max von Sydow', 'Sigge Fürst', 'Gunnar Björnstrand']",1968,01:43:00,https://medeiafilmes.com/filmes/a-vergonha-1968
+2142,En passion,A Paixão,Ingmar Bergman,"['Max von Sydow', 'Liv Ullmann', 'Bibi Andersson']",1969,01:41:00,https://medeiafilmes.com/filmes/a-paixao-1969
 2163,A Clockwork Orange,Laranja Mecânica,Stanley Kubrick,"['Malcolm McDowell', 'Patrick Magee', 'Michael Bates', 'Adrienne Corri']",1971,02:16:00,https://medeiafilmes.com/filmes/laranja-mecanica-1971
 2165,Bronenosets Potiomkine,O Couraçado Potemkine,Serguei M. Eisenstein,"['Aleksandr Antonov', 'Vladimir Barsky', 'Grigori Aleksandrov', 'Mikhail Gomorov', 'Ivan Bobrov']",1925,01:15:00,https://medeiafilmes.com/filmes/o-couracado-potemkine-1925
 2168,To Catch a Thief,Ladrão de Casaca,Alfred Hitchcock,"['Cary Grant', 'Grace Kelly']",1955,01:46:00,https://medeiafilmes.com/filmes/ladrao-de-casaca-1955
@@ -170,6 +179,7 @@
 2172,Touch of Evil,A Sede do Mal,Orson Welles,"['Orson Welles', 'Charlton Heston', 'Janet Leigh', 'Marlene Dietrich']",1958,01:51:00,https://medeiafilmes.com/filmes/a-sede-do-mal-1958
 2173,Campanadas a Media Noche,As Badaladas da Meia-noite,Orson Welles,"['Orson Welles', 'Jeanne Moreau', 'Margaret Rutherford', 'John Gielgud']",1966,01:59:00,https://medeiafilmes.com/filmes/as-badaladas-da-meia-noite-1966
 2196,A Comédia de Deus,A Comédia de Deus,João César Monteiro,"['Cláudia Teixeira', 'Max Monteiro', 'Manuela de Freitas', 'Raquel Ascensão']",1995,02:45:00,https://medeiafilmes.com/filmes/a-comedia-de-deus-1995
+2264,French Can-Can,French Can-Can,Jean Renoir,"['Jean Gabin', 'María Félix', 'Anna Amendola', 'Jean-Roger Caussimon']",1954,01:42:00,https://medeiafilmes.com/filmes/french-can-can-1954
 2266,Le Crime de Monsieur Lange,O Crime do Sr. Lange,Jean Renoir,"['Jules Berry', 'René Lefèvre', 'Florelle', 'Nadia Sibirskaia']",1936,01:23:00,https://medeiafilmes.com/filmes/o-crime-do-sr-lange-1936
 2268,"Bruno Reidal, confession d’un meurtrier",Bruno Reidal – Confissões de um Assassino,Vincent Le Port,"['Dimitri Doré', 'Jean-Luc Vincent', 'Roman Villedieu', 'Alex Fanguin', 'Tino Vigier']",2021,01:41:00,https://medeiafilmes.com/filmes/bruno-reidal-confissoes-de-um-assassino-2021
 2269,Le Carrosse d'or,A Comédia e a Vida,Jean Renoir,"['Anna Magnani', 'Duncan Lamont', 'Odorado Spadaro']",1952,01:45:00,https://medeiafilmes.com/filmes/a-comedia-e-a-vida-1952
@@ -414,6 +424,7 @@
 3056,"Une sale Histoire, racontée par Jean-Noël Pic","Uma História Suja, Contada por Jean-Noël Picq",Jean Eustache,"['Jean-Noël Picq', 'Françoise Lebrun', 'Elisabeth Lanchener', 'Virginie Thévenet']",1977,00:21:00,https://medeiafilmes.com/filmes/uma-historia-suja-contada-por-jean-noel-picq-1977
 3058,Les Photos d’Alix,As Fotos de Alix,Jean Eustache,"['Alix Cléo-Roubaud', 'Boris Eustache']",1980,00:20:00,https://medeiafilmes.com/filmes/as-fotos-de-alix-1980
 3061,Les Enfants Désaccordés,Les Enfants Désaccordés,Philippe Garrel,"['Christiane Pérez', 'Pascal Roy', 'Maurice Garrel']",1965,00:16:00,https://medeiafilmes.com/filmes/les-enfants-desaccordes-1965
+3063,La Concentration,La Concentration,Philippe Garrel,"['Jean-Pierre Léaud', 'Zouzou']",1969,01:29:00,https://medeiafilmes.com/filmes/la-concentration-1969
 3065,Le lit de la vierge,Le lit de la vierge,Philippe Garrel,"['Zouzou', 'Pierre Clémenti', 'Tina Aumont', 'Philippe Garrel']",1969,01:40:00,https://medeiafilmes.com/filmes/le-lit-de-la-vierge-1969
 3067,L'Enfant secret,L'Enfant secret,Philippe Garrel,"['Anne Wiazemsky', 'Henri de Maublanc', 'Xuan Lindenmayer', 'Elli Medeiros']",1979,01:36:00,https://medeiafilmes.com/filmes/l-enfant-secret-1979
 3069,Elle a passé tant d'heures sous les sunlights,Elle a passé tant d'heures sous les sunlights,Philippe Garrel,"['Mireille Perrier', 'Jacques Bonnaffé', 'Anne Wiazemsky', 'Lou Castel']",1984,02:18:00,https://medeiafilmes.com/filmes/elle-a-passe-tant-d-heures-sous-les-sunlights-1984
@@ -422,4 +433,10 @@
 3075,Les Amants réguliers,Os Amantes Regulares,Philippe Garrel,"['Louis Garrel', 'Clotilde Hesme', 'Julien Lucas', 'Eric Rulliat']",2005,03:05:00,https://medeiafilmes.com/filmes/os-amantes-regulares-2005
 3076,La cicatrice intérieure,La cicatrice intérieure,Philippe Garrel,"['Nico', 'Philippe Garrel', 'Christian Päffgen', 'Daniel Pommereulle']",1970,01:00:00,https://medeiafilmes.com/filmes/la-cicatrice-interieure-1970
 3077,Athanor,Athanor,Philippe Garrel,"['Nico', 'Musky']",1972,00:21:00,https://medeiafilmes.com/filmes/athanor-1972
+3078,Les hautes solitudes,Les hautes solitudes,Philippe Garrel,"['Jean Seberg', 'Nico', 'Tina Aumont', 'Laurent Terzieff']",1974,01:23:00,https://medeiafilmes.com/filmes/les-hautes-solitudes-1974
+3079,Le berceau de cristal,Le berceau de cristal,Philippe Garrel,"['Nico', 'Dominique Sanda', 'Philippe Garrel', 'Pierre Clémenti']",1975,01:13:00,https://medeiafilmes.com/filmes/le-berceau-de-cristal-1975
 3080,Un ange passe,Un ange passe,Philippe Garrel,"['Nico', 'Maurice Garrel', 'Jean-Pierre Kalfon', 'Bulle Ogier']",1975,01:22:00,https://medeiafilmes.com/filmes/un-ange-passe-1975
+3081,Les bleus des origines,Les bleus des origines,Philippe Garrel,"['Nico', 'Zouzou', 'Philippe Garrel']",1978,00:12:00,https://medeiafilmes.com/filmes/les-bleus-des-origines-1978
+3082,Le révélateur,Le révélateur,Philippe Garrel,"['Laurent Terzieff', 'Bernadette Lafont', 'Stanislas Robiolle']",1968,01:05:00,https://medeiafilmes.com/filmes/le-revelateur-1968
+3084,The Chelsea Girls,The Chelsea Girls,Andy Warhol,"['Nico', 'Edie Sedgwick', 'Ondine', 'Marie Menken', 'Gerard Malanga']",1966,03:17:00,https://medeiafilmes.com/filmes/the-chelsea-girls-1966
+3086,Jaime,Jaime,António-Pedro Vasconcelos,"['Saúl Fonseca', 'Fernanda Serrano', 'Joaquim Leitão']",1999,01:51:00,https://medeiafilmes.com/filmes/jaime-1999
