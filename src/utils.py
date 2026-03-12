@@ -25,6 +25,8 @@ def to_datetime(dt: str, fmt: str | None = None) -> datetime:
 
 
 def string_to_runtime(runtime: str) -> int | None:
+    runtime = runtime.strip()
+
     match = PRIME_PATTERN.match(runtime)
     if match:
         return int(match.group(1))
