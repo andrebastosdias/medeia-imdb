@@ -13,7 +13,13 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  lint:
+    if: github.event_name == 'push'
+    uses: ./.github/workflows/lint.yml
+
   update-medeia:
+    needs: lint
+    if: always() && (needs.lint.result == 'success' || needs.lint.result == 'skipped')
     runs-on: ubuntu-latest
 
     steps:

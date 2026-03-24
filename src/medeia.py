@@ -15,14 +15,13 @@ from crawlee.crawlers import BeautifulSoupCrawler, BeautifulSoupCrawlingContext
 from crawlee.http_clients import CurlImpersonateHttpClient, HttpResponse
 from crawlee.storages import Dataset
 
-import utils
 import imdb
+import utils
 
-
-PandasLike = TypeVar('PandasLike', pd.DataFrame, pd.Series)
+PandasLike = TypeVar("PandasLike", pd.DataFrame, pd.Series)
 
 BASE_DIR = Path(__file__).resolve().parent
-DATA_DIR = BASE_DIR.parent / 'data'
+DATA_DIR = BASE_DIR.parent / "data"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 DATASET_ROOT = "medeia"
@@ -35,19 +34,22 @@ TARGET_THEATERS = ["cinema-medeia-nimas"]
 
 HTTP_CLIENT = CurlImpersonateHttpClient(
     impersonate="chrome124",
-    headers=HttpHeaders({
-        "accept-encoding": "gzip, deflate, br",
-    }),
+    headers=HttpHeaders(
+        {
+            "accept-encoding": "gzip, deflate, br",
+        }
+    ),
 )
+
 
 async def get_response(http_response: HttpResponse) -> str:
     content_type = http_response.headers.get("content-type", "")
     encoding = (
-        content_type.split("charset=")[1]
-        if "charset=" in content_type else "utf-8"
+        content_type.split("charset=")[1] if "charset=" in content_type else "utf-8"
     )
     content = await http_response.read()
     return content.decode(encoding, errors="replace")
+
 
 async def handle(ctx: BeautifulSoupCrawlingContext) -> None:
     html = await get_response(ctx.http_response)
@@ -56,16 +58,24 @@ async def handle(ctx: BeautifulSoupCrawlingContext) -> None:
         raise RuntimeError(f"No global.data on {ctx.request.url}")
 
     data = json.loads(hit.group(1))
-    await ctx.push_data({
-        "url": ctx.request.url,
-        "data": data,
-    }, dataset_alias=DATASET_BASE if ctx.request.crawl_depth == 0 else DATASET_FILMS)
+    await ctx.push_data(
+        {
+            "url": ctx.request.url,
+            "data": data,
+        },
+        dataset_alias=DATASET_BASE if ctx.request.crawl_depth == 0 else DATASET_FILMS,
+    )
 
     if ctx.request.crawl_depth == 0:
         movies = data["schedule"]["events"]
-        await ctx.enqueue_links(requests=[
-            movie_info['url'] for movie_id, movie_info in movies.items() if movie_id.startswith('film-')
-        ])
+        await ctx.enqueue_links(
+            requests=[
+                movie_info["url"]
+                for movie_id, movie_info in movies.items()
+                if movie_id.startswith("film-")
+            ]
+        )
+
 
 def extract_film_data(data: dict):
     film_data = data["data"]["film"]
@@ -73,7 +83,8 @@ def extract_film_data(data: dict):
     def extract_sessions() -> list[datetime]:
         sessions: list[datetime] = []
         programme = film_data["programme"]
-        # check the size because when there are no sessions, "programme" might be a list instead of a dict
+        # check the size because when there are no sessions
+        # "programme" might be a list instead of a dict
         if len(programme) == 0:
             return sessions
         for theater in programme.values():
@@ -84,19 +95,22 @@ def extract_film_data(data: dict):
                     hours = [str(hour).replace("*", "").strip() for hour in hours]
                     sessions.extend(
                         utils.to_datetime(f"{date} {hour}", "%Y-%m-%d %H:%M")
-                        for hour in hours if hour
+                        for hour in hours
+                        if hour
                     )
         return sorted(sessions)
-    
+
     movie_id = int(film_data["id"])
     runtime = pd.NA
     if film_data.get("length"):
-        if movie_id == 2467: # special case for Mulholland Drive
+        if movie_id == 2467:  # special case for Mulholland Drive
             runtime = utils.string_to_runtime(film_data["age_rating"])
         else:
             runtime = utils.string_to_runtime(film_data["length"])
         if runtime is None:
-            raise ValueError(f"Invalid runtime format: '{film_data['length']}' for movie {movie_id}")
+            raise ValueError(
+                f"Invalid runtime format: '{film_data['length']}' for movie {movie_id}"
+            )
 
     return {
         "id": movie_id,
@@ -110,6 +124,7 @@ def extract_film_data(data: dict):
         "url": data["url"],
     }
 
+
 async def get_medeia_movies() -> pd.DataFrame:
     crawler = BeautifulSoupCrawler(http_client=HTTP_CLIENT, max_crawl_depth=1)
     crawler.router.default_handler(handle)
@@ -119,10 +134,11 @@ async def get_medeia_movies() -> pd.DataFrame:
     ds = await Dataset.open(alias=DATASET_FILMS)
     content = await ds.get_data()
     rows = [extract_film_data(item) for item in content.items]
-    df_medeia = pd.DataFrame.from_records(rows, index='id')
+    df_medeia = pd.DataFrame.from_records(rows, index="id")
 
     df_medeia = df_medeia.convert_dtypes()
     return df_medeia
+
 
 def match_series_imdb(movie_row: pd.Series, df_imdb: pd.DataFrame):
     movie_id = movie_row.name
@@ -130,83 +146,109 @@ def match_series_imdb(movie_row: pd.Series, df_imdb: pd.DataFrame):
 
     def convert_to_ascii(df: PandasLike) -> PandasLike:
         if isinstance(df, pd.Series):
-            df['title'] = imdb.to_ascii(df['title'])
-            df['original_title'] = imdb.to_ascii(df['original_title'])
-            df['director'] = imdb.to_ascii(df['director'])
-            df['cast'] = [imdb.to_ascii(actor) for actor in df['cast']]
+            df["title"] = imdb.to_ascii(df["title"])
+            df["original_title"] = imdb.to_ascii(df["original_title"])
+            df["director"] = imdb.to_ascii(df["director"])
+            df["cast"] = [imdb.to_ascii(actor) for actor in df["cast"]]
         else:
-            df['title'] = df['title'].apply(imdb.to_ascii)
-            df['original_title'] = df['original_title'].apply(imdb.to_ascii)
-            df['directors'] = df['directors'].apply(lambda directors: [imdb.to_ascii(director) for director in directors])
-            df['cast'] = df['cast'].apply(lambda cast: [imdb.to_ascii(actor) for actor in cast])
+            df["title"] = df["title"].apply(imdb.to_ascii)
+            df["original_title"] = df["original_title"].apply(imdb.to_ascii)
+            df["directors"] = df["directors"].apply(
+                lambda directors: [imdb.to_ascii(director) for director in directors]
+            )
+            df["cast"] = df["cast"].apply(
+                lambda cast: [imdb.to_ascii(actor) for actor in cast]
+            )
         return df
 
     movie_row = convert_to_ascii(movie_row)
     df_imdb = convert_to_ascii(df_imdb)
 
     df_matches = pd.DataFrame(index=df_imdb.index)
-    df_matches['title'] = (
-        (df_imdb['title'] == movie_row['title']) |
-        (df_imdb['title'] == movie_row['original_title']) |
-        (df_imdb['original_title'] == movie_row['title']) |
-        (df_imdb['original_title'] == movie_row['original_title'])
+    df_matches["title"] = (
+        (df_imdb["title"] == movie_row["title"])
+        | (df_imdb["title"] == movie_row["original_title"])
+        | (df_imdb["original_title"] == movie_row["title"])
+        | (df_imdb["original_title"] == movie_row["original_title"])
     )
-    df_matches['directors'] = df_imdb['directors'].apply(lambda directors: any(director in movie_row['director'] for director in directors))
-    df_matches['cast'] = df_imdb['cast'].apply(lambda cast: bool(set(movie_row['cast']).intersection(cast)))
-    df_matches['release_year'] = (df_imdb['release_year'] - movie_row['release_year']).abs() <= 1
-    df_matches['runtime'] = (
-        df_imdb['runtime'].notna() & (df_imdb['runtime'] == movie_row['runtime'] * 60)
+    df_matches["directors"] = df_imdb["directors"].apply(
+        lambda directors: any(
+            director in movie_row["director"] for director in directors
+        )
+    )
+    df_matches["cast"] = df_imdb["cast"].apply(
+        lambda cast: bool(set(movie_row["cast"]).intersection(cast))
+    )
+    df_matches["release_year"] = (
+        df_imdb["release_year"] - movie_row["release_year"]
+    ).abs() <= 1
+    df_matches["runtime"] = df_imdb["runtime"].notna() & (
+        df_imdb["runtime"] == movie_row["runtime"] * 60
     )
 
-    df_matches = df_matches[df_matches['title'] & df_matches['directors'] & df_matches['release_year']]
+    df_matches = df_matches[
+        df_matches["title"] & df_matches["directors"] & df_matches["release_year"]
+    ]
     if df_matches.shape[0] > 1:
-        raise ValueError(f"Multiple matches found for movie: {movie_row['title']}:\n{df_matches}")
+        raise ValueError(
+            f"Multiple matches found for movie: {movie_row['title']}:\n{df_matches}"
+        )
 
     if df_matches.shape[0] == 1:
         match = cast(pd.Series, original_df_imdb.loc[df_matches.index[0]])
         imdb_id = match.name
-        watched = match['watched']
-        imdb_lists = match['imdb_lists']
+        watched = match["watched"]
+        imdb_lists = match["imdb_lists"]
     else:
         imdb_id = pd.NA
         watched = False
         imdb_lists = []
 
-    return pd.Series({
-        'imdb_id': imdb_id,
-        'watched': watched,
-        'imdb_lists': imdb_lists,
-    }, name=movie_id)
+    return pd.Series(
+        {
+            "imdb_id": imdb_id,
+            "watched": watched,
+            "imdb_lists": imdb_lists,
+        },
+        name=movie_id,
+    )
+
 
 async def get_imdb_movies(user_id: str) -> pd.DataFrame:
     imdb_tuple = await imdb.get_lists(user_id)
-    df_imdb_watchlist = pd.DataFrame.from_records(imdb_tuple[0], index='id')
-    df_imdb_lists = {name: pd.DataFrame.from_records(items, index='id') for name, items in imdb_tuple[1].items()}
+    df_imdb_watchlist = pd.DataFrame.from_records(imdb_tuple[0], index="id")
+    df_imdb_lists = {
+        name: pd.DataFrame.from_records(items, index="id")
+        for name, items in imdb_tuple[1].items()
+    }
 
-    df_imdb_watchlist['watched'] = True
-    df_imdb_watchlist['imdb_lists'] = [[] for _ in range(len(df_imdb_watchlist))]
+    df_imdb_watchlist["watched"] = True
+    df_imdb_watchlist["imdb_lists"] = [[] for _ in range(len(df_imdb_watchlist))]
     columns = df_imdb_watchlist.columns
 
     for name, df_imdb_list in df_imdb_lists.items():
-        df_imdb_list['imdb_lists_dup'] = [[name] for _ in range(len(df_imdb_list))]
+        df_imdb_list["imdb_lists_dup"] = [[name] for _ in range(len(df_imdb_list))]
         df_imdb_watchlist = df_imdb_watchlist.combine_first(df_imdb_list)
-        df_imdb_watchlist['imdb_lists'] = df_imdb_watchlist['imdb_lists'].combine(
-            df_imdb_watchlist['imdb_lists_dup'],
-            lambda x, y: (x if isinstance(x, list) else []) + (y if isinstance(y, list) else [])
+        df_imdb_watchlist["imdb_lists"] = df_imdb_watchlist["imdb_lists"].combine(
+            df_imdb_watchlist["imdb_lists_dup"],
+            lambda x, y: (
+                (x if isinstance(x, list) else []) + (y if isinstance(y, list) else [])
+            ),
         )
-        df_imdb_watchlist.drop('imdb_lists_dup', axis=1, inplace=True)
+        df_imdb_watchlist.drop("imdb_lists_dup", axis=1, inplace=True)
 
     df_imdb_watchlist = df_imdb_watchlist.convert_dtypes()
-    df_imdb_watchlist['watched'] = df_imdb_watchlist['watched'].fillna(False)
+    df_imdb_watchlist["watched"] = df_imdb_watchlist["watched"].fillna(False)
     df_imdb_watchlist = df_imdb_watchlist.reindex(columns, axis=1)
     return df_imdb_watchlist
 
+
 def get_sessions(df_movies: pd.DataFrame) -> pd.DataFrame:
-    df_sessions = df_movies['sessions'].dropna().explode().reset_index()
-    df_sessions.rename(columns={'sessions': 'session'}, inplace=True)
-    df_sessions.dropna(subset=['session'], inplace=True)
-    df_sessions = df_sessions[df_sessions['session'] >= utils.midnight(utils.now())]
-    df_sessions.sort_values(by=['session', 'id'], inplace=True)
+    df_sessions = df_movies["sessions"].dropna().explode().reset_index()
+    df_sessions.rename(columns={"sessions": "session"}, inplace=True)
+    df_sessions.dropna(subset=["session"], inplace=True)
+    df_sessions = df_sessions[df_sessions["session"] >= utils.midnight(utils.now())]
+    df_sessions.sort_values(by=["session", "id"], inplace=True)
     df_sessions.reset_index(drop=True, inplace=True)
 
     # session_position: int = cast(int, df_sessions.columns.get_loc('session'))
@@ -220,16 +262,17 @@ def get_sessions(df_movies: pd.DataFrame) -> pd.DataFrame:
     # df_sessions.insert(
     #     session_position + 2,
     #     'at_work',
-    #     (df_sessions['session'].dt.weekday < 5) & (df_sessions['session'].dt.hour < 17)
+    #     (df_sessions['session'].dt.weekday < 5) & (df_sessions['session'].dt.hour < 17) # noqa: E501
     # )
 
     # df_sessions.insert(
     #     session_position + 3,
     #     'sessions_left',
-    #     (~df_sessions['at_work']).groupby(df_sessions.index).transform(lambda x: x[::-1].cumsum()[::-1])
+    #     (~df_sessions['at_work']).groupby(df_sessions.index).transform(lambda x: x[::-1].cumsum()[::-1]) # noqa: E501
     # )
 
     return df_sessions
+
 
 async def main_medeia():
     file_path = DATA_DIR / "movies.csv"
@@ -238,44 +281,48 @@ async def main_medeia():
     if os.path.exists(file_path):
         df_movies_prev = pd.read_csv(
             file_path,
-            index_col='id',
+            index_col="id",
             converters={
                 "cast": ast.literal_eval,
                 "runtime": lambda x: utils.string_to_runtime(x) if x else pd.NA,
             },
-            encoding='utf-8-sig'
+            encoding="utf-8-sig",
         )
         df_movies = df_movies.combine_first(df_movies_prev)[df_movies.columns]
     df_movies.sort_index(inplace=True)
 
     df_sessions = get_sessions(df_movies)
 
-    df_movies['runtime'] = df_movies['runtime'].apply(
+    df_movies["runtime"] = df_movies["runtime"].apply(
         # some values come as float
         lambda x: utils.runtime_to_string(int(x)) if pd.notna(x) else pd.NA
     )
-    df_movies.drop(columns=['sessions'], inplace=True)
-    df_movies.to_csv(DATA_DIR / "movies.csv", index=True, encoding='utf-8-sig')
+    df_movies.drop(columns=["sessions"], inplace=True)
+    df_movies.to_csv(DATA_DIR / "movies.csv", index=True, encoding="utf-8-sig")
 
-    df_sessions['session'] = df_sessions['session'].apply(utils.to_string)
-    df_sessions.to_csv(DATA_DIR / "sessions.csv", index=False, encoding='utf-8-sig')
+    df_sessions["session"] = df_sessions["session"].apply(utils.to_string)
+    df_sessions.to_csv(DATA_DIR / "sessions.csv", index=False, encoding="utf-8-sig")
 
     return df_movies, df_sessions
+
 
 async def main_imdb(user_id: str, df_movies: pd.DataFrame):
     df_imdb = await get_imdb_movies(user_id)
     df_imdb = df_movies.apply(
-        match_series_imdb, axis=1, args=(df_imdb,), result_type='expand'
+        match_series_imdb, axis=1, args=(df_imdb,), result_type="expand"
     )
-    df_imdb = df_imdb.dropna(subset=['imdb_id'])
-    df_imdb.to_csv(DATA_DIR / "imdb.csv", index=True, encoding='utf-8-sig')
+    df_imdb = df_imdb.dropna(subset=["imdb_id"])
+    df_imdb.to_csv(DATA_DIR / "imdb.csv", index=True, encoding="utf-8-sig")
 
     return df_imdb
+
 
 async def main(reload_medeia: bool, reload_imdb: bool):
     user_id = os.getenv("IMDB_USER_ID")
     if user_id is None and reload_imdb:
-        raise ValueError("IMDB_USER_ID environment variable is required when reload_imdb is True")
+        raise ValueError(
+            "IMDB_USER_ID environment variable is required when reload_imdb is True"
+        )
 
     df_movies = None
     df_sessions = None
@@ -291,26 +338,42 @@ async def main(reload_medeia: bool, reload_imdb: bool):
                 raise FileNotFoundError(f"Movies file not found: {file_path}")
             df_movies = pd.read_csv(
                 file_path,
-                index_col='id',
+                index_col="id",
                 converters={
                     "cast": ast.literal_eval,
                     "runtime": utils.string_to_runtime,
                     "imdb_lists": ast.literal_eval,
                 },
-                encoding='utf-8-sig'
+                encoding="utf-8-sig",
             )
         df_imdb = await main_imdb(user_id, df_movies)
     return df_movies, df_sessions, df_imdb
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run the main async process.")
-    parser.add_argument("--no-medeia", dest='reload_medeia', action='store_false', help="Disable Medeia data fetching")
-    parser.add_argument("--no-imdb", dest='reload_imdb', action='store_false', help="Disable IMDB data fetching")
+    parser.add_argument(
+        "--no-medeia",
+        dest="reload_medeia",
+        action="store_false",
+        help="Disable Medeia data fetching",
+    )
+    parser.add_argument(
+        "--no-imdb",
+        dest="reload_imdb",
+        action="store_false",
+        help="Disable IMDB data fetching",
+    )
     parser.set_defaults(reload_medeia=True, reload_imdb=True)
     args = parser.parse_args()
 
     if not args.reload_medeia and not args.reload_imdb:
-        parser.error("At least one of medeia or imdb must be enabled (don't use both --no-medeia and --no-imdb)")
+        parser.error(
+            "At least one of medeia or imdb must be enabled "
+            "(don't use both --no-medeia and --no-imdb)"
+        )
 
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+    logging.basicConfig(
+        level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+    )
     asyncio.run(main(reload_medeia=args.reload_medeia, reload_imdb=args.reload_imdb))

@@ -1,0 +1,30 @@
+name: Lint
+
+on:
+  workflow_call:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
+      run: |
+        pip install uv
+        uv sync --frozen
+
+    - name: Format check (ruff)
+      run: uv run ruff format --check src/
+
+    - name: Lint check (ruff)
+      run: uv run ruff check src/
+
+    - name: Type check (mypy)
+      run: |
+        uv run mypy src/

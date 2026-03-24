@@ -1,39 +1,49 @@
 import asyncio
-from datetime import timedelta
 import json
 import logging
 import os
 import re
 import unicodedata
+from datetime import timedelta
 from typing import cast
-from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
+from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 from crawlee import ConcurrencySettings
-from crawlee.crawlers import PlaywrightCrawler, PlaywrightCrawlingContext, BasicCrawlingContext, PlaywrightPreNavCrawlingContext
+from crawlee.crawlers import (
+    BasicCrawlingContext,
+    PlaywrightCrawler,
+    PlaywrightCrawlingContext,
+    PlaywrightPreNavCrawlingContext,
+)
 from crawlee.storages import Dataset
-
 
 logger = logging.getLogger(__name__)
 
-WATCHLIST_URL = f"https://www.imdb.com/user/{{user_id}}/watchlist/?page={{page}}"
-LISTS_URL = f"https://www.imdb.com/user/{{user_id}}/lists/"
-LIST_URL = f"https://www.imdb.com/list/{{list_id}}/?page={{page}}"
-DATA_PATTERN = re.compile(r'<script id="__NEXT_DATA__" type="application/json">(\{.*?\})</script>')
+WATCHLIST_URL = "https://www.imdb.com/user/{user_id}/watchlist/?page={page}"
+LISTS_URL = "https://www.imdb.com/user/{user_id}/lists/"
+LIST_URL = "https://www.imdb.com/list/{list_id}/?page={page}"
+DATA_PATTERN = re.compile(
+    r'<script id="__NEXT_DATA__" type="application/json">(\{.*?\})</script>'
+)
 USER_ID_PATTERN = re.compile(r"^https://www.imdb.com/user/([^/]+)/")
 LIST_ID_PATTERN = re.compile(r"^https://www.imdb.com/list/([^/]+)/")
 
 DATASET_ROOT = "imdb"
 DATABASE_WATCHLIST = DATASET_ROOT + "-watchlist"
 DATABASE_LISTS = DATASET_ROOT + "-lists"
-DATASET_LIST = DATABASE_LISTS + f"-{{name}}"
+DATASET_LIST = DATABASE_LISTS + "-{name}"
+
 
 def to_ascii(text: str, sep: str = "") -> str:
-    ascii_text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('ascii')
-    ascii_text = re.sub(r'[^a-zA-Z0-9{}]'.format(re.escape(sep)), sep, ascii_text)
+    ascii_text = (
+        unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode("ascii")
+    )
+    ascii_text = re.sub(r"[^a-zA-Z0-9{}]".format(re.escape(sep)), sep, ascii_text)
     if sep:
-        ascii_text = re.sub(r'{}+'.format(re.escape(sep)), sep, ascii_text)
+        ascii_text = re.sub(r"{}+".format(re.escape(sep)), sep, ascii_text)
     ascii_text = ascii_text.strip(sep or None).lower()
     return ascii_text
+
 
 def build_next_url(current_url: str) -> str:
     parts = urlparse(current_url)
@@ -42,6 +52,7 @@ def build_next_url(current_url: str) -> str:
     query["page"] = [str(next_page)]
     new_query = urlencode(query, doseq=True)
     return urlunparse(parts._replace(query=new_query))
+
 
 async def handle_movies(ctx: PlaywrightCrawlingContext) -> None:
     url = ctx.request.url
@@ -59,31 +70,46 @@ async def handle_movies(ctx: PlaywrightCrawlingContext) -> None:
         request_type = "lists"
     else:
         request_type = "list"
-    list_name = main_column_data["list"]["name"]["originalText"] if request_type == "list" else None
+    list_name = (
+        main_column_data["list"]["name"]["originalText"]
+        if request_type == "list"
+        else None
+    )
 
-    await ctx.push_data({
-        "url": url,
-        "data": main_column_data,
-    }, dataset_alias=(
-        DATABASE_LISTS if request_type == "lists" else
-        DATABASE_WATCHLIST if request_type == "watchlist" else
-        DATASET_LIST.format(name=to_ascii(cast(str, list_name)))
-    ))
+    await ctx.push_data(
+        {
+            "url": url,
+            "data": main_column_data,
+        },
+        dataset_alias=(
+            DATABASE_LISTS
+            if request_type == "lists"
+            else DATABASE_WATCHLIST
+            if request_type == "watchlist"
+            else DATASET_LIST.format(name=to_ascii(cast(str, list_name)))
+        ),
+    )
 
     if request_type == "lists":
         user_list_search = main_column_data["userListSearch"]
-        await ctx.enqueue_links(requests=[
-            LIST_URL.format(list_id=edge["node"]["id"], page=1)
-            for edge in user_list_search["edges"]
-        ])
+        await ctx.enqueue_links(
+            requests=[
+                LIST_URL.format(list_id=edge["node"]["id"], page=1)
+                for edge in user_list_search["edges"]
+            ]
+        )
     else:
-        title_list_item_search = main_column_data["predefinedList" if request_type == "watchlist" else "list"]["titleListItemSearch"]
+        title_list_item_search = main_column_data[
+            "predefinedList" if request_type == "watchlist" else "list"
+        ]["titleListItemSearch"]
         if title_list_item_search["pageInfo"]["hasNextPage"]:
             await ctx.enqueue_links(requests=[build_next_url(url)])
+
 
 def on_failed_handler(ctx: BasicCrawlingContext, err: Exception):
     logger.error(f"Request {ctx.request.url} failed after retries: {err}")
     raise RuntimeError(f"Request {ctx.request.url} failed after retries: {err}")
+
 
 def extract_movie_data(data: dict) -> dict:
     movie_data = data["listItem"]
@@ -93,15 +119,27 @@ def extract_movie_data(data: dict) -> dict:
     if "principalCredits" in movie_data:
         for principal in movie_data["principalCredits"]:
             if principal["category"]["id"] == "director":
-                directors += [director["name"]["nameText"]["text"].strip() for director in principal["credits"]]
+                directors += [
+                    director["name"]["nameText"]["text"].strip()
+                    for director in principal["credits"]
+                ]
             elif principal["category"]["id"] == "cast":
-                cast += [actor["name"]["nameText"]["text"].strip() for actor in principal["credits"]]
+                cast += [
+                    actor["name"]["nameText"]["text"].strip()
+                    for actor in principal["credits"]
+                ]
     elif "principalCreditsV2" in movie_data:
         for principal in movie_data["principalCreditsV2"]:
             if principal["grouping"]["text"] in ("Director", "Directors"):
-                directors += [director["name"]["nameText"]["text"].strip() for director in principal["credits"]]
+                directors += [
+                    director["name"]["nameText"]["text"].strip()
+                    for director in principal["credits"]
+                ]
             elif principal["grouping"]["text"] in ("Star", "Stars"):
-                cast += [actor["name"]["nameText"]["text"].strip() for actor in principal["credits"]]
+                cast += [
+                    actor["name"]["nameText"]["text"].strip()
+                    for actor in principal["credits"]
+                ]
     else:
         raise ValueError("No principalCredits or principalCreditsV2 in movie data")
 
@@ -112,15 +150,20 @@ def extract_movie_data(data: dict) -> dict:
         "directors": directors,
         "cast": cast,
         "release_year": movie_data["releaseYear"]["year"],
-        "runtime": movie_data["runtime"]["seconds"] if movie_data.get("runtime") else None,
+        "runtime": movie_data["runtime"]["seconds"]
+        if movie_data.get("runtime")
+        else None,
     }
+
 
 async def get_lists(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
     crawler = PlaywrightCrawler(
         headless=True,
-        browser_type='chromium',
+        browser_type="chromium",
         browser_launch_options={"chromium_sandbox": False},
-        concurrency_settings=ConcurrencySettings(max_concurrency=1, desired_concurrency=1),
+        concurrency_settings=ConcurrencySettings(
+            max_concurrency=1, desired_concurrency=1
+        ),
         request_handler_timeout=timedelta(minutes=3),
     )
     crawler.router.default_handler(handle_movies)
@@ -131,7 +174,12 @@ async def get_lists(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
         ctx.page.set_default_navigation_timeout(60_000)
         ctx.page.set_default_timeout(60_000)
 
-    await crawler.run([WATCHLIST_URL.format(user_id=user_id, page=1), LISTS_URL.format(user_id=user_id)])
+    await crawler.run(
+        [
+            WATCHLIST_URL.format(user_id=user_id, page=1),
+            LISTS_URL.format(user_id=user_id),
+        ]
+    )
 
     ds = await Dataset.open(alias=DATABASE_WATCHLIST)
     content = await ds.get_data()
@@ -148,7 +196,9 @@ async def get_lists(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
     lists: dict[str, list[dict]] = {}
     for edge in content.items[0]["data"]["userListSearch"]["edges"]:
         list_name = edge["node"]["name"]["originalText"]
-        list_ds = await Dataset.open(alias=DATASET_LIST.format(name=to_ascii(list_name)))
+        list_ds = await Dataset.open(
+            alias=DATASET_LIST.format(name=to_ascii(list_name))
+        )
         list_content = await list_ds.get_data()
         lists[list_name] = [
             extract_movie_data(item_edge)
@@ -157,12 +207,16 @@ async def get_lists(user_id: str) -> tuple[list[dict], dict[str, list[dict]]]:
         ]
     return watchlist, lists
 
+
 async def main() -> tuple[list[dict], dict[str, list[dict]]]:
     user_id = os.environ.get("IMDB_USER_ID")
     if not user_id:
         raise ValueError("IMDB_USER_ID environment variable is required")
     return await get_lists(user_id=user_id)
 
+
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.basicConfig(
+        level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+    )
     asyncio.run(main())
