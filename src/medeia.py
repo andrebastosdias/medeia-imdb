@@ -101,12 +101,15 @@ def extract_film_data(data: dict):
         return sorted(sessions)
 
     movie_id = int(film_data["id"])
+    if movie_id == 2467:  # special case for Mulholland Drive
+        film_data["age_rating"], film_data["length"] = (
+            film_data["length"],
+            film_data["age_rating"],
+        )
+
     runtime = pd.NA
     if film_data.get("length"):
-        if movie_id == 2467:  # special case for Mulholland Drive
-            runtime = utils.string_to_runtime(film_data["age_rating"])
-        else:
-            runtime = utils.string_to_runtime(film_data["length"])
+        runtime = utils.string_to_runtime(film_data["length"])
         if runtime is None:
             raise ValueError(
                 f"Invalid runtime format: '{film_data['length']}' for movie {movie_id}"

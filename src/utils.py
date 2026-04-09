@@ -1,13 +1,19 @@
 import re
 from datetime import datetime
+from typing import cast
 from zoneinfo import ZoneInfo
 
 TIME_ZONE = "Europe/Lisbon"
+# Exact prime notation, e.g. "90'".
 PRIME_PATTERN = re.compile(r"^(\d+)\'$")
-HOUR_MINUTE_PATTERN = re.compile(
-    r"^(?P<h1>\d+):(?P<m1>\d+):00$|^(?:(?P<h2>\d+)\s*(?:h|\s))?\s*(?:(?P<m2>\d+)\s*(?:m|min)?)?$"
+# Exact clock notation, e.g. "01:30:00".
+HOUR_MINUTE_CLOCK_PATTERN = re.compile(r"^(?P<h>\d+):(?P<m>\d+):00$")
+# Exact text notation, e.g. "2h 15m", "2 15", "45min", or "2h".
+HOUR_MINUTE_TEXT_PATTERN = re.compile(
+    r"^(?:(?P<h>\d+)\s*(?:h|\s))?\s*(?:(?P<m>\d+)\s*(?:m|min)?)?$"
 )
-SUM_RUNTIME_PATTERN = re.compile(r"^(\d+)\s*\+\s*(\d+)$")
+
+PART_PATTERN = re.compile(r"^Parte \d+: (.+)$")
 
 
 def now():
@@ -28,23 +34,35 @@ def to_datetime(dt: str, fmt: str | None = None) -> datetime:
     return datetime.fromisoformat(dt).astimezone(ZoneInfo(TIME_ZONE))
 
 
-def string_to_runtime(runtime: str) -> int | None:
-    runtime = runtime.strip()
+def _parse_single_runtime_chunk(runtime: str) -> int | None:
+    match = PART_PATTERN.match(runtime)
+    if match:
+        runtime = match.group(1)
 
     match = PRIME_PATTERN.match(runtime)
     if match:
         return int(match.group(1))
 
-    match = SUM_RUNTIME_PATTERN.match(runtime)
-    if match:
-        return int(match.group(1)) + int(match.group(2))
+    for pattern in (HOUR_MINUTE_CLOCK_PATTERN, HOUR_MINUTE_TEXT_PATTERN):
+        match = pattern.match(runtime)
+        if match:
+            hour = int(match.group("h") or 0)
+            minutes = int(match.group("m") or 0)
+            return hour * 60 + minutes
 
-    match = HOUR_MINUTE_PATTERN.match(runtime)
-    if not match:
-        return None
-    hour = int(match.group("h1") or match.group("h2") or 0)
-    minutes = int(match.group("m1") or match.group("m2") or 0)
-    return hour * 60 + minutes
+    return None
+
+
+def string_to_runtime(runtime: str) -> int | None:
+    runtime = runtime.strip()
+
+    parts = [part.strip() for part in runtime.split("+")]
+    if len(parts) > 1:
+        parsed_parts = [_parse_single_runtime_chunk(part) for part in parts]
+        if all(part is not None for part in parsed_parts):
+            return sum(cast(list[int], parsed_parts))
+
+    return _parse_single_runtime_chunk(runtime)
 
 
 def runtime_to_string(minutes: int) -> str:
