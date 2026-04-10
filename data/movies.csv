@@ -2,6 +2,7 @@
 35,Det sjunde inseglet,O Sétimo Selo,Ingmar Bergman,"['Max von Sydow', 'Gunnar Björnstrand', 'Bengt Ekerot']",1957,01:36:00,https://medeiafilmes.com/filmes/o-setimo-selo-1957
 36,Akasen chitai,Rua da Vergonha,Kenji Mizoguchi,"['Machiko Kyo', 'Aiko Mimasu', 'Ayako Wakao', 'Michiyo Kogure']",1956,01:27:00,https://medeiafilmes.com/filmes/rua-da-vergonha-1956
 37,Jour de Fête,Há Festa na Aldeia,Jacques Tati,"['Jacques Tati', 'Guy Descombe', 'Paul Frankeur', 'Santa Relli', 'Maine Vallée']",1949,01:19:00,https://medeiafilmes.com/filmes/ha-festa-na-aldeia-1949
+48,Higanbana,A Flor do Equinócio,Yasujiro Ozu,"['Shin Saburi', 'Kinuyo Tanaka', 'Ineko Arima']",1958,01:48:00,https://medeiafilmes.com/filmes/a-flor-do-equinocio-1958
 49,Akibiyori,O Fim do Outono,Yasujiro Ozu,"['Setsuko Hara', 'Yôko Tsukasa', 'Mariko Okad']",1960,02:08:00,https://medeiafilmes.com/filmes/o-fim-do-outono-1960
 50,Ohayô,Bom Dia,Yasujiro Ozu,"['Keiji Sada', 'Yoshiko Kuga', 'Chishu Ryu', 'Kuniko Miyake']",1959,01:33:00,https://medeiafilmes.com/filmes/bom-dia-1959
 68,El Ángel Exterminador,O Anjo Exterminador,Luis Buñuel,"['Silvia Pinal', 'Jacqueline Andere', 'Enrique Rambal']",1962,01:33:00,https://medeiafilmes.com/filmes/o-anjo-exterminador-1962
@@ -25,6 +26,7 @@
 181,Amarcord,Amarcord,Federico Fellini,"['Bruno Zanin', 'Pupella Maggio', 'Armando Brancia', 'Magali Noël']",1969,02:03:00,https://medeiafilmes.com/filmes/amarcord-1969
 186,C'era una volta il West,Aconteceu no Oeste,Sergio Leone,"['Claudia Cardinale', 'Charles Bronson', 'Henry Fonda', 'Jason Robards']",1968,02:45:00,https://medeiafilmes.com/filmes/aconteceu-no-oeste-1968
 192,Shichinin no samurai,Os Sete Samurais,Akira Kurosawa,"['Takashi Shimura', 'Toshiro Mifune', 'Yoshio Inaba', 'Seiji Miyagushi']",1954,03:27:00,https://medeiafilmes.com/filmes/os-sete-samurais-1954
+194,Yôjinbô,"Yojimbo, o Invencível",Akira Kurosawa,"['Toshiro Mifune', 'Eijiro Tono', 'Kamatari Fujiwaea', 'Takashi Shimura']",1961,01:50:00,https://medeiafilmes.com/filmes/yojimbo-o-invencivel-1961
 196,Ikiru,Viver - Ikiru,Akira Kurosawa,"['Takashi Shimura', 'Nobuo Kaneko', 'Kioko Seki', 'Makoto Kobori']",1952,02:23:00,https://medeiafilmes.com/filmes/viver-ikiru-1952
 200,Dodeskaden,Dodeskaden – Pouca Terra... Pouca Terra,Akira Kurosawa,"['Zuchi Yoshitaka', 'Kin Sugai', 'Junzaburo Ban', 'Kiyoko Tange']",1970,02:16:00,https://medeiafilmes.com/filmes/dodeskaden-pouca-terra-pouca-terra-1970
 202,Akahige,O Barba Ruiva,Akira Kurosawa,"['Toshiro Mifune', 'Yuzo Kayama', 'Chishu Ryu', 'Kinuyo Tanaka']",1965,03:05:00,https://medeiafilmes.com/filmes/o-barba-ruiva-1965
@@ -42,12 +44,14 @@
 232,La Leggenda del Santo Bevitore,A Lenda do Santo Bebedor,Ermanno Olmi,"['Rutger Hauer', 'Anthony Quayle', 'Sandrine Dumas', 'Dominique Pinon']",1988,02:08:00,https://medeiafilmes.com/filmes/a-lenda-do-santo-bebedor-1988
 239,Nattvardsgästerna,Luz de Inverno,Ingmar Bergman,"['Ingrid Thulin', 'Gunnar Björnstrand', 'Gunnel Lindblom']",1963,01:21:00,https://medeiafilmes.com/filmes/luz-de-inverno-1963
 241,Tystnaden,O Silêncio,Ingmar Bergman,"['Ingrid Thulin', 'Gunnel Lindblom', 'Birger Malmsten']",1963,01:36:00,https://medeiafilmes.com/filmes/o-silencio-1963
+247,Dersu Uzala,Dersu Uzala,Akira Kurosawa,"['Yuriy Solomin', 'Maksim Munzuk', 'Mikhail Bychkov', 'Vladimir Khrulev']",1975,02:16:00,https://medeiafilmes.com/filmes/dersu-uzala-1975
 248,Heart of a Dog,Coração de Cão,Laurie Anderson,[''],2015,01:15:00,https://medeiafilmes.com/filmes/coracao-de-cao-2015
 251,Voskhozhdenie,Ascensão,Larisa Shepitko,"['Boris Plotnikov', 'Vladimir Gostyukhin', 'Sergei Yakovlev', 'Lyudmila Polyakova']",1977,01:51:00,https://medeiafilmes.com/filmes/ascensao-1977
 253,Till Glädje,Rumo à Felicidade,Ingmar Bergman,"['Maj-Britt Nilsson', 'Stig Olin', 'Birger Malmsten']",1950,01:38:00,https://medeiafilmes.com/filmes/rumo-a-felicidade-1950
 255,Trollflöjten,A Flauta Mágica,Ingmar Bergman,"['Josef Köstlinger', 'Irma Urrila', 'Håkan Hagegård']",1975,02:15:00,https://medeiafilmes.com/filmes/a-flauta-magica-1975
 259,För att inte tala om alla dessa kvinnor,A Força do Sexo Fraco,Ingmar Bergman,"['Bibi Andersson', 'Harriet Andersson', 'Eva Dahlbeck']",1964,01:20:00,https://medeiafilmes.com/filmes/a-forca-do-sexo-fraco-1964
 261,Fängelse,A Prisão,Ingmar Bergman,"['Doris Svedlund', 'Birger Malmsten', 'Eva Henning']",1949,01:17:00,https://medeiafilmes.com/filmes/a-prisao-1949
+270,La Ciénaga,O Pântano,Lucrecia Martel,"['Mercedes Morán', 'Graciela Borges', 'Martín Adjemián']",2001,01:40:00,https://medeiafilmes.com/filmes/o-pantano-2001
 280,Few of Us,Few of Us,Sharunas Bartas,"['Yekaterina Golubeva', 'Piotr Kishteev', 'Sergei Tulayev']",1996,01:45:00,https://medeiafilmes.com/filmes/few-of-us-1996
 292,Lilith,Lilith e o Seu Destino,Robert Rossen,"['Warren Beatty', 'Jean Seberg', 'Peter Fonda', 'Kim Hunter']",1964,01:50:00,https://medeiafilmes.com/filmes/lilith-e-o-seu-destino-1964
 327,Cosmopolis,Cosmopolis,David Cronenberg,"['Robert Pattinson', 'Paul Giamatti', 'Juliette Binoche', 'Mathieu Amalric']",2010,01:48:00,https://medeiafilmes.com/filmes/cosmopolis-2010
@@ -56,6 +60,7 @@
 345,Do lok tin si,Fallen Angels — Anjos Caídos,Wong Kar Wai,"['Leon Lai', 'Michelle Reis', 'Takeshi Kaneshiro', 'Charlie Yeung', 'Karen Mok']",1995,01:39:00,https://medeiafilmes.com/filmes/fallen-angels-anjos-caidos-1995
 349,Chun gwong cha sit,Happy Together — Felizes Juntos,Wong Kar Wai,"['Leslie Cheung', 'Tony Chiu-Wai Leung', 'Chen Chang']",1997,01:36:00,https://medeiafilmes.com/filmes/happy-together-felizes-juntos-1997
 353,2046,2046,Wong Kar Wai,"['Tony Chiu-Wai Leung', 'Ziyi Zhang', 'Faye Wong', 'Takuya Kimura']",2004,02:09:00,https://medeiafilmes.com/filmes/2046-2004
+366,True Mothers,As Verdadeiras Mães,Naomi Kawase,"['Hiromi Nagasaku', 'Arata Iura', 'Ayama Makita', 'Miyoko Asada']",2020,02:20:00,https://medeiafilmes.com/filmes/as-verdadeiras-maes-2020
 374,The Tarnished Angels,O Meu Maior Pecado,Douglas Sirk,"['Rock Hudson', 'Robert Stack', 'Dorothy Malone', 'Jack Carson']",1957,01:31:00,https://medeiafilmes.com/filmes/o-meu-maior-pecado-1957
 376,Some Came Running,Deus Sabe quanto Amei,Vicente Minnelli,"['Frank Sinatra', 'Dean Martin', 'Shirley MacLaine', 'Martha Hyer']",1958,02:17:00,https://medeiafilmes.com/filmes/deus-sabe-quanto-amei-1958
 377,L’ incompresso,O Incompreendido,Luigi Comencini,"['Anthony Quayle', 'Stefano Colagrande', 'Simone Giannozzi', 'John Sharp']",1966,01:39:00,https://medeiafilmes.com/filmes/o-incompreendido-1966
@@ -90,6 +95,7 @@
 658,Il grido,O Grito,Michelangelo Antonioni,"['Steve Cochran', 'Alida Valli', 'Dorian Gray']",1957,01:56:00,https://medeiafilmes.com/filmes/o-grito-1957
 661,The Sixth Sense,O Sexto Sentido,M. Night Shyamalan,"['Bruce Willis', 'Haley Joel Osment', 'Toni Collette']",1999,01:47:00,https://medeiafilmes.com/filmes/o-sexto-sentido-1999
 699,Professione: repórter,Profissão: Repórter,Michelangelo Antonioni,['Jack Nicholson; Maria Schneider; Jenny Runacre'],1975,02:06:00,https://medeiafilmes.com/filmes/profissao-reporter-1975
+713,Wheel of Fortune and Fantasy,Roda da Fortuna e da Fantasia,Ryûsuke Hamaguchi,"['Kotone Furukawa', 'Kiyohiko Shibukawa', 'Katsuki Mori', 'Fusako Urabe']",2021,02:01:00,https://medeiafilmes.com/filmes/roda-da-fortuna-e-da-fantasia-2021
 739,Solaris,Solaris,Andrei Tarkovsky,"['Natalya Bondarchuk', 'Donatas Banionis', 'Jüri Järvet', 'Vladislav Dvorzhetskiy']",1972,02:47:00,https://medeiafilmes.com/filmes/solaris-1972
 740,Nostalghia,Nostalgia (1983),Andrei Tarkovsky,"['Oleg Yankovskiy', 'Erland Josephson', 'Domiziana Giordano', 'Patrizia Terreno']",1983,02:05:00,https://medeiafilmes.com/filmes/nostalgia-1983-1983
 754,LE RÈGLE DU JEU,A Regra do Jogo,Jean Renoir,"['MARCEL DALIO', 'NORA GREGOR', 'PAULETTE DUBOST']",1939,01:50:00,https://medeiafilmes.com/filmes/a-regra-do-jogo-1939
@@ -161,7 +167,9 @@
 1529,The Miracle Worker,O Milagre de Anne Sullivan,Arthur Penn,"['Andrew Prine', 'Anne Bancroft', 'Patty Duke', 'Kathleen Comegys']",1962,01:46:00,https://medeiafilmes.com/filmes/o-milagre-de-anne-sullivan-1962
 1531,The Night of the Hunter,A Sombra do Caçador,Charles Laughton,"['Robert Mitchum', 'Shelley Winters', 'Lillian Gish', 'Billy Chapin']",1955,01:32:00,https://medeiafilmes.com/filmes/a-sombra-do-cacador-1955
 1563,Naked,Nu,Mike Leigh,"['David Thewlis', 'Lesley Sharp', 'Katrin Cartlidge']",1993,02:11:00,https://medeiafilmes.com/filmes/nu-1993
+1583,Onna bakari no yoru,Mulheres da Noite,Kinuyo Tanaka,"['Chisako Hara', 'Akemikita', 'Yôsuke Natsuki']",1961,01:32:00,https://medeiafilmes.com/filmes/mulheres-da-noite-1961
 1587,L'Enfance-Nue,A Infância Nua,Maurice Pialat,"['Michel Terrazon', 'Linda Gutenberg', 'Raoul Billerey', 'Pierrette Deplanque']",1968,01:23:00,https://medeiafilmes.com/filmes/a-infancia-nua-1968
+1595,Ogin-sama,Senhora Ogin,Kinuyo Tanaka,"['Ineko Arima', 'Tatsuya Nakadai', 'Kuniko Miyake', 'Chishû Ryû']",1962,01:41:00,https://medeiafilmes.com/filmes/senhora-ogin-1962
 1652,Recordações da Casa Amarela,Recordações da Casa Amarela,João César Monteiro,"['João César Monteiro', 'Manuela de Freitas', 'Ruy Furtado', 'Teresa Calado']",1989,02:00:00,https://medeiafilmes.com/filmes/recordacoes-da-casa-amarela-1989
 1656,Torn Curtain,A Cortina Rasgada,Alfred Hitchcock,"['Paul Newman', 'Julie Andrews', 'Lila Kedrova']",1966,02:08:00,https://medeiafilmes.com/filmes/a-cortina-rasgada-1966
 1658,Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb,Dr. Estranhoamor,Stanley Kubrick,"['Peter Sellers', 'George C. Scott', 'Sterling Hayden']",1964,01:33:00,https://medeiafilmes.com/filmes/dr-estranhoamor-1964
@@ -187,6 +195,7 @@
 1791,The Trial / Le Procès,O Processo,Orson Welles,"['Anthony Perkins', 'Jeanne Moreau', 'Romy Schneider']",1962,01:59:00,https://medeiafilmes.com/filmes/o-processo-1962
 1797,Salvatore Giuliano,Salvatore Giuliano,Francesco Rosi,"['Salvo Randone', 'Frank Wolff', 'Pietro Cammarata', 'Sennuccio Benelli']",1962,02:03:00,https://medeiafilmes.com/filmes/salvatore-giuliano-1962
 1798,Le mani sulla città,As Mãos Sobre a Cidade,Francesco Rosi,"['Rod Steiger', 'Salvo Randone', 'Guido Alberti', ""Angelo D'Alessandro""]",1963,01:41:00,https://medeiafilmes.com/filmes/as-maos-sobre-a-cidade-1963
+1823,Tokyo Boshoku,Crepúsculo em Tóquio,Yasujiro Ozu,"['Ineko Arima', 'Setsuko Hara', 'Isuzu Yamada', 'Chishu Ryu']",1957,02:20:00,https://medeiafilmes.com/filmes/crepusculo-em-toquio-1957
 1831,Perfect Days,Dias Perfeitos,Wim Wenders,"['Kōji Yakusho', 'Min Tanaka', 'Arisa Nakano', 'Tokio Emoto']",2023,02:03:00,https://medeiafilmes.com/filmes/dias-perfeitos-2023
 1841,Alice in den Städten,Alice nas Cidades,Wim Wenders,"['Rüdiger Vogler', 'Yella Rottlände', 'Lisa Kreuzer', 'Edda Köchl']",1974,01:52:00,https://medeiafilmes.com/filmes/alice-nas-cidades-1974
 1843,Der Amerikanische Freund,O Amigo Americano,Wim Wenders,"['Bruno Ganz', 'Dennis Hopper', 'Lisa Kreuzer', 'Gérard Blain']",1977,02:01:00,https://medeiafilmes.com/filmes/o-amigo-americano-1977
@@ -206,9 +215,12 @@
 2009,Le Plaisir,O Prazer,Max Ophüls,"['Jean Gabin', 'Madeleine Renaud']",1952,01:37:00,https://medeiafilmes.com/filmes/o-prazer-1952
 2043,Branca de Neve,Branca de Neve,João de César Monteiro,"['Maria do Carmo Rôlo', 'Ana Brandão', 'Reginaldo da Cruz', 'Luis Miguel Cintra']",2000,01:15:00,https://medeiafilmes.com/filmes/branca-de-neve-2000
 2050,Shin heike monogatari,O Herói Sacrílego,Kenji Mizoguchi,"['Ichikawa Raizō VIII', 'Yoshiko Kuga', 'Michiyo Kogure']",1955,01:48:00,https://medeiafilmes.com/filmes/o-heroi-sacrilego-1955
+2054,Uwasa No Onna,A Mulher de Quem Se Fala,Kenji Mizoguchi,"['Kinuyo Tanaka', 'Yoshiko Kuga', 'Tomoemon Otani', 'Eitarô Shindô']",1954,01:23:00,https://medeiafilmes.com/filmes/a-mulher-de-quem-se-fala-1954
 2056,Chikamatsu monogatari,Os Amantes Crucificados,Kenji Mizoguchi,"['Kazuo Hasegawa', 'Kyôko Kagawa', 'Eitarô Shindô', 'Eitarô Ozawa']",1954,01:42:00,https://medeiafilmes.com/filmes/os-amantes-crucificados-1954
 2062,Sanshô Dayú,O Intendente Sansho,Kenji Mizoguchi,"['Kinuyo Tanaka', 'Yoshiaki Hanayagi', 'Kyoko Kagawa']",1954,02:04:00,https://medeiafilmes.com/filmes/o-intendente-sansho-1954
 2110,Kikujirô no natsu,O Verão de Kikujiro,Takeshi Kitano,[''],1999,02:02:00,https://medeiafilmes.com/filmes/o-verao-de-kikujiro-1999
+2111,Seishun zankoku monogatari,Contos Cruéis da Juventude,Nagisa Oshima,[''],1960,01:36:00,https://medeiafilmes.com/filmes/contos-crueis-da-juventude-1960
+2115,Shi,Poesia,Lee Chang-dong,"['Yun Junghee', 'An Naesang', 'Kim Hira', 'Lee David']",2010,02:19:00,https://medeiafilmes.com/filmes/poesia-2010
 2117,Ah-ga-ssi,A Criada,Park Chan-wook,[''],2016,02:25:00,https://medeiafilmes.com/filmes/a-criada-2016
 2135,Musik i mörker,Uma Luz nas Trevas,Ingmar Bergman,"['Mai Zetterling', 'Birger Malmsten', 'Bengt Eklund', 'Olof Winnerstrand']",1948,01:25:00,https://medeiafilmes.com/filmes/uma-luz-nas-trevas-1948
 2136,Hamnstad,Cidade Portuária,Ingmar Bergman,"['Nine-Christine Jonsson', 'Bengt Eklund', 'Berta Hall', 'Erik Hell']",1948,01:39:00,https://medeiafilmes.com/filmes/cidade-portuaria-1948
