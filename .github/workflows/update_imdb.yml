@@ -8,6 +8,10 @@ on:
     - cron: '15 */4 * * *' # Runs at 15 minutes past the hour, every 4 hours
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint:
     if: github.event_name == 'push'
