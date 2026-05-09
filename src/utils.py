@@ -56,6 +56,9 @@ def _parse_single_runtime_chunk(runtime: str) -> int | None:
 def string_to_runtime(runtime: str) -> int | None:
     runtime = runtime.strip()
 
+    # special case for #3211 Metropolis
+    runtime = runtime.removesuffix("| Versão Integral").strip()
+
     parts = [part.strip() for part in runtime.split("+")]
     if len(parts) > 1:
         parsed_parts = [_parse_single_runtime_chunk(part) for part in parts]

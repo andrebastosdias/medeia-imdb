@@ -101,7 +101,7 @@ def extract_film_data(data: dict):
         return sorted(sessions)
 
     movie_id = int(film_data["id"])
-    if movie_id == 2467:  # special case for Mulholland Drive
+    if movie_id == 2467:  # special case for #2467 Mulholland Drive
         film_data["age_rating"], film_data["length"] = (
             film_data["length"],
             film_data["age_rating"],
