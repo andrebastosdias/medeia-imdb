@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '15 */4 * * *' # Runs at 15 minutes past the hour, every 4 hours
+    - cron: '30 */4 * * *' # Runs at 30 minutes past the hour, every 4 hours
   workflow_dispatch:
 
 concurrency:
