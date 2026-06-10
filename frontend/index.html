@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Medeia IMDb</title>
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <h1>Medeia IMDb</h1>
+        <p>Browse Medeia Nimas sessions and IMDb-matched movies.</p>
+      </div>
+      <div class="top-actions">
+        <label class="global-search">
+          <span>Search all columns</span>
+          <input id="global-search" type="search" autocomplete="off">
+        </label>
+        <button id="columns-toggle" type="button" aria-expanded="false">
+          Columns
+        </button>
+        <button id="clear-filters" type="button">Clear all filters</button>
+      </div>
+    </header>
+
+    <main>
+      <div id="status" class="status" role="status">Loading CSV data...</div>
+
+      <nav class="tabs" aria-label="Tables">
+        <button id="sessions-tab" class="tab-button" type="button" data-tab="sessions">
+          Sessions <span id="sessions-count"></span>
+        </button>
+        <button id="movies-tab" class="tab-button" type="button" data-tab="movies">
+          Movies <span id="movies-count"></span>
+        </button>
+      </nav>
+
+      <section id="sessions-panel" class="table-panel" aria-labelledby="sessions-tab">
+        <div class="table-wrap">
+          <table id="sessions-table"></table>
+        </div>
+      </section>
+
+      <section id="movies-panel" class="table-panel" aria-labelledby="movies-tab">
+        <div class="table-wrap">
+          <table id="movies-table"></table>
+        </div>
+      </section>
+    </main>
+
+    <div id="filter-popover" class="filter-popover" hidden></div>
+    <div id="columns-popover" class="columns-popover" hidden></div>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="assets/app.js"></script>
+  </body>
+</html>
