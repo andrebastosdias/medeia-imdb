@@ -73,6 +73,7 @@
 385,Marie pour mémoire,Marie pour mémoire,Philippe Garrel,"['Zouzou', 'Didier Léon', 'Nicole Laguigner']",1967,01:17:00,https://medeiafilmes.com/filmes/marie-pour-memoire-1967
 387,Zabriskie Point,Deserto de Almas,Michelangelo Antonioni,"['Mark Frechette', 'Daria Halprin', 'Rod Taylor']",1970,01:53:00,https://medeiafilmes.com/filmes/deserto-de-almas-1970
 389,Nostra Signora dei Turchi,Nossa Senhora dos Turcos,Carmelo Bene,"['Carmelo Bene', 'Lydia Mancinelli', 'Salvatore Siniscalchi']",1968,02:03:00,https://medeiafilmes.com/filmes/nossa-senhora-dos-turcos-1968
+398,Crash,Crash,David Cronenberg,"['James Spader', 'Holly Hunter', 'Elias Koteas', 'Deborah Kara Unger']",1996,01:40:00,https://medeiafilmes.com/filmes/crash-1996
 409,Pasolini,Pasolini,Abel Ferrara,"['Willem Dafoe', 'Riccardo Scamarcio', 'Ninetto Davoli', 'Maria de Medeiros']",2014,01:24:00,https://medeiafilmes.com/filmes/pasolini-2014
 421,As Tears Go By,As Tears Go By - Ao Sabor da Ambição,Wong Kar Wai,"['Andy Lau', 'Maggie Cheung', 'Jacky Cheung']",1988,01:42:00,https://medeiafilmes.com/filmes/as-tears-go-by-ao-sabor-da-ambicao-1988
 434,The Shanghai Gesture,Aconteceu em Xangai,Josef von Sternberg,"['Gene Tierney', 'Walter Huston', 'Victor Mature', 'Ona Munson']",1941,01:39:00,https://medeiafilmes.com/filmes/aconteceu-em-xangai-1941
@@ -112,6 +113,7 @@
 759,F for Fake,F de Fraude,Orson Welles,"['Orson Welles', 'Oja Kodar', 'Elmyr de Hory', 'Clifford Irving', 'Joseph Cotten']",1973,01:29:00,https://medeiafilmes.com/filmes/f-de-fraude-1973
 767,Doraibu Mai Kâ,Drive My Car,Ryûsuke Hamaguchi,"['Hidetoshi Nishijima', 'Toko Miura', 'Masaki Okada', 'Reika Kirishima']",2021,02:59:00,https://medeiafilmes.com/filmes/drive-my-car-2021
 768,The Kid,O Garoto de Charlot,Charlie Chaplin,"['Charles Chaplin', 'Edna Purviance', 'Jackie Coogan', 'Carl Miller']",1921,01:08:00,https://medeiafilmes.com/filmes/o-garoto-de-charlot-1921
+794,Herr Bachmann und seine Klasse,O Professor Bachmann e a Sua Turma,Maria Speth,"['Dieter Bachmann', 'Aynur Bal', 'Önder Cavdar']",2021,03:37:00,https://medeiafilmes.com/filmes/o-professor-bachmann-e-a-sua-turma-2021
 850,Licorice Pizza,Licorice Pizza,Paul Thomas Anderson,"['Alana Haim', 'Cooper Hoffman', 'Bradley Cooper', 'Sean Penn']",2021,02:13:00,https://medeiafilmes.com/filmes/licorice-pizza-2021
 852,Boogie Nights,Jogos de Prazer,Paul Thomas Anderson,"['Mark Wahlberg', 'Burt Reynolds', 'Julianne Moore']",1997,02:35:00,https://medeiafilmes.com/filmes/jogos-de-prazer-1997
 853,Magnolia,Magnolia,Paul Thomas Anderson,"['Tom Cruise', 'Melinda Dillon', 'Philip Seymour Hoffman', 'Julianne Moore']",1999,03:08:00,https://medeiafilmes.com/filmes/magnolia-1999
@@ -765,10 +767,34 @@
 3385,Minions and Monsters,Mínimos e Monstros,Pierre Coffin,[''],2026,01:43:00,https://medeiafilmes.com/filmes/minimos-e-monstros-2026
 3387,The Uprising,A Revolta,Paul Greengrass,"['Andrew Garfield', 'Katherine Waterston', 'Jamie Bell', 'Cosmo Jarvis']",2026,02:07:00,https://medeiafilmes.com/filmes/a-revolta-2026
 3390,Amarga Navidad,Natal Amargo,Pedro Almodóvar,"['Rossy de Palma', 'Milena Smit', 'Aitana Sanchéz-Gijón']",2025,01:51:00,https://medeiafilmes.com/filmes/natal-amargo-2025
+3396,Teenage Sex and Death at Camp Miasma,"Adolescência, Sexo e Morte no Acampamento Miasma",Jane Schoenbrun,"['Hannah Einbinder', 'Gillian Anderson', 'Jack Haven', 'Patrick Fischler']",2026,01:52:00,https://medeiafilmes.com/filmes/adolescencia-sexo-e-morte-no-acampamento-miasma-2026
+3398,The Godfather Part II,O Padrinho: Parte II,Francis Ford Coppola,"['Al Pacino', 'Robert De Niro', 'Robert Duvall', 'Diane Keaton']",1972,02:55:00,https://medeiafilmes.com/filmes/o-padrinho-parte-ii-1972
+3399,Ludwig - Requiem für einen jungfräulichen König,"​Ludwig, Requiem para um Rei Virgem",Hans-Jürgen Syberberg,"['Harry Baer', 'Peter Kern', 'Peter Moland', 'Günther Kaufmann']",1972,02:20:00,https://medeiafilmes.com/filmes/ludwig-requiem-para-um-rei-virgem-1972
+3400,Good Bye Lenin!,"Adeus, Lenine!",Wolfgang Becker,"['Daniel Brühl', 'Katrin Sass', 'Maria Simon', 'Chulpan Khamatova']",2003,02:01:00,https://medeiafilmes.com/filmes/adeus-lenine-2003
 3401,Werk ohne Autor,Nunca Deixes de Olhar,Florian Henckel von Donnersmarck,"['Tom Schilling', 'Sebastian Koch', 'Paula Beer', 'Saskia Rosendahl', 'Oliver Masucci']",2018,03:09:00,https://medeiafilmes.com/filmes/nunca-deixes-de-olhar-2018
+3402,Toni Erdmann,Toni Erdmann,Maren Ade,"['Sandra Hüller', 'Peter Simonischek', 'Michael Wittenborn']",2016,02:42:00,https://medeiafilmes.com/filmes/toni-erdmann-2016
 3403,Laura,Laura,Otto Preminger,"['Gene Tierney', 'Dana Andrews', 'Clifton Webb', 'Vincent Price']",1944,01:28:00,https://medeiafilmes.com/filmes/laura-1944
 3404,Leave Her to Heaven,Amar Foi a Minha Perdição,John M. Stahl,"['Gene Tierney', 'Cornel Wilde', 'Jeanne Crain', 'Vincent Price']",1945,01:50:00,https://medeiafilmes.com/filmes/amar-foi-a-minha-perdicao-1945
 3406,The Ghost and Mrs. Muir,O Fantasma Apaixonado,Joseph L. Mankiewicz,"['Gene Tierney', 'Rex Harrison', 'George Sanders']",1947,01:44:00,https://medeiafilmes.com/filmes/o-fantasma-apaixonado-1947
 3407,Night and the City,Foragidos da Noite,Jules Dassin,"['Richard Widmark', 'Gene Tierney', 'Googie Withers']",1950,01:41:00,https://medeiafilmes.com/filmes/foragidos-da-noite-1950
+3408,The Texas Chain Saw Massacre,Massacre no Texas,Tobe Hopper,"['Marilyn Burns', 'Edwin Neal', 'Allen Danziger']",1974,01:23:00,https://medeiafilmes.com/filmes/massacre-no-texas-1974
+3410,Drei Wege zum See,Três Caminhos para o Lago,Michael Haneke,"['Ursula Schult', 'Guido Wieland', 'Walter Schmidinger', 'Bernhard Wicki']",1976,01:41:00,https://medeiafilmes.com/filmes/tres-caminhos-para-o-lago-1976
+3412,"Lemminge, Teil 1 Arkadien","Lemingues, Parte 1 – A Arcádia",Michael Haneke,"['Regina Sattler', 'Christian Ingomar', 'Eva Linder', 'Paulus Manker']",1979,01:53:00,https://medeiafilmes.com/filmes/lemingues-parte-1-a-arcadia-1979
+3413,"Lemminge, Teil 2 Verletzungen","Lemingues, Parte 2 – As Feridas",Michael Haneke,"['Monika Bleibtreu', 'Elfriede Irrall', 'Rüdiger Hacker', 'Wolfgang Hübsch']",1979,01:47:00,https://medeiafilmes.com/filmes/lemingues-parte-2-as-feridas-1979
+3414,Der Siebente Kontinent,O Sétimo Continente,Michael Haneke,"['Dieter Berner', 'Birgit Doll', 'Leni Tanzer']",1989,01:49:00,https://medeiafilmes.com/filmes/o-setimo-continente-1989
+3415,Benny’s Video,O Vídeo de Benny,Michael Haneke,"['Arno Frisch', 'Angela Winkler', 'Ulrich Mühe', 'Ingrid Stassner']",1992,01:50:00,https://medeiafilmes.com/filmes/o-video-de-benny-1992
+3417,Die Rebellion,A Rebelião,Michael Haneke,"['Branko Samarovski', 'Thierry van Werveke', 'August Schmölzer']",1993,01:46:00,https://medeiafilmes.com/filmes/a-rebeliao-1993
+3418,71 Fragmente einer Chronologie des Zufalls,71 Fragmentos de uma Cronologia do Acaso,Michael Haneke,"['Gabriel Cosmin Urdes', 'Lukas Miko', 'Otto Grünmandl', 'Anne Bennent']",1994,01:36:00,https://medeiafilmes.com/filmes/71-fragmentos-de-uma-cronologia-do-acaso-1994
+3419,Das Schloß,O Castelo,Michael Haneke,"['Ulrich Mühe', 'Susanne Lothar', 'Nikolaus Paryla']",1997,02:10:00,https://medeiafilmes.com/filmes/o-castelo-1997
+3420,Funny Games,Brincadeiras Perigosas,Michael Haneke,"['Susanne Lothar', 'Ulrich Mühe', 'Arno Frisch', 'Frank Giering']",1997,01:49:00,https://medeiafilmes.com/filmes/brincadeiras-perigosas-1997
+3421,Code inconnu: Récit incomplet de divers voyages,Código Desconhecido,Michael Haneke,"['Juliette Binoche', 'Thierry Neuvic', 'Sepp Bierbichler', 'Alexandre Hamidi']",2000,01:58:00,https://medeiafilmes.com/filmes/codigo-desconhecido-2000
+3423,La Pianiste,A Pianista,Michael Haneke,"['Isabelle Huppert', 'Annie Girardot', 'Benoît Magimel']",2001,02:11:00,https://medeiafilmes.com/filmes/a-pianista-2001
+3424,Le Temps du loup,O Tempo do Lobo,Michael Haneke,"['Isabelle Huppert', 'Patrice Chéreau', 'Brigitte Roüan', 'Daniel Duval']",2003,01:53:00,https://medeiafilmes.com/filmes/o-tempo-do-lobo-2003
+3425,Funny Games U.S.,Brincadeiras Perigosas U.S.,Michael Haneke,"['Naomi Watts', 'Tim Roth', 'Michael Pitt', 'Brady Corbet']",2007,01:51:00,https://medeiafilmes.com/filmes/brincadeiras-perigosas-u-s-2007
 3427,Happy End,Happy End,Michael Haneke,"['Isabelle Huppert', 'Jean-Louis Trintignant', 'Mathieu Kassovitz', 'Fantine Harduin']",2017,01:42:00,https://medeiafilmes.com/filmes/happy-end-2017
 3429,Das weiße Band - Eine deutsche Kindergeschichte,O Laço Branco,Michael Haneke,"['Leonie Benesch', 'Josef Bierbichler', 'Rainer Bock', 'Christian Friedel']",2009,02:18:00,https://medeiafilmes.com/filmes/o-laco-branco-2009
+3431,Die Andere Heimat - Part 1,Heimat - Crónica de Uma Nostalgia - Parte 1,Edgar Reitz,"['Jan Dieter Schneider', 'Antonia Bill', 'Maximilian Scheidt', 'Marita Breuer']",2013,01:38:00,https://medeiafilmes.com/filmes/heimat-cronica-de-uma-nostalgia-parte-1-2013
+3433,Die Andere Heimat - Part 2,Heimat - Crónica de Uma Nostalgia - Parte 2,Edgar Reitz,"['Jan Dieter Schneider', 'Antonia Bill', 'Maximilian Scheidt', 'Marita Breuer']",2013,02:04:00,https://medeiafilmes.com/filmes/heimat-cronica-de-uma-nostalgia-parte-2-2013
+3435,Caché,Nada a Esconder,Michael Haneke,"['Daniel Auteuil', 'Juliette Binoche', 'Maurice Benichou', 'Annie Girardot']",2005,01:54:00,https://medeiafilmes.com/filmes/nada-a-esconder-2005
+3437,Amour,Amor,Michael Haneke,"['Jean-Louis Trintignant', 'Emmanuelle Riva', 'Isabelle Huppert', 'Rita Blanco']",2012,02:02:00,https://medeiafilmes.com/filmes/amor-2012
+3439,Western,Western,Valeska Grisebach,"['Meinhard Neumann', 'Reinhardt Wetrek', 'Syuleyman Alilov Letifov', 'Veneta Frangipova']",2017,02:01:00,https://medeiafilmes.com/filmes/western-2017
