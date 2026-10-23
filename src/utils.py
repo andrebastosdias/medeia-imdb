@@ -5,7 +5,7 @@ from zoneinfo import ZoneInfo
 
 TIME_ZONE = "Europe/Lisbon"
 # Exact prime notation, e.g. "90'".
-PRIME_PATTERN = re.compile(r"^(\d+)\'$")
+PRIME_PATTERN = re.compile(r"^(\d+)['’]$")
 # Exact clock notation, e.g. "01:30:00".
 HOUR_MINUTE_CLOCK_PATTERN = re.compile(r"^(?P<h>\d+):(?P<m>\d+):00$")
 # Exact text notation, e.g. "2h 15m", "2 15", "45min", or "2h".
